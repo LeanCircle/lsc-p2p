@@ -1,1 +1,42 @@
+$navbarHeight: 100px;
+$black: #000;
+$linkColor: #000;
+$primaryButtonBackground: $black;
+$navbar-default-bg: #fff;
+
 @import "bootstrap";
+
+.center {
+	text-align: center;
+}
+
+.navbar {
+	margin-bottom: 0;
+	border: 0;
+
+	.navbar-brand {
+	height: $navbarHeight;
+	}
+
+	#navbar-logo {
+		max-height: 100%;
+	}
+
+	ul.nav {
+		margin-top: ($navbarHeight - 50px)/2;
+	}
+
+	button.navbar-toggle {
+		margin-top: ($navbarHeight - 34px)/2;
+	}
+
+	@media (min-width: 768px) {
+		ul.nav {
+			float: right;
+		}
+	}
+}
+
+footer {
+	text-align: right;
+}

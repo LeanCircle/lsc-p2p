@@ -1,0 +1,21 @@
+<div class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <%= link_to image_tag("p2pc_logo.png", id: "navbar-logo"), root_path, class: "navbar-brand" %>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <!-- nav_link defined in app/helpers/static_pages_helper.rb -->
+        <%= nav_link("Home", root_path) %>
+        <%= nav_link("About", about_path) %>
+        <%= nav_link("Contact", contact_path) %>
+        <%= nav_link("Team", team_path) %>
+      </ul>          
+    </div><!--/.navbar-collapse -->
+  </div>
+</div>

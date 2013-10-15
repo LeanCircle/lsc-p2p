@@ -1,14 +1,41 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>P2pc</title>
+  <meta charset="utf-8" />
+
+    <!-- Uncomment to make IE8 render like IE7 -->
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=7" /> -->
+
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, 
+                                      maximum-scale=1.0, user-scalable=no" />
+                                      
+  <title><%= full_title(yield(:title)) %></title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<%= yield %>
+<%= render 'layouts/header' %>
 
+<% flash.each do |key, value| %>
+	<%= content_tag(:div, value, class: "alert-box #{key}") %>
+<% end %>
+
+<% if yield(:full_width) == "true" %>
+	<%= yield %>
+<% else %>
+	<div class="container">
+		<%= yield %>
+	</div>
+<% end %>
+
+<%= render 'layouts/footer' %>
+
+<div class="container">
+  <%= debug(params) if Rails.env.development? %>
+</div>
+    
 </body>
 </html>
