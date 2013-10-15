@@ -6,9 +6,25 @@ $navbar-default-bg: #fff;
 
 @import "bootstrap";
 
+/* universal */
+
+html {
+	overflow-y: scroll;
+}
+
+section {
+	overflow: auto;
+}
+
+textarea {
+	resize: vertical;
+}
+
 .center {
 	text-align: center;
 }
+
+/* header */
 
 .navbar {
 	margin-bottom: 0;
@@ -36,6 +52,8 @@ $navbar-default-bg: #fff;
 		}
 	}
 }
+
+/* footer */
 
 footer {
 	text-align: right;
