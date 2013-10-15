@@ -2,18 +2,18 @@
 
 <div class="row">
   <div class="col-sm-6 col-sm-offset-3">
-    <%= form_for(@peer, :html => {:class => "form-horizontal"}) do |f| %>
+    <%= form_for(@peer) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
       
       <%= render "peers/steps/#{@peer.current_step}_step", :f => f %>
       
       <div class="actions">
         <% if @peer.last_step? %>
-          <p><%= f.submit "Submit", :name => "submit_button" %></p>
+          <p><%= f.button "Submit", class: "btn btn-primary", :name => "submit_button" %></p>
         <% else %>
-          <p><%= f.submit "Continue" %></p>
+          <p><%= f.button "Continue", class: "btn btn-primary" %></p>
         <% end %>
-        <p><%= f.submit "Back", :name => "back_button" unless @peer.first_step? %></p>
+        <p><%= f.button "Back", class: "btn", :name => "back_button" unless @peer.first_step? %></p>
       </div>
     <% end %>
   </div>

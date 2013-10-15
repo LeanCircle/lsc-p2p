@@ -90,3 +90,8 @@ input, textarea, select, .uneditable-input {
 input {
   height: auto !important;
 }
+
+// hide <br> automatically added after div.field_with_errors
+div.field_with_errors + br {
+  display: none
+}

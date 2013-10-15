@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131015162009) do
+ActiveRecord::Schema.define(version: 20131015192617) do
 
   create_table "peers", force: true do |t|
     t.string   "name"
@@ -19,9 +19,22 @@ ActiveRecord::Schema.define(version: 20131015162009) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "remember_token"
-    t.text     "location"
-    t.text     "time"
-    t.string   "team"
+    t.text     "availability_location"
+    t.text     "availability_time"
+    t.string   "availability_team"
+    t.string   "startup_info"
+    t.string   "startup_role"
+    t.string   "startup_market"
+    t.text     "startup_persona"
+    t.string   "startup_time"
+    t.string   "startup_interviews"
+    t.string   "startup_customers"
+    t.text     "startup_pmf"
+    t.text     "startup_metrics"
+    t.string   "startup_stage"
+    t.string   "runway_desc"
+    t.string   "runway_milestone"
+    t.text     "runway_constraints"
   end
 
 end
