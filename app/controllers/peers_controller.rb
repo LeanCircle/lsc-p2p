@@ -66,7 +66,7 @@ class PeersController < ApplicationController
   private
 
   def peer_params
-  	params.require(:peer).permit(:name, :email, :location, :team, :runway)
+  	params.require(:peer).permit(:peer_name, :peer_email, :availability_location, {:availability_time => []}, :availability_team, :startup_info, :startup_role, :startup_market, :startup_persona, :startup_time, :startup_interviews, :startup_customers, :startup_pmf, :startup_metrics, :startup_stage, :runway_desc, :runway_milestone, :runway_constraints)
   end
 
   # Before filters
@@ -74,7 +74,7 @@ class PeersController < ApplicationController
   def correct_peer
     @peer = Peer.find(params[:id])
     redirect_to(root_url) unless current_peer?(@peer)
-    flash[:alert] = "You can't see that!" if !current_peer?(@peer)
+    flash[:warning] = "You can't see that!" if !current_peer?(@peer)
   end
 
  # def admin_user

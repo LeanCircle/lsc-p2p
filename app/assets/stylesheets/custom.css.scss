@@ -81,6 +81,10 @@ footer {
 
 /* forms */
 
+.form-title {
+	margin-bottom: 1em;
+}
+
 input, textarea, select, .uneditable-input {
   border: 1px solid #bbb;
   @include box_sizing;
@@ -91,7 +95,6 @@ input {
   height: auto !important;
 }
 
-// hide <br> automatically added after div.field_with_errors
-div.field_with_errors + br {
-  display: none
+textarea {
+	height: 10em;
 }

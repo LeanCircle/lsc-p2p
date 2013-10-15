@@ -1,13 +1,15 @@
 class Peer < ActiveRecord::Base
   attr_accessor :current_step
 	
-	before_save { email.downcase! }
+	before_save { peer_email.downcase! }
 	before_create :create_remember_token
 
-	validates :name, presence: true, length: { maximum: 50 }
+	validates :peer_name, presence: true, length: { maximum: 50 }
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
-	validates :email, presence: true, uniqueness: { case_sensitive: false },
+	validates :peer_email, presence: true, uniqueness: { case_sensitive: false },
 										format: { with: VALID_EMAIL_REGEX }
+
+  serialize :availability_time
 
 	def Peer.new_remember_token
    	SecureRandom.urlsafe_base64

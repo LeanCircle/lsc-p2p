@@ -1,19 +1,19 @@
-<%= content_tag(:h1, @peer.current_step.capitalize, class: "center") %>
+<%= content_tag(:h1, @peer.current_step.capitalize, class: "center form-title") %>
 
 <div class="row">
   <div class="col-sm-6 col-sm-offset-3">
     <%= form_for(@peer) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
       
-      <%= render "peers/steps/#{@peer.current_step}_step", :f => f %>
+      <%= render "peers/steps/#{@peer.current_step}_step", f: f %>
       
       <div class="actions">
         <% if @peer.last_step? %>
-          <p><%= f.button "Submit", class: "btn btn-primary", :name => "submit_button" %></p>
+          <%= f.button "Submit", class: "btn btn-primary", :name => "submit_button" %>
         <% else %>
-          <p><%= f.button "Continue", class: "btn btn-primary" %></p>
+          <%= f.button "Continue", class: "btn btn-primary" %>
         <% end %>
-        <p><%= f.button "Back", class: "btn", :name => "back_button" unless @peer.first_step? %></p>
+        <%= f.button "Back", class: "btn", :name => "back_button" unless @peer.first_step? %>
       </div>
     <% end %>
   </div>

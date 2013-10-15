@@ -14,13 +14,13 @@
 ActiveRecord::Schema.define(version: 20131015192617) do
 
   create_table "peers", force: true do |t|
-    t.string   "name"
-    t.string   "email"
+    t.string   "peer_name"
+    t.string   "peer_email"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "remember_token"
     t.text     "availability_location"
-    t.text     "availability_time"
+    t.string   "availability_time"
     t.string   "availability_team"
     t.string   "startup_info"
     t.string   "startup_role"
