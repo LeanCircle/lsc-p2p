@@ -1,8 +1,8 @@
 class CreatePeers < ActiveRecord::Migration
   def change
     create_table :peers do |t|
-      t.string :peer_name
-      t.string :peer_email
+      t.string :name
+      t.string :email
 
       t.timestamps
     end

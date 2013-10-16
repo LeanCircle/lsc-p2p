@@ -14,8 +14,8 @@
 ActiveRecord::Schema.define(version: 20131015192617) do
 
   create_table "peers", force: true do |t|
-    t.string   "peer_name"
-    t.string   "peer_email"
+    t.string   "name"
+    t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "remember_token"

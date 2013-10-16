@@ -4,9 +4,9 @@ class Peer < ActiveRecord::Base
 	before_save { peer_email.downcase! }
 	before_create :create_remember_token
 
-	validates :peer_name, presence: true, length: { maximum: 50 }
+	validates :name, presence: true, length: { maximum: 50 }
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
-	validates :peer_email, presence: true, uniqueness: { case_sensitive: false },
+	validates :email, presence: true, uniqueness: { case_sensitive: false },
 										format: { with: VALID_EMAIL_REGEX }
 
   serialize :availability_time
