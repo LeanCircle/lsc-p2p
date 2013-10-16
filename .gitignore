@@ -17,3 +17,6 @@ doc/
 .DS_Store
 .idea
 .secret
+
+# rbenv
+.rbenv-gemsets
