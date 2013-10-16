@@ -1,0 +1,66 @@
+<%
+	startup_stage_options = [
+								"Customer Discovery", 
+								"Solution Validation",
+								"Scaling Customer Acquisition",
+								"Company Building"
+							] 
+%>
+
+<div class="form-group">
+	<%= f.label "What's the URL or name of your startup?" %>
+	<%= f.text_field :startup_info %>
+</div>
+
+<div class="form-group">
+	<%= f.label "What is your role in the startup?" %>
+	<%= f.text_field :startup_role %>
+</div>
+
+<div class="form-group">
+	<%= f.label "Is your startup B2C, B2B, B2G, C2C, etc?" %>
+	<%= f.text_field :startup_market %>
+</div>
+
+<div class="form-group">
+	<%= f.label "How would you describe your early adopters (or customer persona) to a fellow lean startup practitioner?" %>
+	<%= f.text_area :startup_persona %>
+</div>
+
+<div class="form-group">
+	<%= f.label "How long have you been actively working on your current startup?" %>
+	<%= f.text_field :startup_time %>
+</div>
+
+<div class="form-group">
+	<%= f.label "How many customers have you interviewed face to face?" %>
+	<%= f.text_field :startup_interviews %>
+</div>
+
+<div class="form-group">
+	<%= f.label "How many active customers do you have?" %>
+	<%= f.text_field :startup_customers %>
+</div>
+
+<div class="form-group">
+	<%= f.label "Have you reached Product/Market Fit and how have you validated it?" %>
+	<%= f.text_area :startup_pmf %>
+</div>
+
+<div class="form-group">
+	<%= f.label "What are the key metrics (qualitative or quantitative) you are tracking your progress against?" %>
+	<%= f.text_field :startup_metrics %>
+</div>
+
+<div class="form-group">
+	<%= f.label "If you had to classify the stage of your startup, would you define yourself as?" %>
+	<% startup_stage_options.each do |stage| %>
+		<div class="checkbox">
+			<label>
+				<%= f.check_box :startup_stage, { multiple: true }, stage, nil %>
+			  <%= f.label stage %>
+			</label>
+		</div>
+	<% end %>
+	<%= f.text_field :startup_stage, { multiple: true } %>
+</div>

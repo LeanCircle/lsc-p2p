@@ -6,6 +6,12 @@ $navbar-default-bg: #fff;
 
 @import "bootstrap";
 
+@mixin box_sizing {
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	box-sizing: border-box;         /* Opera/IE 8+ */
+}
+
 /* universal */
 
 html {
@@ -31,7 +37,7 @@ textarea {
 	border: 0;
 
 	.navbar-brand {
-	height: $navbarHeight;
+		height: $navbarHeight;
 	}
 
 	#navbar-logo {
@@ -53,8 +59,46 @@ textarea {
 	}
 }
 
+/* error explanation */
+
+div#error_explanation {
+	#error_message {
+		display: block;
+		margin-bottom: 0.5em;
+	}
+
+	ul {
+		list-style-type: none;
+		-webkit-padding-start: 0;
+	}
+}
+
 /* footer */
 
 footer {
 	text-align: right;
+}
+
+/* forms */
+
+.form-title {
+	margin-bottom: 1em;
+}
+
+form {
+	input, textarea, select, .uneditable-input {
+	  @include box_sizing;
+	}
+
+	input:not([type='checkbox']), textarea, select, .uneditable-input {
+	  @extend .form-control;
+	}
+
+	input {
+	  height: auto !important;
+	}
+
+	textarea {
+		height: 10em;
+	} 
 }
