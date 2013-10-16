@@ -3,6 +3,7 @@ ruby '2.0.0'
 
 gem 'rails', '4.0.0'
 gem 'bootstrap-sass', github: 'thomas-mcdonald/bootstrap-sass'
+gem 'gibbon', '1.0.4'
 
 group :development do
   gem 'sqlite3', '1.3.8'

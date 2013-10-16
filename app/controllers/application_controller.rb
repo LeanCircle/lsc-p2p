@@ -3,4 +3,13 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   include SessionsHelper
+
+  def mailchimp
+  	Gibbon::API.new
+  end
+
+  def p2pc_list_id
+  	'bf518a7f46'
+  end
+  
 end
