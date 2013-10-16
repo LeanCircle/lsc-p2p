@@ -10,7 +10,7 @@ class PeersController < ApplicationController
 
   def new
   	@peer = Peer.new
-    @peer.current_step = session[:peer_step]
+    session[:peer_step] = @peer.current_step
   end
 
   def show
@@ -41,8 +41,10 @@ class PeersController < ApplicationController
     @peer.current_step = session[:peer_step]
     if @peer.update_attributes(peer_params)
       if params[:submit_button]
-        flash[:success] = "Thanks!"
         redirect_to root_path
+        forget_peer
+        reset_session
+        flash[:success] = "Thanks!"
       else
         if params[:back_button]
           @peer.previous_step
@@ -50,8 +52,8 @@ class PeersController < ApplicationController
           @peer.next_step
         end
         redirect_to registration_peer_path(current_peer)
+        session[:peer_step] = @peer.current_step
       end
-      session[:peer_step] = @peer.current_step
     else
       render 'registration'
     end

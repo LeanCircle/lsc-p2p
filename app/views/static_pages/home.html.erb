@@ -8,7 +8,11 @@
 	  <h1>Hello, world!</h1>
 	  <p>This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
 	  
-	  <p><%= link_to "Join Now! &raquo;".html_safe, new_peer_path, class: "btn btn-primary btn-lg" %></p>
+	  <% if current_peer %>
+	  	<p><%= link_to "Edit! &raquo;".html_safe, registration_peer_path(current_peer), class: "btn btn-primary btn-lg" %></p>
+	  <% else %>
+	  	<p><%= link_to "Join Now! &raquo;".html_safe, new_peer_path, class: "btn btn-primary btn-lg" %></p>
+	  <% end %>
 	</div>
 </div>
 
