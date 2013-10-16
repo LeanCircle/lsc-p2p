@@ -10,12 +10,13 @@ class Peer < ActiveRecord::Base
 										format: { with: VALID_EMAIL_REGEX }
 
   serialize :availability_time
+  serialize :startup_stage
 
-	def Peer.new_remember_token
+	def self.new_remember_token
    	SecureRandom.urlsafe_base64
   end
 
-  def Peer.encrypt(token)
+  def self.encrypt(token)
     Digest::SHA1.hexdigest(token.to_s)
   end
 

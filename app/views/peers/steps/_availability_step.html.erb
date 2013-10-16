@@ -1,12 +1,29 @@
+<%
+	availability_time_options = [
+										"Weekday mornings (~ 9-11 am)", 
+										"Weekday afternoons (~1:30-5 pm)",
+										"Weekday evenings (~5:30-8pm)",
+										"WeekEND mornings (~ 9-11 am)",
+										"WeekEND afternoons (~1:30-5 pm)",
+										"WeekEND evenings (~5:30-8pm)"
+									] 
+%>
+
 <div class="form-group">
   <%= f.label "What locations are possible/convenient for you to meet?" %>
   <%= f.text_area :availability_location %>
 </div>
 
 <div class="form-group">
-	<%= f.label "What locations are possible/convenient for you to meet?" %>
-	<%= f.check_box :availability_time, { multiple: true }, "ale", nil %>
-	<%= f.check_box :availability_time, { multiple: true }, "prioni", nil %>
+	<%= f.label "What times are you available to meet on a weekly basis?" %>
+	<% availability_time_options.each do |time| %>
+		<div class="checkbox">
+			<label>
+				<%= f.check_box :availability_time, { multiple: true }, time, nil %>
+			  <%= f.label time %>
+			</label>
+		</div>
+	<% end %>
 </div>
 
 <div class="form-group">

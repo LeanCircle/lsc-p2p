@@ -7,9 +7,9 @@ $navbar-default-bg: #fff;
 @import "bootstrap";
 
 @mixin box_sizing {
-	-moz-box-sizing: border-box;
-	-webkit-box-sizing: border-box;
-	box-sizing: border-box;
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	box-sizing: border-box;         /* Opera/IE 8+ */
 }
 
 /* universal */
@@ -85,16 +85,20 @@ footer {
 	margin-bottom: 1em;
 }
 
-input, textarea, select, .uneditable-input {
-  border: 1px solid #bbb;
-  @include box_sizing;
-  @extend .form-control;
-}
+form {
+	input, textarea, select, .uneditable-input {
+	  @include box_sizing;
+	}
 
-input {
-  height: auto !important;
-}
+	input:not([type='checkbox']), textarea, select, .uneditable-input {
+	  @extend .form-control;
+	}
 
-textarea {
-	height: 10em;
+	input {
+	  height: auto !important;
+	}
+
+	textarea {
+		height: 10em;
+	} 
 }
