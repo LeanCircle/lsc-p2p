@@ -1,7 +1,7 @@
 class Peer < ActiveRecord::Base
   attr_accessor :current_step
 	
-	before_save { peer_email.downcase! }
+	before_save { email.downcase! }
 	before_create :create_remember_token
 
 	validates :name, presence: true, length: { maximum: 50 }
