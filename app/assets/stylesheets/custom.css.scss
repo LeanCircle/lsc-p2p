@@ -1,10 +1,29 @@
+/* edit bootstrap variable */
+
+$brand-primary: #1a95d3;
 $navbarHeight: 100px;
-$black: #000;
-$linkColor: #000;
-$primaryButtonBackground: $black;
 $navbar-default-bg: #fff;
+$link-color: #1a95d3;
+$link-hover-color: #ff6e58;
+$navbar-default-link-color: $brand-primary;
+$navbar-default-link-hover-color: $link-hover-color;
+$navbar-default-link-active-color: $link-hover-color;
+$navbar-default-link-active-bg: transparent;
+$font-size-large: 16px;
+$border-radius-base: 2px;
+$border-radius-small: 1.5px;
+$border-radius-large: 3px;
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:200,300,400,500,700);
+$font-family-sans-serif:  "Open Sans", sans-serif;
+$font-size-base: 16px;
+$line-height-base: 1.5;
+$headings-font-weight: 400;
 
 @import "bootstrap";
+
+/* mixins, variables, etc. */
+
+$jumbotron-h1-font-size: $font-size-base * 2.625;
 
 @mixin box_sizing {
 	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
@@ -24,6 +43,10 @@ section {
 
 textarea {
 	resize: vertical;
+}
+
+body {
+	color: #6a5e51;
 }
 
 .center {
@@ -105,7 +128,11 @@ form {
 
 	textarea {
 		height: 10em;
-	} 
+	}
+
+	label {
+		font-weight: normal;
+	}
 }
 
 /* pages styling */
@@ -113,6 +140,21 @@ form {
 .page-title {
 	margin-bottom: 1.5em;
 	@extend .center;
+}
+
+.jumbotron {
+	@extend .center;
+
+	h1 {
+		font-size: $jumbotron-h1-font-size;
+		line-height: ceil($jumbotron-h1-font-size * 1.33333333333);
+		font-weight: 200;
+	}
+
+	p {
+		font-size: $font-size-base;
+		line-height: $line-height-base;
+	}
 }
 
 /* team page */
@@ -132,5 +174,19 @@ form {
 		width: 20px;
 		height: 20px;
 		padding: 2px 1px 0 0;
+	}
+}
+
+/* buttons */
+
+.btn {
+	box-shadow: 0 4px 0 #5c6496;
+
+	&, &:hover {
+		border-color: transparent;
+	}
+
+	.btn-primary {
+		text-shadow: 0 2px 0 #1a97d5;
 	}
 }
