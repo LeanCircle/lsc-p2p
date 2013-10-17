@@ -30,6 +30,10 @@ textarea {
 	text-align: center;
 }
 
+img {
+	max-width: 100%;
+}
+
 /* header */
 
 .navbar {
@@ -59,6 +63,12 @@ textarea {
 	}
 }
 
+/* footer */
+
+footer {
+	text-align: right;
+}
+
 /* error explanation */
 
 div#error_explanation {
@@ -73,16 +83,11 @@ div#error_explanation {
 	}
 }
 
-/* footer */
-
-footer {
-	text-align: right;
-}
-
 /* forms */
 
 .form-title {
 	margin-bottom: 1em;
+	@extend .center;
 }
 
 form {
@@ -101,4 +106,31 @@ form {
 	textarea {
 		height: 10em;
 	} 
+}
+
+/* pages styling */
+
+.page-title {
+	margin-bottom: 1.5em;
+	@extend .center;
+}
+
+/* team page */
+
+.team-member {
+	margin-bottom: 2em;
+
+	.team-member-img {
+		width: 100%;
+	}
+
+	.team-member-name {
+		margin-top: 0;
+	}
+
+	.links img {
+		width: 20px;
+		height: 20px;
+		padding: 2px 1px 0 0;
+	}
 }
