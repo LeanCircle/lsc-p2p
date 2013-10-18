@@ -66,11 +66,8 @@
 
 	<div class="checkbox">
 		<label>
-			<%if false%><br><%= f.radio_button :startup_stage, "other" %><br><%end%>
 			<input name="peer[startup_stage]" type="radio" class="trigger-text" name="peer[startup_stage]" value="">
 		  <%= f.label "Other", for: :startup_stage %>
-		  
-			<% if false%><%= f.text_field :startup_stage, class: "triggered-text" %><%end%>
 			<input type="text" value="<%= @peer.startup_stage  if @peer.startup_stage.downcase != "Customer discovery".downcase %>" class="triggered-text">
 		</label>
 	</div>
