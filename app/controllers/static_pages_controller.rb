@@ -10,4 +10,7 @@ class StaticPagesController < ApplicationController
 
   def team
   end
+
+  def thanks
+  end
 end

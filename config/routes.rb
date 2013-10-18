@@ -5,6 +5,7 @@ P2pc::Application.routes.draw do
   match '/about', to: 'static_pages#about', via: 'get'
   match '/contact', to: 'static_pages#contact', via: 'get'
   match '/team', to: 'static_pages#team', via: 'get'
+  match '/thanks', to: 'static_pages#thanks', via: 'get'
 
   resources :sessions, only: [:new, :create, :destroy]
 

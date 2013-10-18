@@ -49,10 +49,9 @@ class PeersController < ApplicationController
         mailchimp.lists.subscribe({:id => p2pc_list_id, :email => {:email => old_email}, :merge_vars => {:FNAME => @peer.name, :EMAIL => @peer.email}, :update_existing => true})
       end
       if params[:submit_button]
-        redirect_to root_path
+        redirect_to thanks_path
         forget_peer
         reset_session
-        flash[:success] = "Thanks!"
       else
         if params[:back_button]
           @peer.previous_step
