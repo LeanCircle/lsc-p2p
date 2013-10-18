@@ -4,10 +4,16 @@
 # Ignore the default SQLite database.
 /db/*.sqlite3
 /db/*.sqlite3-journal
+db/development
 
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
+# Ignore application configuration
+config/application.yml
+config/database.yml
+config/config.yml
 
 # Ignore other unneeded files.
 doc/
@@ -17,6 +23,24 @@ doc/
 .DS_Store
 .idea
 .secret
+.env
+.bundle
+.idea/**/*
+.idea/*
+.idea
+.DS_Store
+.sass-cache/
 
 # rbenv
 .rbenv-gemsets
+
+# public folder
+public/stylesheets/
+public/stylesheets/*
+public/stylesheets/**/*
+public/assets/
+public/assets/*
+public/assets/**/*
+public/system/
+public/system/*
+public/system/**/*
