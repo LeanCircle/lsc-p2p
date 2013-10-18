@@ -1,9 +1,9 @@
 <%
 	startup_stage_options = [
-								"Customer Discovery", 
-								"Solution Validation",
-								"Scaling Customer Acquisition",
-								"Company Building"
+								"customer discovery", 
+								"solution validation",
+								"scaling customer Acquisition",
+								"company building"
 							] 
 %>
 
@@ -68,8 +68,10 @@
 		<label>
 			<input name="peer[startup_stage]" type="radio" class="trigger-text" name="peer[startup_stage]" value="">
 		  <%= f.label "Other", for: :startup_stage %>
-			<input type="text" value="<%= @peer.startup_stage  if @peer.startup_stage.downcase != "Customer discovery".downcase %>" class="triggered-text">
+			<input type="text" value="<%= @peer.startup_stage  if (@peer.startup_stage && !startup_stage_options.map{|a| a.downcase}.include?(@peer.startup_stage.downcase)) %>" class="triggered-text">
 		</label>
 	</div>
 
 </div>
+
+
