@@ -118,7 +118,7 @@ form {
 	  @include box_sizing;
 	}
 
-	input:not([type='checkbox']), textarea, select, .uneditable-input {
+	input:not([type='checkbox']):not([type='radio']), textarea, select, .uneditable-input {
 	  @extend .form-control;
 	}
 
@@ -132,6 +132,7 @@ form {
 
 	label {
 		font-weight: normal;
+		text-transform: none;
 	}
 }
 

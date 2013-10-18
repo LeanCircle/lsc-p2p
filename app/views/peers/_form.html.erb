@@ -8,12 +8,12 @@
       <%= render "peers/steps/#{@peer.current_step}_step", f: f %>
       
       <div class="actions">
+        <%= f.button "&laquo; Back".html_safe, class: "btn", :name => "back_button" unless @peer.first_step? %>
         <% if @peer.last_step? %>
           <%= f.button "Submit", class: "btn btn-primary", :name => "submit_button" %>
         <% else %>
-          <%= f.button "Continue", class: "btn btn-primary" %>
+          <%= f.button "Continue &raquo;".html_safe, class: "btn btn-primary" %>
         <% end %>
-        <%= f.button "Back", class: "btn", :name => "back_button" unless @peer.first_step? %>
       </div>
     <% end %>
   </div>
