@@ -8,59 +8,71 @@
 %>
 
 <div class="form-group">
-	<%= f.label "What's the URL or name of your startup?" %>
+	<%= f.label "What's the URL or name of your startup?", for: :startup_info %>
 	<%= f.text_field :startup_info %>
 </div>
 
 <div class="form-group">
-	<%= f.label "What is your role in the startup?" %>
+	<%= f.label "What is your role in the startup?", for: :startup_role %>
 	<%= f.text_field :startup_role %>
 </div>
 
 <div class="form-group">
-	<%= f.label "Is your startup B2C, B2B, B2G, C2C, etc?" %>
+	<%= f.label "Is your startup B2C, B2B, B2G, C2C, etc?", for: :startup_market %>
 	<%= f.text_field :startup_market %>
 </div>
 
 <div class="form-group">
-	<%= f.label "How would you describe your early adopters (or customer persona) to a fellow lean startup practitioner?" %>
+	<%= f.label "How would you describe your early adopters (or customer persona) to a fellow lean startup practitioner?", for: :startup_persona %>
 	<%= f.text_area :startup_persona %>
 </div>
 
 <div class="form-group">
-	<%= f.label "How long have you been actively working on your current startup?" %>
+	<%= f.label "How long have you been actively working on your current startup?", for: :startup_time %>
 	<%= f.text_field :startup_time %>
 </div>
 
 <div class="form-group">
-	<%= f.label "How many customers have you interviewed face to face?" %>
+	<%= f.label "How many customers have you interviewed face to face?", for: :startup_interviews %>
 	<%= f.text_field :startup_interviews %>
 </div>
 
 <div class="form-group">
-	<%= f.label "How many active customers do you have?" %>
+	<%= f.label "How many active customers do you have?", for: :startup_customers %>
 	<%= f.text_field :startup_customers %>
 </div>
 
 <div class="form-group">
-	<%= f.label "Have you reached Product/Market Fit and how have you validated it?" %>
+	<%= f.label "Have you reached Product/Market Fit and how have you validated it?", for: :startup_pmf %>
 	<%= f.text_area :startup_pmf %>
 </div>
 
 <div class="form-group">
-	<%= f.label "What are the key metrics (qualitative or quantitative) you are tracking your progress against?" %>
+	<%= f.label "What are the key metrics (qualitative or quantitative) you are tracking your progress against?", for: :startup_metrics %>
 	<%= f.text_field :startup_metrics %>
 </div>
 
 <div class="form-group">
-	<%= f.label "If you had to classify the stage of your startup, would you define yourself as?" %>
+	<%= f.label "If you had to classify the stage of your startup, would you define yourself as?", for: :startup_stage %>
+
 	<% startup_stage_options.each do |stage| %>
 		<div class="checkbox">
 			<label>
-				<%= f.check_box :startup_stage, { multiple: true }, stage, nil %>
-			  <%= f.label stage %>
+				<%= f.radio_button :startup_stage, stage %>
+			  <%= f.label stage, for: :startup_stage %>
 			</label>
 		</div>
 	<% end %>
-	<%= f.text_field :startup_stage, { multiple: true } %>
+
+	<div class="checkbox">
+		<label>
+			<%if false%><br><%= f.radio_button :startup_stage, "other" %><br><%end%>
+			<input name="peer[startup_stage]" type="radio" class="trigger-text" name="peer[startup_stage]" value="">
+		  <%= f.label "Other", for: :startup_stage %>
+		  
+			<% if false%><%= f.text_field :startup_stage, class: "triggered-text" %><%end%>
+			<input type="text" value="<%= @peer.startup_stage  if @peer.startup_stage.downcase != "Customer discovery".downcase %>" class="triggered-text">
+		</label>
+	</div>
+
 </div>
