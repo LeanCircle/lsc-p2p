@@ -2,7 +2,6 @@ class Peer < ActiveRecord::Base
   attr_accessor :current_step
 	
 	before_save { email.downcase! }
-  before_save { startup_stage.downcase! }
 	before_create :create_remember_token
 
 	validates :name, presence: true, length: { maximum: 50 }
@@ -25,7 +24,7 @@ class Peer < ActiveRecord::Base
   end
 
   def steps
-    %w[info availability startup runway]
+    %w[info availability startup runaway]
   end
 
   def next_step

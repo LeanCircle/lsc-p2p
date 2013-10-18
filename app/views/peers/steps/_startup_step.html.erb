@@ -1,10 +1,56 @@
 <%
 	startup_stage_options = [
-								"customer discovery", 
-								"solution validation",
-								"scaling customer Acquisition",
-								"company building"
-							] 
+														"customer discovery", 
+														"solution validation",
+														"scaling customer acquisition",
+														"company building"
+													]
+
+	startup_role_options = [
+													"CEO",
+													"CTO", 
+													"product manager", 
+													"UX/graphic designer", 
+													"CMO/Marketing", 
+													"Engineer"
+													]
+
+	startup_market_options = [
+														"B2C",
+														"B2B",
+														"B2G",
+														"C2C",
+														"others"
+														]
+	startup_time_options = [
+														"< 1 month",
+														"1 - 6 months",
+														"6 - 12 months",
+														"> 1 year",
+														"> 2 years"
+													]
+
+	startup_interviews_options = [
+																"< 5",
+																"5-10",
+																"10-20",
+																"20-50",
+																"50-100",
+																">100"
+																]
+
+	startup_customers_options = [
+																"< 5",
+																"5-10",
+																"10-20",
+																"20-50",
+																"50-100",
+																"100-200",
+																"200-500",
+																"500-1K",
+																">1K"
+															]
+
 %>
 
 <div class="form-group">
@@ -14,12 +60,12 @@
 
 <div class="form-group">
 	<%= f.label "What is your role in the startup?", for: :startup_role %>
-	<%= f.text_field :startup_role %>
+  <%= f.select :startup_role, startup_role_options %>  
 </div>
 
 <div class="form-group">
 	<%= f.label "Is your startup B2C, B2B, B2G, C2C, etc?", for: :startup_market %>
-	<%= f.text_field :startup_market %>
+  <%= f.select :startup_market, startup_market_options %>  
 </div>
 
 <div class="form-group">
@@ -29,17 +75,41 @@
 
 <div class="form-group">
 	<%= f.label "How long have you been actively working on your current startup?", for: :startup_time %>
-	<%= f.text_field :startup_time %>
+
+	<% startup_time_options.each do |time| %>
+		<div class="checkbox">
+			<label>
+				<%= f.radio_button :startup_time, time %>
+			  <%= f.label time, for: :startup_time %>
+			</label>
+		</div>
+	<% end %>
 </div>
 
 <div class="form-group">
 	<%= f.label "How many customers have you interviewed face to face?", for: :startup_interviews %>
-	<%= f.text_field :startup_interviews %>
+
+	<% startup_interviews_options.each do |interviews| %>
+		<div class="checkbox">
+			<label>
+				<%= f.radio_button :startup_interviews, interviews %>
+			  <%= f.label interviews, for: :startup_interviews %>
+			</label>
+		</div>
+	<% end %>
 </div>
 
 <div class="form-group">
 	<%= f.label "How many active customers do you have?", for: :startup_customers %>
-	<%= f.text_field :startup_customers %>
+
+	<% startup_customers_options.each do |customers| %>
+		<div class="checkbox">
+			<label>
+				<%= f.radio_button :startup_customers, customers %>
+			  <%= f.label customers, for: :startup_customers %>
+			</label>
+		</div>
+	<% end %>
 </div>
 
 <div class="form-group">
@@ -49,7 +119,7 @@
 
 <div class="form-group">
 	<%= f.label "What are the key metrics (qualitative or quantitative) you are tracking your progress against?", for: :startup_metrics %>
-	<%= f.text_field :startup_metrics %>
+	<%= f.text_area :startup_metrics %>
 </div>
 
 <div class="form-group">
