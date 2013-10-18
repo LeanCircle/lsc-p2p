@@ -6,6 +6,7 @@ P2pc::Application.routes.draw do
   match '/contact', to: 'static_pages#contact', via: 'get'
   match '/team', to: 'static_pages#team', via: 'get'
   match '/thanks', to: 'static_pages#thanks', via: 'get'
+  match '/privacy-policy', to: 'static_pages#privacy', via: 'get', as: 'privacy'
 
   resources :sessions, only: [:new, :create, :destroy]
 
