@@ -1,8 +1,7 @@
 class PeersController < ApplicationController
-  before_action :registered_peer, only: [:edit, :update]
   before_action :correct_peer,   only: [:edit, :update]
   before_action :admin_user, only: :destroy
-  before_action :has_account, only: [:new, :create]
+  before_action :is_registered, only: [:new, :create]
 
   def index
     @peers = Peer.order('name ASC')
@@ -91,7 +90,7 @@ class PeersController < ApplicationController
  #     redirect_to(users_url) if User.find(params[:id]) == current_user
  # end
 
-  def has_account
+  def is_registered
     if registered?
       redirect_to(root_url)
       flash[:warning] = "You are already registered!"

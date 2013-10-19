@@ -24,13 +24,6 @@ module SessionsHelper
     peer == current_peer
   end
 
-  def registered_peer
-    unless registered?
-      store_location
-      redirect_to register_url, notice: "Please register."
-    end
-  end
-
   def forget_peer
     self.current_peer = nil
     cookies.delete(:remember_token)
