@@ -90,6 +90,10 @@ img {
 
 footer {
 	text-align: right;
+
+	#iubenda {
+		float: left;
+	}
 }
 
 /* error explanation */
@@ -123,7 +127,7 @@ form {
 	}
 
 	input {
-	  height: auto !important;
+	  height: auto !important;	  
 	}
 
 	textarea {
@@ -132,7 +136,10 @@ form {
 
 	label {
 		font-weight: normal;
-		text-transform: none;
+	}
+
+	label label, select  {
+		text-transform: capitalize!important;
 	}
 }
 
