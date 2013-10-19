@@ -157,13 +157,12 @@ form {
 	background: $gray-lighter url('jumbotron-bg.png');
 	background-repeat: no-repeat;
 	background-size: cover;
-	background-position: 70% 50%;
+	background-position: 50% 50%;
+	*/
 	
 	@media(max-width:767px){
-		padding: 30px 0;
-		background-position: 50% 50%;
+		padding: $jumbotron-padding 0;
 	}
-	*/
 
 	h1 {
 		font-size: $jumbotron-h1-font-size;

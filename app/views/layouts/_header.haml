@@ -1,0 +1,17 @@
+.navbar.navbar-default
+  .container
+    .navbar-header
+      %button.navbar-toggle{type: "button", data: {toggle: "collapse", target: ".navbar-collapse"}}
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+        
+      = link_to image_tag("p2pc_logo.png", id: "navbar-logo"), root_path, class: "navbar-brand"
+
+    .navbar-collapse.collapse
+      %ul.nav.navbar-nav
+        / nav_link defined in app/helpers/static_pages_helper.rb
+        = nav_link("Home", root_path)
+        = nav_link("About", about_path)
+        = nav_link("Contact", contact_path)
+        = nav_link("Team", team_path)
