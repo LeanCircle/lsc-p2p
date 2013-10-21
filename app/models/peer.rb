@@ -9,8 +9,6 @@ class Peer < ActiveRecord::Base
 	validates :email, presence: true, uniqueness: { case_sensitive: false },
 										format: { with: VALID_EMAIL_REGEX }
 
-  serialize :availability_time
-
 	def self.new_remember_token
    	SecureRandom.urlsafe_base64
   end
