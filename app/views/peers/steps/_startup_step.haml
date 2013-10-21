@@ -1,0 +1,39 @@
+.form-group
+	= f.label "What's the URL or name of your startup?", for: :startup_info
+	= f.text_field :startup_info
+
+.form-group
+	= f.label "What is your role in the startup?", for: :startup_role
+	= f.select :startup_role, startup_role_options
+
+.form-group
+	= f.label "Is your startup B2C, B2B, B2G, C2C, etc?", for: :startup_market
+	= f.select :startup_market, startup_market_options 
+
+.form-group
+	= f.label "How would you describe your early adopters (or customer persona) to a fellow lean startup practitioner?", for: :startup_persona
+	= f.text_area :startup_persona
+
+.form-group
+	= f.label "How long have you been actively working on your current startup?", for: :startup_time
+	= f.select :startup_time, startup_time_options
+
+.form-group
+	= f.label "How many customers have you interviewed face to face?", for: :startup_interviews
+	= f.select :startup_interviews, startup_interviews_options
+
+.form-group
+	= f.label "How many active customers do you have?", for: :startup_customers
+	= f.select :startup_customers, startup_customers_options
+
+.form-group
+	= f.label "Have you reached Product/Market Fit and how have you validated it?", for: :startup_pmf
+	= f.text_area :startup_pmf
+
+.form-group
+	= f.label "What are the key metrics (qualitative or quantitative) you are tracking your progress against?", for: :startup_metrics
+	= f.text_area :startup_metrics
+
+.form-group
+	= f.label "If you had to classify the stage of your startup, would you define yourself as?", for: :startup_stage
+	= f.select :startup_stage, startup_stage_options

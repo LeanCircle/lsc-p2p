@@ -1,0 +1,8 @@
+- if object.errors.any?
+  #error_explanation.center
+    .alert.alert-dismissable.alert-danger
+      %button.close{type: "button", "data-dismiss" => "alert", "aria-hidden" => "true"} &times;
+      %strong#error_message The form contains #{pluralize(object.errors.count, "error")}:
+      %ul
+        - object.errors.full_messages.each do |msg|
+          %li * #{msg}

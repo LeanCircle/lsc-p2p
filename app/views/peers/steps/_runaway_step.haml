@@ -1,0 +1,11 @@
+.form-group
+	= f.label "What's your runaway (in months)?", for: :runway_desc
+	= f.select :runway_desc, runaway_desc_options
+
+.form-group
+	= f.label "What is your next milestone?", for: :runway_milestone
+	= f.text_area :runway_milestone
+
+.form-group
+	= f.label "What constraints limit your iteration speed?", for: :runway_constraints
+	= f.text_area :runway_constraints
