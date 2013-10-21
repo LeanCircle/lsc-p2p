@@ -2,25 +2,24 @@
 - provide(:title, "Home")
 
 .jumbotron
-	.container
-		%h1 Weekly roundtables of Lean Entrepreneurs
-		%p It's monday and you're at your desk. Who's going to answer your questions about Lean? How do you make sure you're on the right track? Founders are most likely to succeed when they have a support network, share experiences, and get challenged on our assumptions. That's why we created the Lean Startup Peer to Peer Circle.
-
-		- if current_peer 
-			%p
-				= link_to "Complete your registration &raquo;".html_safe, registration_peer_path(current_peer), class: "btn btn-primary btn-lg"
-		- else
-			%p
-				= link_to "Check out a group &raquo;".html_safe, new_peer_path, class: "btn btn-primary btn-lg"
+        .container
+                %h1 Weekly roundtables of Lean Entrepreneurs
+                %p In theory there is no difference between theory and practice; in practice there is. You can read books, blogs, watch videos, or you can join a weekly session where your ideas can be challenged by a group of your peers working on the same issues day in day out. You choose.
+                - if current_peer 
+                        %p
+                                = link_to "Complete your application &raquo;".html_safe, registration_peer_path(current_peer), class: "btn btn-primary btn-lg"
+                - else
+                        %p
+                                = link_to "Request an invite &raquo;".html_safe, new_peer_path, class: "btn btn-primary btn-lg"
 
 .container
-	.row
-		.col-sm-4
-			%h2.feature-title Accountability
-			%p Each week members get to pick a learning goal and make a commitment for the following session which they have to then present to the group about.
-		.col-sm-4
-			%h2.feature-title Ongoing help
-			%p Every week you have an opportunity to share your problems and questions with the group and seek for help and recommendations.
-		.col-sm-4
-			%h2.feature-title Tactics & Tools
-			%p As you meet others that have likely gone through the same problems you're now experiencing you can pick up useful tactics and tools to solve specific problems.
+        .row
+                .col-sm-4
+                        %h2.feature-title Accountability
+                        %p Each week you will get to pick a learning goal and make a commitment for the following session that you have to update the group about.
+                .col-sm-4
+                        %h2.feature-title Ongoing help
+                        %p Every week you have an opportunity to share the biggest problem in your business and get help with it.
+                .col-sm-4
+                        %h2.feature-title Tactics & Tools
+                        %p Learn about specifc tools and tactics other members have used to solve problems you're now facing.
