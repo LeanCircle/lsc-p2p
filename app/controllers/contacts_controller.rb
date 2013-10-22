@@ -6,7 +6,7 @@ class ContactsController < ApplicationController
 
   def create
     @message = Contact.new(message_params)
-    if verify_recaptcha(model: @message, :message => "Oh! It's error with reCAPTCHA!")
+    if @message.valid? && verify_recaptcha(model: @message, :message => "Oh! It's error with reCAPTCHA!")
       UserMailer.contact(@message).deliver
       redirect_to(contact_thanks_path)
     else
