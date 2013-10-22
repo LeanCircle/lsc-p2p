@@ -21,8 +21,7 @@
         = f.text_area :message
 
       .form-group
-        = recaptcha_tags :display => { :theme => "white" }
+        = recaptcha_tags display: { :theme => "white", iframe_width: "100%" }, ajax: true
 
       .actions
         = f.button "Send!", name: :commit, value: :submit, class: "btn btn-primary"
-        = f.button "Cancel", class: "btn"
