@@ -1,0 +1,14 @@
+%div
+  %p
+    %strong From:
+    #{@message.name}, #{@message.email}
+
+  %p
+    %strong Message:
+    %br
+    #{@message.message}
+
+  %br
+  %hr
+
+  %p Sent from #{link_to "P2PC contact form", "http://p2p.leanstartupcircle.com/contact"}

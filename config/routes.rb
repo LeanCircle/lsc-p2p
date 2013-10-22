@@ -16,6 +16,7 @@ P2pc::Application.routes.draw do
 
   resources :contacts, only: [:create]
   match "/contact", to: 'contacts#new', via: :get
+  match "/contact/thanks", to: 'contacts#thanks', via: :get
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
