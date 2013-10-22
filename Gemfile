@@ -14,6 +14,7 @@ gem 'turbolinks', '1.3.0'
 gem 'jbuilder', '1.5.2'
 
 gem 'figaro' # Config env variables with config/application.yml using config/application.yml.example
+gem "recaptcha", :require => "recaptcha/rails" # Add captcha
 
 group :development do
   gem 'sqlite3', '1.3.8'

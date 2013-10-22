@@ -14,11 +14,14 @@
 
       .form-group
         = f.label "Email"
-        = f.text_field :email
+        = f.email_field :email
 
       .form-group
         = f.label "Message"
         = f.text_area :message
+
+      .form-group
+        = recaptcha_tags :display => { :theme => "white" }
 
       .actions
         = f.button "Send!", name: :commit, value: :submit, class: "btn btn-primary"
