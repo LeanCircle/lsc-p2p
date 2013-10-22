@@ -2,11 +2,10 @@ P2pc::Application.routes.draw do
 
   root 'static_pages#home'
 
-  match '/about', to: 'static_pages#about', via: 'get'
-  match '/contact', to: 'static_pages#contact', via: 'get'
-  match '/team', to: 'static_pages#team', via: 'get'
-  match '/thanks', to: 'static_pages#thanks', via: 'get'
-  match '/privacy-policy', to: 'static_pages#privacy', via: 'get', as: 'privacy'
+  match '/about', to: 'static_pages#about', via: :get
+  match '/team', to: 'static_pages#team', via: :get
+  match '/thanks', to: 'static_pages#thanks', via: :get
+  match '/privacy-policy', to: 'static_pages#privacy', via: :get, as: :privacy
 
   resources :sessions, only: [:new, :create, :destroy]
 
@@ -14,6 +13,9 @@ P2pc::Application.routes.draw do
       get 'registration', on: :member
   end
   match 'registration' => 'peers#new', via: :get
+
+  resources :contacts, only: [:create]
+  match "/contact", to: 'contacts#new', via: :get
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
