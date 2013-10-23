@@ -7,9 +7,5 @@ class ApplicationController < ActionController::Base
   def mailchimp
   	Gibbon::API.new
   end
-
-  def p2pc_list_id
-  	'bf518a7f46'
-  end
   
 end

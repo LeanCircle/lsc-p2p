@@ -1,11 +1,16 @@
 .form-group
-	= f.label :runway_desc, "What's your runaway (in months)?"
-	= f.select :runway_desc, runaway_desc_options
+  = f.label :runway_desc, "What's your runaway (in months)?"
+  = f.select :runway_desc, runaway_desc_options
 
 .form-group
-	= f.label :runway_milestone, "What is your next milestone?"
-	= f.text_area :runway_milestone
+  = f.label :runway_milestone, "What is your next milestone?"
+  = f.text_area :runway_milestone
 
 .form-group
-	= f.label :runway_constraints, "What constraints limit your iteration speed?"
-	= f.text_area :runway_constraints
+  = f.label :runway_constraints, "What constraints limit your iteration speed?"
+  = f.text_area :runway_constraints
+
+.form-group
+  .well
+    = check_box_tag :subscribe_newsletter, true, checked: "checked"
+    = label_tag(:subscribe_newsletter, "Subscribe to newsletter")
