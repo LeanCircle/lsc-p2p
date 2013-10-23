@@ -23,8 +23,6 @@ class PeersController < ApplicationController
       redirect_to registration_peer_path(current_peer)
       @peer.next_step
       session[:peer_step] = @peer.current_step
-
-      mailchimp.lists.subscribe({:id => p2pc_list_id, :email => {:email => @peer.email}, :merge_vars => {:FNAME => @peer.name}, :double_optin => false, :send_welcome => true})
     else
       render 'new'
     end
@@ -40,14 +38,11 @@ class PeersController < ApplicationController
 
   def update
     @peer.current_step = session[:peer_step]
-    old_email = @peer.email
-    old_name = @peer.name
 
     if @peer.update_attributes(peer_params)
-      if old_email != @peer.email || old_name != @peer.name
-        mailchimp.lists.subscribe({:id => p2pc_list_id, :email => {:email => old_email}, :merge_vars => {:FNAME => @peer.name, :EMAIL => @peer.email}, :update_existing => true})
-      end
       if params[:submit_button]
+        mailchimp.lists.subscribe({id: ENV['MAILCHIMP_LIST_ID'], email: {email: @peer.email}, merge_vars: {:FNAME => @peer.name}}) if params[:subscribe_newsletter]
+        UserMailer.registration_confirmed(@peer.email, @peer.name).deliver
         redirect_to thanks_path
         forget_peer
         reset_session
