@@ -1,0 +1,34 @@
+- provide(:title, "Contact")
+%h1.page-title Contact Us
+
+.row
+  .col-sm-6.col-sm-offset-3
+    %h2.center#call-us
+      Would you like to talk us? Call anytime at
+      %a{href: "tel:+14154947469"} +1 (415) 494-7469
+      or drop us an email:
+
+.row
+  .col-sm-6.col-sm-offset-3
+
+    = form_for(@message) do |f|
+
+      = render 'shared/error_messages', object: f.object
+
+      .form-group
+        = f.label :name
+        = f.text_field :name
+
+      .form-group
+        = f.label :email
+        = f.email_field :email
+
+      .form-group
+        = f.label :message
+        = f.text_area :message
+
+      .form-group
+        = recaptcha_tags display: { :theme => "white", iframe_width: "100%" }, ajax: true
+
+      .actions
+        = f.button "Send!", name: :commit, value: :submit, class: "btn btn-primary"
