@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default from: "alessandroprioni@gmail.com"
+  default from: "P2PC contact form <contact@p2p.leanstartupcircle.com>"
 
   def contact(message)
     @message = message

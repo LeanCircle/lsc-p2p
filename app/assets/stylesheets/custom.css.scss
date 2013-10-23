@@ -140,10 +140,15 @@ form {
 
   label {
     font-weight: normal;
+    @extend .control-label;
   }
 
   label label, select  {
     text-transform: capitalize!important;
+  }
+
+  .field_with_errors {
+    @extend .has-error;
   }
 }
 
