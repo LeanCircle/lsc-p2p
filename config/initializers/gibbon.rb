@@ -1,1 +1,1 @@
-Gibbon::API.api_key = "e570741da2f759c2e9976b1b63aacbae-us4"
+Gibbon::API.api_key = ENV['MAILCHIMP_API_KEY']
