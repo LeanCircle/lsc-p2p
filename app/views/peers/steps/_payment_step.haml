@@ -1,0 +1,19 @@
+= f.hidden_field :stripe_customer_id
+
+.payment-errors
+
+.form-group
+  = label_tag :number, "Card Number"
+  = telephone_field_tag nil, nil, id: :number, "data-stripe" => :number, autocomplete: 'off'
+
+.form-group
+  = label_tag :cvc, "Card Security Code"
+  = telephone_field_tag nil, nil, id: :cvc, "data-stripe" => :cvc, autocomplete: 'off'
+
+.form-group
+  = label_tag :exp_month, "Card Expiration"
+  = select_month nil, {add_month_numbers: true}, name: nil, id: :exp_month, "data-stripe" => :exp_month
+  = select_year nil, {start_year: Date.today.year, end_year: Date.today.year+10}, name: nil, id: :exp_year, "data-stripe" => :exp_year
+
+%p
+  %small.right Your credit card details will be sent directly to our payment processor
