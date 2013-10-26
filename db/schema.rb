@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131015192617) do
+ActiveRecord::Schema.define(version: 20131026141755) do
 
   create_table "peers", force: true do |t|
     t.string   "name"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20131015192617) do
     t.string   "runway_desc"
     t.string   "runway_milestone"
     t.text     "runway_constraints"
+    t.string   "stripe_customer_id"
   end
 
 end

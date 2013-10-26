@@ -1,6 +1,5 @@
 class PeersController < ApplicationController
   before_action :correct_peer,   only: [:edit, :update]
-  before_action :admin_user, only: :destroy
   before_action :is_registered, only: [:new, :create]
 
   def index
@@ -23,8 +22,6 @@ class PeersController < ApplicationController
       redirect_to registration_peer_path(current_peer)
       @peer.next_step
       session[:peer_step] = @peer.current_step
-
-      mailchimp.lists.subscribe({:id => p2pc_list_id, :email => {:email => @peer.email}, :merge_vars => {:FNAME => @peer.name}, :double_optin => false, :send_welcome => true})
     else
       render 'new'
     end
@@ -40,26 +37,36 @@ class PeersController < ApplicationController
 
   def update
     @peer.current_step = session[:peer_step]
-    old_email = @peer.email
-    old_name = @peer.name
 
     if @peer.update_attributes(peer_params)
-      if old_email != @peer.email || old_name != @peer.name
-        mailchimp.lists.subscribe({:id => p2pc_list_id, :email => {:email => old_email}, :merge_vars => {:FNAME => @peer.name, :EMAIL => @peer.email}, :update_existing => true})
-      end
+ 
       if params[:submit_button]
-        redirect_to thanks_path
-        forget_peer
-        reset_session
-      else
-        if params[:back_button]
-          @peer.previous_step
-        else
-          @peer.next_step
+
+        thank_peer
+
+      elsif params[:stripeToken]
+
+        token = params[:stripeToken]
+        begin
+          customer = Stripe::Customer.create(
+            card: token,
+            email: @peer.email,
+            description: @peer.name
+          )
+          save_stripe_customer_id(:stripe_customer_id, customer.id)
+          thank_peer
+        rescue Stripe::CardError => e
+          flash.now[:danger] = e.message
+          render 'registration'
         end
-        redirect_to registration_peer_path(current_peer)
-        session[:peer_step] = @peer.current_step
+
+      elsif params[:back_button]
+        change_step('previous')
+
+      elsif params[:continue_button]
+        change_step('next')
       end
+
     else
       render 'registration'
     end
@@ -73,27 +80,45 @@ class PeersController < ApplicationController
 
   private
 
-  def peer_params
-  	params.require(:peer).permit(:name, :email, :availability_location, :availability_time, :availability_team, :startup_info, :startup_role, :startup_market, :startup_persona, :startup_time, :startup_interviews, :startup_customers, :startup_pmf, :startup_metrics, :startup_stage, :runway_desc, :runway_milestone, :runway_constraints)
-  end
-
-  # Before filters
-
-  def correct_peer
-    @peer = Peer.find(params[:id])
-    redirect_to(root_url) unless current_peer?(@peer)
-    flash[:warning] = "You can't see that!" if !current_peer?(@peer)
-  end
-
- # def admin_user
- #     redirect_to(users_url) unless current_user.admin?
- #     redirect_to(users_url) if User.find(params[:id]) == current_user
- # end
-
-  def is_registered
-    if registered?
-      redirect_to(root_url)
-      flash[:warning] = "You are already registered!"
+    def peer_params
+    	params.require(:peer).permit(:name, :email, :availability_location, :availability_time, :availability_team, :startup_info, :startup_role, :startup_market, :startup_persona, :startup_time, :startup_interviews, :startup_customers, :startup_pmf, :startup_metrics, :startup_stage, :runway_desc, :runway_milestone, :runway_constraints, :stripe_customer_id)
     end
-  end
+
+    # Before filters
+
+    def correct_peer
+      @peer = Peer.find(params[:id])
+      redirect_to(root_url) unless current_peer?(@peer)
+      flash[:warning] = "You can't see that!" if !current_peer?(@peer)
+    end
+
+    def is_registered
+      if registered?
+        redirect_to registration_peer_path(current_peer)
+        flash[:warning] = "Please complete your application"
+      end
+    end
+
+    def save_stripe_customer_id(attribute, stripe_customer_id)
+      @peer.update_attribute(attribute, stripe_customer_id)
+    end
+
+    def change_step(prev_or_next)
+      case prev_or_next
+        when 'previous'
+          @peer.previous_step
+        when 'next'
+          @peer.next_step
+      end
+        
+      redirect_to registration_peer_path(current_peer)
+      session[:peer_step] = @peer.current_step
+    end
+
+    def thank_peer
+      redirect_to thanks_path
+      forget_peer
+      reset_session
+    end
+
 end
