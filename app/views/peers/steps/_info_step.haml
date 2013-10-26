@@ -5,3 +5,8 @@
 .form-group
   = f.label :email
   = f.email_field :email
+
+.form-group
+  .well
+    = f.check_box :newsletter_subscription
+    = f.label :newsletter_subscription, "Subscribe to newsletter"
