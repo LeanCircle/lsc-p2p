@@ -143,6 +143,10 @@ form {
     @extend .control-label;
   }
 
+  .well label {
+    margin-bottom: 0;
+  }
+
   label label, select  {
     text-transform: capitalize!important;
   }

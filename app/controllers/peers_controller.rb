@@ -81,22 +81,7 @@ class PeersController < ApplicationController
   private
 
     def peer_params
-    	params.require(:peer).permit(:name, :email, :availability_location, :availability_time, :availability_team, :startup_info, :startup_role, :startup_market, :startup_persona, :startup_time, :startup_interviews, :startup_customers, :startup_pmf, :startup_metrics, :startup_stage, :runway_desc, :runway_milestone, :runway_constraints, :stripe_customer_id)
-    end
-
-    # Before filters
-
-    def correct_peer
-      @peer = Peer.find(params[:id])
-      redirect_to(root_url) unless current_peer?(@peer)
-      flash[:warning] = "You can't see that!" if !current_peer?(@peer)
-    end
-
-    def is_registered
-      if registered?
-        redirect_to registration_peer_path(current_peer)
-        flash[:warning] = "Please complete your application"
-      end
+    	params.require(:peer).permit(:name, :email, :availability_location, :availability_time, :availability_team, :startup_info, :startup_role, :startup_market, :startup_persona, :startup_time, :startup_interviews, :startup_customers, :startup_pmf, :startup_metrics, :startup_stage, :runway_desc, :runway_milestone, :runway_constraints, :stripe_customer_id, :newsletter_subscription)
     end
 
     def save_stripe_customer_id(attribute, stripe_customer_id)
@@ -116,11 +101,26 @@ class PeersController < ApplicationController
     end
 
     def thank_peer
-      mailchimp.lists.subscribe({id: ENV['MAILCHIMP_LIST_ID'], email: {email: @peer.email}, merge_vars: {:FNAME => @peer.name}}) if params[:subscribe_newsletter]
+      mailchimp.lists.subscribe({id: ENV['MAILCHIMP_LIST_ID'], email: {email: @peer.email}, merge_vars: {:FNAME => @peer.name}}) if @peer.newsletter_subscription == true
       UserMailer.registration_confirmed(@peer.email, @peer.name).deliver
       redirect_to thanks_path
       forget_peer
       reset_session
+    end
+
+    # Before filters
+
+    def correct_peer
+      @peer = Peer.find(params[:id])
+      redirect_to(root_url) unless current_peer?(@peer)
+      flash[:warning] = "You can't see that!" if !current_peer?(@peer)
+    end
+
+    def is_registered
+      if registered?
+        redirect_to registration_peer_path(current_peer)
+        flash[:warning] = "Please complete your application"
+      end
     end
 
 end
