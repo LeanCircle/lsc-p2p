@@ -13,6 +13,8 @@ $font-size-large: 16px
 $border-radius-base: 2px
 $border-radius-small: 1.5px
 $border-radius-large: 3px
+$gray-dark: #6a5e51
+$btn-default-color: $gray-dark
 
 @import url("http://fonts.googleapis.com/css?family=Open+Sans:300,400,500")
 
@@ -45,9 +47,6 @@ section
 
 textarea
   resize: vertical
-
-body
-  color: #6a5e51
 
 .center
   text-align: center
@@ -128,20 +127,34 @@ form
    *background-repeat: no-repeat;
    *background-size: cover;
    *background-position: 50% 50%;
+
   @media (max-width: 767px)
     padding: $jumbotron-padding 0
+  
   h1
     font-size: $jumbotron-h1-font-size
     line-height: ceil($jumbotron-h1-font-size * 1.33333)
     font-weight: 300
     -webkit-margin-before: 0
+  
   p
     font-size: $font-size-base
     line-height: $line-height-base
 
+  small
+    font-size: $font-size-base * 0.85
+
 h2.feature-title
   font-size: 21px
   @extend .center
+
+/* home */
+
+#learn-more
+  .row
+    margin-bottom: 2em
+  img
+    max-height: 100%
 
 /* team page */
 
