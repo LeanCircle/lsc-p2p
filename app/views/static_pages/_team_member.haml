@@ -7,5 +7,5 @@
 			- team_member[:links].each do |link, url|
 				= link_to image_tag("icons/icon_#{link}.png", alt: url), url, title: "#{link.capitalize} - #{team_member[:name]} #{team_member[:surname]}", target: "_blank"
 
-	.col-sm-2
+	.col-sm-2.img-container
 		= image_tag("team_members/#{team_member[:name]}_#{team_member[:surname]}.jpg".downcase, class: "team-member-img", alt: "#{team_member[:name]} #{team_member[:surname]}")

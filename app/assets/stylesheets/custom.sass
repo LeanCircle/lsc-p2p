@@ -9,7 +9,6 @@ $navbar-default-link-color: $brand-primary
 $navbar-default-link-hover-color: $link-hover-color
 $navbar-default-link-active-color: $link-hover-color
 $navbar-default-link-active-bg: transparent
-$font-size-large: 16px
 $border-radius-base: 2px
 $border-radius-small: 1.5px
 $border-radius-large: 3px
@@ -22,12 +21,18 @@ $font-family-sans-serif: "Open Sans", sans-serif
 $font-size-base: 16px
 $line-height-base: 1.5
 $headings-font-weight: 400
+$font-size-large: 16px
 
 @import bootstrap
 
-/* mixins, variables, etc. */
+/* mixins, variables, placeholders etc. */
 
 $jumbotron-h1-font-size: $font-size-base * 2.625
+$font-size-h2: floor($font-size-base * 1.3125) // ~21px
+$screen-sm-min: 768px
+$screen-xs-max: $screen-sm-min - 1
+$screen-md-min: 992px
+$screen-sm-max: $screen-md-min - 1
 
 =box_sizing
   -webkit-box-sizing: border-box
@@ -36,6 +41,16 @@ $jumbotron-h1-font-size: $font-size-base * 2.625
   /* Firefox, other Gecko */
   box-sizing: border-box
   /* Opera/IE 8+ */
+
+%margin_bottom_img_sm
+  @media screen and (max-width: $screen-sm-max)
+    margin-bottom: $padding-large-vertical * 2
+    text-align: center
+
+%margin_top_img_sm
+  @media screen and (max-width: $screen-sm-max)
+    margin-top: $padding-large-vertical * 2
+    text-align: center
 
 /* universal */
 
@@ -48,11 +63,16 @@ section
 textarea
   resize: vertical
 
-.center
+%center
   text-align: center
 
 img
   max-width: 100%
+
+/* typography */
+
+h2
+  font-size: $font-size-h2  
 
 /* header */
 
@@ -67,7 +87,7 @@ img
     margin-top: ($navbarHeight - 50px) / 2
   button.navbar-toggle
     margin-top: ($navbarHeight - 34px) / 2
-  @media (min-width: 768px)
+  @media screen and (min-width: $screen-sm-min)
     ul.nav
       float: right
 
@@ -95,7 +115,7 @@ div#error_explanation
 
 .form-title
   margin-bottom: 1em
-  @extend .center
+  @extend %center
 
 form
   input, textarea, select, .uneditable-input
@@ -118,17 +138,17 @@ form
 
 .page-title
   margin-bottom: 1.5em
-  @extend .center
+  @extend %center
 
 .jumbotron
-  @extend .center
+  @extend %center
   /*
    *background: $gray-lighter url('jumbotron-bg.png');
    *background-repeat: no-repeat;
    *background-size: cover;
    *background-position: 50% 50%;
 
-  @media (max-width: 767px)
+  @media (max-width: $screen-xs-max)
     padding: $jumbotron-padding 0
   
   h1
@@ -145,21 +165,28 @@ form
     font-size: $font-size-base * 0.85
 
 h2.feature-title
-  font-size: 21px
-  @extend .center
+  font-size: $font-size-h2
+  @extend %center
 
 /* home */
 
 #learn-more
   .row
-    margin-bottom: 2em
-  img
-    max-height: 100%
+    padding: $padding-large-vertical * 2 0
+    @media screen and (min-width: $screen-sm-min)
+      &:nth-child(odd) .img-container
+        float: right
+    .img-container 
+      @extend %margin_bottom_img_sm
+  h2
+    margin-top: 0
 
 /* team page */
 
 .team-member
-  padding-bottom: 3em
+  padding-bottom: $padding-large-vertical * 2 
+  .img-container
+    @extend %margin_top_img_sm
   .team-member-img
     width: 100%
   .team-member-name
