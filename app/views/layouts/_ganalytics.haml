@@ -4,7 +4,7 @@
   var pluginUrl = '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
   _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
   _gaq.push(['_setAccount', '#{ENV['GOOGLE_ANALYTICS_CODE']}']);
-  _gaq.push(['_setDomainName', 'none']);
+  _gaq.push(['_setDomainName', '#{ENV['GOOGLE_ANALYTICS_DOMAIN']}']);
   _gaq.push(['_setAllowLinker', true]);
   _gaq.push(['_trackPageview']);
 
