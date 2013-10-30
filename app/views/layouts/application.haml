@@ -16,6 +16,7 @@
     = javascript_tag "Stripe.publishableKey = '#{ENV['STRIPE_PUBLISHABLE_KEY']}';"
     = javascript_include_tag "application", "data-turbolinks-track" => true
     = csrf_meta_tags
+    = render 'layouts/ganalytics'
   %body
     = render 'layouts/header'
 

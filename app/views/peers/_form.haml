@@ -10,6 +10,7 @@
       .actions
         = f.button "&laquo; Back".html_safe, class: "btn", name: "back_button" unless @peer.first_step?
         - if @peer.last_step?
-          = f.button "Submit", class: "btn btn-primary", name: "submit_button"
+          // submit btn tracked via stripe js in app/assets/peers.js.coffee
+          = f.button "Submit", class: "btn btn-primary", name: "submit_button" 
         - else
           = f.button "Continue &raquo;".html_safe, class: "btn btn-primary", name: "continue_button"
