@@ -1,18 +1,10 @@
 class PeersController < ApplicationController
-  before_action :correct_peer,   only: [:edit, :update]
+  before_action :correct_peer,   only: [:edit, :update, :registration]
   before_action :is_registered, only: [:new, :create]
-
-  def index
-    @peers = Peer.order('name ASC')
-  end
 
   def new
   	@peer = Peer.new
     session[:peer_step] = @peer.current_step
-  end
-
-  def show
-  	@peer = Peer.find(params[:id])
   end
 
   def create
@@ -55,8 +47,10 @@ class PeersController < ApplicationController
           )
           save_stripe_customer_id(:stripe_customer_id, customer.id)
           thank_peer
+          flash[:tracking] = [["_trackEvent", "button", "submit", "peer-register-success"]]
         rescue Stripe::CardError => e
           flash.now[:danger] = e.message
+          flash.now[:tracking] = [["_trackEvent", "button", "submit", "peer-stripe-fail-server"]]
           render 'registration'
         end
 
@@ -69,13 +63,8 @@ class PeersController < ApplicationController
 
     else
       render 'registration'
+      flash.now[:tracking] = [["_trackEvent", "button", "submit", "peer-register-fail"]]
     end
-  end
-
-  def destroy
-    Peer.find(params[:id]).destroy
-    flash[:success] = "Peer destroyed."
-    redirect_to peers_url
   end
 
   private
@@ -101,8 +90,8 @@ class PeersController < ApplicationController
     end
 
     def thank_peer
-      mailchimp.lists.subscribe({id: ENV['MAILCHIMP_LIST_ID'], email: {email: @peer.email}, merge_vars: {:FNAME => @peer.name}}) if @peer.newsletter_subscription == true
-      UserMailer.registration_confirmed(@peer.email, @peer.name).deliver
+      #mailchimp.lists.subscribe({id: ENV['MAILCHIMP_LIST_ID'], email: {email: @peer.email}, merge_vars: {:FNAME => @peer.name}}) if @peer.newsletter_subscription == true
+      #UserMailer.registration_confirmed(@peer.email, @peer.name).deliver
       redirect_to thanks_path
       forget_peer
       reset_session
