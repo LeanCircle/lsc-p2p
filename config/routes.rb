@@ -8,8 +8,9 @@ P2pc::Application.routes.draw do
   match '/thanks', to: 'static_pages#thanks', via: :get
   match '/privacy-policy', to: 'static_pages#privacy', via: :get, as: :privacy
 
-  resources :subscribers, only: [:create]
-  match '/subscribers/thanks', to: 'subscribers#thanks', via: :get, as: :subscribers_thanks
+  resources :subscribers, only: [:create]  do
+    get 'thanks', on: :collection
+  end
 
   resources :peers, only: [:new, :create, :update] do
       get 'registration', on: :member
