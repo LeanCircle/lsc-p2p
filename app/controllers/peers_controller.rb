@@ -20,6 +20,7 @@ class PeersController < ApplicationController
     if @peer.save
       register @peer
       redirect_to registration_peer_path(current_peer)
+      puts "foobar"
       @peer.next_step
       session[:peer_step] = @peer.current_step
     else
@@ -39,7 +40,7 @@ class PeersController < ApplicationController
     @peer.current_step = session[:peer_step]
 
     if @peer.update_attributes(peer_params)
- 
+
       if params[:submit_button]
 
         thank_peer
@@ -95,7 +96,7 @@ class PeersController < ApplicationController
         when 'next'
           @peer.next_step
       end
-        
+
       redirect_to registration_peer_path(current_peer)
       session[:peer_step] = @peer.current_step
     end

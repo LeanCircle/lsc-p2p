@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131026165440) do
+ActiveRecord::Schema.define(version: 20131120195011) do
 
   create_table "peers", force: true do |t|
     t.string   "name"
@@ -37,6 +37,15 @@ ActiveRecord::Schema.define(version: 20131026165440) do
     t.text     "runway_constraints"
     t.string   "stripe_customer_id"
     t.boolean  "newsletter_subscription", default: true
+  end
+
+  create_table "subscribers", force: true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.boolean  "peer"
+    t.boolean  "direct"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end
