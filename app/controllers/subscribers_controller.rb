@@ -4,7 +4,7 @@ class SubscribersController < ApplicationController
     @subscriber = Subscriber.new(subscriber_params)
 
     if @subscriber.save
-      redirect_to subscriber_thanks_path
+      redirect_to subscribers_thanks_path
     else
       render 'static_pages/home'
     end
