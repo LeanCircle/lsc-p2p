@@ -72,7 +72,7 @@ img
 /* typography */
 
 h2
-  font-size: $font-size-h2  
+  font-size: $font-size-h2
 
 /* header */
 
@@ -144,7 +144,7 @@ form
 
 .jumbotron
   @extend %center
-  background: $gray-lighter url('jumbotron-bg.png')
+  background: $gray-lighter url('0_banner.png')
   background-repeat: no-repeat
   background-size: cover
   background-position: 50% 50%
@@ -177,15 +177,19 @@ h2.feature-title
     @media screen and (min-width: $screen-sm-min)
       &:nth-child(odd) .img-container
         float: right
-    .img-container 
+    .img-container
       @extend %margin_bottom_img_sm
+    .prop
+      transform: rotate(2deg)
+      box-shadow: 2px 3px 10px #000000
+      border:solid 6px #f3f2ef
   h2
     margin-top: 0
 
 /* team page */
 
 .team-member
-  padding-bottom: $padding-large-vertical * 2 
+  padding-bottom: $padding-large-vertical * 2
   .img-container
     @extend %margin_top_img_sm
   .team-member-img
