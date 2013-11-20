@@ -144,23 +144,22 @@ form
 
 .jumbotron
   @extend %center
-  /*
-   *background: $gray-lighter url('jumbotron-bg.png');
-   *background-repeat: no-repeat;
-   *background-size: cover;
-   *background-position: 50% 50%;
+  background: $gray-lighter url('jumbotron-bg.png')
+  background-repeat: no-repeat
+  background-size: cover
+  background-position: 50% 50%
 
   @media (max-width: $screen-xs-max)
     padding: $jumbotron-padding 0
-  
+
   h1
     font-size: $jumbotron-h1-font-size
     line-height: ceil($jumbotron-h1-font-size * 1.33333)
     font-weight: 300
     -webkit-margin-before: 0
-  
+
   p
-    font-size: $font-size-base
+    font-size: $font-size-base * 1.2
     line-height: $line-height-base
 
   small
