@@ -12,7 +12,7 @@
     .row
       .col-sm-12
         - if current_peer 
-          = link_to "Complete your application", registration_peer_path(current_peer), class: "btn btn-primary btn-lg tracked", id: "complete-application-btn"
+          = link_to "Apply now", registration_peer_path(current_peer), class: "btn btn-primary btn-lg tracked", id: "complete-application-btn"
         - else
           = link_to "Request an invite", new_peer_path, class: "btn btn-primary btn-lg tracked", id: "peer-request-invite"
         = link_to "Learn more", "#learn-more", class: "btn btn-default btn-lg tracked", id:"peer-learn-more"
