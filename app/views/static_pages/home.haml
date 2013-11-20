@@ -7,10 +7,10 @@
     %p In theory there is no difference between theory and practice; in practice there is. You can read books, blogs, watch videos, or you can join a weekly session where your ideas can be challenged by a group of your peers working on the same issues day in day out. You choose.
     .row
       .col-sm-12
-        - if current_peer 
-          = link_to "Complete your application", registration_peer_path(current_peer), class: "btn btn-primary btn-lg tracked", id: "complete-application-btn"
+        - if current_user
+          = link_to "Complete your application", registration_peer_path(current_user.peer), class: "btn btn-primary btn-lg tracked", id: "complete-application-btn"
         - else
-          = link_to "Request an invite", new_peer_path, class: "btn btn-primary btn-lg tracked", id: "peer-request-invite"
+          = link_to "Request an invite", new_user_path, class: "btn btn-primary btn-lg tracked", id: "peer-request-invite"
         = link_to "Learn more", "#learn-more", class: "btn btn-default btn-lg tracked", id:"peer-learn-more"
 
 .container
