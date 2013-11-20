@@ -10,19 +10,14 @@
       %u really
       works and what doesn't from other practitioners.
     .row
-      .col-sm-6.col-sm-offset-3
-        = form_for Subscriber.new do |f|
+      .col-sm-4.col-sm-offset-4
+        = form_for Subscriber.new, html: { class: 'form-horizontal' } do |f|
           = render 'shared/error_messages', object: f.object
           .form-group
-            = f.label :name
-            = f.text_field :name
-
-          .form-group
-            = f.label :email
-            = f.email_field :email
+            = f.email_field :email, :placeholder => "email@domain.com"
 
           .actions
-            = f.button "Continue &raquo;".html_safe, class: "btn btn-primary", name: "continue_button"
+            = f.button "Sign Up &raquo;".html_safe, class: "btn btn-primary", name: "continue_button"
 
 .container
   .row
