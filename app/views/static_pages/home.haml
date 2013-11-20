@@ -1,35 +1,36 @@
 - provide(:full_width, "true")
 - provide(:title, "Home")
 
-.jumbotron
+#subscriber_signup
+  .jumbotron
+    .container
+      %h1 Get practical help with Lean Startup
+      %p Finished reading all the books and blogs? Still stuck?
+      %p
+        Trade stories, tips, and tricks about what
+        %u really
+        works and what doesn't from other practitioners.
+      .row
+        .col-sm-4.col-sm-offset-4
+          = form_for Subscriber.new, html: { class: 'form-horizontal' } do |f|
+            = render 'shared/error_messages', object: f.object
+            .form-group
+              = f.email_field :email, :placeholder => "email@domain.com"
+
+            .actions
+              = f.button "Sign Up &raquo;".html_safe, class: "btn btn-primary", name: "continue_button"
+
   .container
-    %h1 Get practical help with Lean Startup
-    %p Finished reading all the books and blogs? Still stuck?
-    %p
-      Trade stories, tips, and tricks about what
-      %u really
-      works and what doesn't from other practitioners.
     .row
-      .col-sm-4.col-sm-offset-4
-        = form_for Subscriber.new, html: { class: 'form-horizontal' } do |f|
-          = render 'shared/error_messages', object: f.object
-          .form-group
-            = f.email_field :email, :placeholder => "email@domain.com"
+      .col-sm-4
+        %h2.feature-title Join 80,000+ members
+        %p Connect with the worldwide community on a deeper level in small groups to tackle real problems.
+      .col-sm-4
+        %h2.feature-title No excuses. Go fast!
+        %p Each week you'll pick a learning goal and make a commitment for the following session.
 
-          .actions
-            = f.button "Sign Up &raquo;".html_safe, class: "btn btn-primary", name: "continue_button"
-
-.container
-  .row
-    .col-sm-4
-      %h2.feature-title Join 80,000+ members
-      %p Connect with the worldwide community on a deeper level in small groups to tackle real problems.
-    .col-sm-4
-      %h2.feature-title No excuses. Go fast!
-      %p Each week you'll pick a learning goal and make a commitment for the following session.
-
-    .col-sm-4
-      %h2.feature-title Tactics & Tools
-      %p Get into detail with other startups at your level to learn about specific tools and tactics.
+      .col-sm-4
+        %h2.feature-title Tactics & Tools
+        %p Get into detail with other startups at your level to learn about specific tools and tactics.
 
 = render 'static_pages/learn_more'
