@@ -1,4 +1,6 @@
 class PeersController < ApplicationController
+  include Mailchimp
+
   before_action :correct_peer,   only: [:edit, :update]
   before_action :is_registered, only: [:new, :create]
 
@@ -102,7 +104,7 @@ class PeersController < ApplicationController
     end
 
     def thank_peer
-      mailchimp.lists.subscribe({id: ENV['MAILCHIMP_LIST_ID'], email: {email: @peer.email}, merge_vars: {:FNAME => @peer.name}}) if @peer.newsletter_subscription == true
+      subscribe(@peer.email, @peer.name) if @peer.newsletter_subscription == true
       UserMailer.registration_confirmed(@peer.email, @peer.name).deliver
       redirect_to thanks_path
       forget_peer
