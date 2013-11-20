@@ -10,12 +10,20 @@
       %u really
       works and what doesn't from other practitioners.
     .row
-      .col-sm-12
-        - if current_peer 
-          = link_to "Resume application", registration_peer_path(current_peer), class: "btn btn-primary btn-lg tracked", id: "complete-application-btn"
-        - else
-          = link_to "Apply now", new_peer_path, class: "btn btn-primary btn-lg tracked", id: "peer-request-invite"
-        = link_to "Learn more", "#learn-more", class: "btn btn-default btn-lg tracked", id:"peer-learn-more"
+      .col-sm-6.col-sm-offset-3
+        = form_for Subscriber.new do |f|
+          = render 'shared/error_messages', object: f.object
+          .form-group
+            = f.label :name
+            = f.text_field :name
+
+          .form-group
+            = f.label :email
+            = f.email_field :email
+
+          .actions
+            = f.button "Continue &raquo;".html_safe, class: "btn btn-primary", name: "continue_button"
+
 
 .container
   .row
@@ -30,4 +38,4 @@
       %h2.feature-title Tactics & Tools
       %p Get into detail with other startups at your level to learn about specific tools and tactics.
 
-= render 'learn_more'
+= render 'static_pages/learn_more'
