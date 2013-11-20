@@ -2,6 +2,7 @@ P2pc::Application.routes.draw do
 
   root 'static_pages#home'
 
+  match '/p2p', to: 'static_pages#p2p', via: :get
   match '/about', to: 'static_pages#about', via: :get
   match '/team', to: 'static_pages#team', via: :get
   match '/thanks', to: 'static_pages#thanks', via: :get
@@ -55,7 +56,7 @@ P2pc::Application.routes.draw do
   #       get 'recent', on: :collection
   #     end
   #   end
-  
+
   # Example resource route with concerns:
   #   concern :toggleable do
   #     post 'toggle'

@@ -1,0 +1,33 @@
+- provide(:full_width, "true")
+- provide(:title, "Home")
+
+.jumbotron
+  .container
+    %h1 Get practical help with Lean Startup
+    %p Finished reading all the books and blogs? Still stuck?
+    %p
+      Trade stories, tips, and tricks about what
+      %u really
+      works and what doesn't from other practitioners.
+    .row
+      .col-sm-12
+        - if current_peer 
+          = link_to "Resume application", registration_peer_path(current_peer), class: "btn btn-primary btn-lg tracked", id: "complete-application-btn"
+        - else
+          = link_to "Apply now", new_peer_path, class: "btn btn-primary btn-lg tracked", id: "peer-request-invite"
+        = link_to "Learn more", "#learn-more", class: "btn btn-default btn-lg tracked", id:"peer-learn-more"
+
+.container
+  .row
+    .col-sm-4
+      %h2.feature-title Join 80,000+ members
+      %p Connect with the worldwide community on a deeper level in small groups to tackle real problems.
+    .col-sm-4
+      %h2.feature-title No excuses. Go fast!
+      %p Each week you'll pick a learning goal and make a commitment for the following session.
+
+    .col-sm-4
+      %h2.feature-title Tactics & Tools
+      %p Get into detail with other startups at your level to learn about specific tools and tactics.
+
+= render 'learn_more'

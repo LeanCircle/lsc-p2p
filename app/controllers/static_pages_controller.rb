@@ -16,4 +16,7 @@ class StaticPagesController < ApplicationController
 
   def privacy
   end
+
+  def p2p
+  end
 end
