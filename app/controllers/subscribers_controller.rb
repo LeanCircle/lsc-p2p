@@ -2,13 +2,10 @@ class SubscribersController < ApplicationController
   include Mailchimp
 
   def create
-    @subscriber = Subscriber.new(subscriber_params)
-
-    if @subscriber.save
-      subscribe(@subscriber.email, @subscriber.name)
+    if subscribe(subscriber_params[:name], subscriber_params[:email])
       redirect_to subscribers_thanks_path
     else
-      redirect_to 'static_pages/home'
+      redirect_to '/'
     end
   end
 
