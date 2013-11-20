@@ -1,6 +1,6 @@
 P2pc::Application.routes.draw do
 
-  root 'static_pages#home'
+  root 'subscribers#landing_page'
 
   match '/p2p', to: 'static_pages#p2p', via: :get
   match '/about', to: 'static_pages#about', via: :get
