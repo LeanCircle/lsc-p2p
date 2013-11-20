@@ -3,7 +3,7 @@ class SubscribersController < ApplicationController
 
   def create
     if subscribe(subscriber_params[:email], subscriber_params[:name])
-      redirect_to subscribers_thanks_path
+      redirect_to thanks_subscribers_path
     else
       redirect_to '/'
     end
