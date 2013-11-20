@@ -2,7 +2,7 @@ module Common
   extend ActiveSupport::Concern
 
   included do
-    after_save { |item| item.assign_role_to_owner(item.role_id) }
+    after_create { |item| item.assign_role_to_owner(item.role_id) }
   end
 
   protected

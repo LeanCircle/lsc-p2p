@@ -10,7 +10,7 @@ class Peer < ActiveRecord::Base
   end
 
   def steps
-    %w[info availability startup runaway payment]
+    %w[availability startup runaway payment]
   end
 
   def next_step

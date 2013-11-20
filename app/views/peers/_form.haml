@@ -8,7 +8,7 @@
       = render "peers/steps/#{@peer.current_step}_step", f: f
       
       .actions
-        = f.button "&laquo; Back".html_safe, class: "btn", name: "back_button" unless @peer.first_step?
+        = f.button "&laquo; Back".html_safe, class: "btn", name: "back_button" #unless @peer.first_step?
         - if @peer.last_step?
           // submit btn tracked via stripe js in app/assets/peers.js.coffee
           = f.button "Submit", class: "btn btn-primary", name: "submit_button" 

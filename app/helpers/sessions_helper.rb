@@ -27,4 +27,11 @@ module SessionsHelper
     self.current_user = nil
     cookies.delete(:remember_token)
   end
+
+  def is_registered
+    unless registered?
+      redirect_to new_user_url
+      flash[:warning] = "Please register from this page"
+    end
+  end
 end

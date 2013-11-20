@@ -1,0 +1,22 @@
+= content_tag(:h1, "Info", class: "form-title")
+
+.row
+  .col-sm-6.col-sm-offset-3
+    = form_for @user do |f|
+      = render 'shared/error_messages', object: f.object
+      
+      .form-group
+        = f.label :name
+        = f.text_field :name
+
+      .form-group
+        = f.label :email
+        = f.email_field :email
+
+      .form-group
+        .well
+          = f.check_box :newsletter_subscription
+          = f.label :newsletter_subscription, "Subscribe to newsletter"
+
+      .actions
+        = f.button "Continue &raquo;".html_safe, class: "btn btn-primary", name: "continue_button"
