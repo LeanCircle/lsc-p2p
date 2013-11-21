@@ -11,13 +11,12 @@
         %u really
         works and what doesn't from other practitioners.
       .row
-        .col-sm-4.col-sm-offset-4
-          = form_for Subscriber.new, html: { class: 'form-horizontal' } do |f|
+        .col-sm-6.col-sm-offset-3
+          = form_for Subscriber.new, html: { class: 'form-inline' } do |f|
             = render 'shared/error_messages', object: f.object
             .form-group
               = f.email_field :email, :placeholder => "email address"
-            .actions
-              = f.button "Sign Up &raquo;".html_safe, class: "btn btn-primary", name: "continue_button"
+            = f.button "Sign Up &raquo;".html_safe, class: "btn btn-primary", name: "continue_button", type: 'submit'
 
   .container
     .row
@@ -39,7 +38,7 @@
 .container#learn-more
   .row
     .col-sm-4.img-container
-      = image_tag("3_pixie.jpg"), :class=>"prop"
+      = image_tag("3_pixie.jpg", :class=>"prop")
     .col-sm-8
       %h2 Learn from the Best
       %p Everyone hits roadblocks.
@@ -47,14 +46,14 @@
       %p Real learning from real practitioners.
   .row
     .col-sm-4.img-container
-      = image_tag("2_meetups.png"), :class=>"prop"
+      = image_tag("2_meetups.png", :class=>"prop")
     .col-sm-8
       %h2 Worldwide Groups
       %p We need perspective on our startup, our assumptions, our businesses.
       %p With groups all over the world and in our online forum, there is always someone there to help. When you're looking for contacts in a new city, there is a group near you to help you get started.
   .row
     .col-sm-4.img-container
-      = image_tag("1_learn.png"), :class=>"prop"
+      = image_tag("1_learn.png", :class=>"prop")
     .col-sm-8
       %h2 Workshops & Resources
       %p Whether you're looking for a workshop to get hands on instruction, or a list of tools you can use to help you test your business model, it's out there.
