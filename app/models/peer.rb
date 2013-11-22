@@ -1,28 +1,16 @@
 class Peer < ActiveRecord::Base
+
+  include Common
   attr_accessor :current_step
-	
-	before_save { email.downcase! }
-	before_create :create_remember_token
-
-	validates :name, presence: true, length: { maximum: 50 }
-	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
-	validates :email, presence: true, uniqueness: { case_sensitive: false },
-										format: { with: VALID_EMAIL_REGEX }
-
-	def self.new_remember_token
-   	SecureRandom.urlsafe_base64
-  end
-
-  def self.encrypt(token)
-    Digest::SHA1.hexdigest(token.to_s)
-  end
+  
+  belongs_to :user
 
   def current_step
     @current_step || steps.first
   end
 
   def steps
-    %w[info availability startup runaway payment]
+    %w[availability startup runaway payment]
   end
 
   def next_step
@@ -41,9 +29,9 @@ class Peer < ActiveRecord::Base
     current_step == steps.last
   end
 
-  private
-
-    def create_remember_token
-      self.remember_token = Peer.encrypt(Peer.new_remember_token)
+  protected
+    def role_id
+      "1"
     end
+
 end

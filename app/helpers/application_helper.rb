@@ -9,4 +9,10 @@ module ApplicationHelper
 		end
 	end
 
+  def ga_tracking
+    flash[:tracking].map do |event|
+      "_gaq.push(#{raw event.to_json});"
+    end.join("\n")
+  end
+
 end

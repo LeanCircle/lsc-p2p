@@ -11,10 +11,10 @@
       works and what doesn't from other practitioners.
     .row
       .col-sm-12
-        - if current_peer 
-          = link_to "Resume application", registration_peer_path(current_peer), class: "btn btn-primary btn-lg tracked", id: "complete-application-btn"
+        - if current_user 
+          = link_to "Resume application", registration_peer_path(current_user.peer), class: "btn btn-primary btn-lg tracked", id: "complete-application-btn"
         - else
-          = link_to "Apply now", new_peer_path, class: "btn btn-primary btn-lg tracked", id: "peer-request-invite"
+          = link_to "Apply now", new_user_path, class: "btn btn-primary btn-lg tracked", id: "peer-request-invite"
         = link_to "Learn more", "#learn-more", class: "btn btn-default btn-lg tracked", id:"peer-learn-more"
 
 .container

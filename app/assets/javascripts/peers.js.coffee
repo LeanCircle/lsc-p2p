@@ -13,8 +13,6 @@ jQuery ($) ->
     form.find('.payment-errors').append errorHtml
 
   $("button[name=submit_button]").click ->
-    # track form submission (both successful and not)
-    _gaq.push(["_trackEvent", "button", "submit", "form-submit-btn"])
     
     $('#payment-form').submit (event) ->
       $(document).find('.alert').hide()
@@ -31,6 +29,8 @@ jQuery ($) ->
     stripeResponseHandler = (status, response) ->
       $form = $('#payment-form')
       if response.error
+        # track unsuccessful form submission
+        _gaq.push(["_trackEvent", "button", "submit", "peer-stripe-fail"])
         # Show the errors on the form
         renderError($form, response.error.message)
         $form.find('button').prop 'disabled', false

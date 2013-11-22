@@ -14,11 +14,9 @@
 ActiveRecord::Schema.define(version: 20131120195011) do
 
   create_table "peers", force: true do |t|
-    t.string   "name"
-    t.string   "email"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "remember_token"
     t.text     "availability_location"
     t.string   "availability_time"
     t.string   "availability_team"
@@ -35,8 +33,19 @@ ActiveRecord::Schema.define(version: 20131120195011) do
     t.string   "runway_desc"
     t.string   "runway_milestone"
     t.text     "runway_constraints"
-    t.string   "stripe_customer_id"
-    t.boolean  "newsletter_subscription", default: true
+  end
+
+  create_table "role_assignments", force: true do |t|
+    t.integer  "role_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "roles", force: true do |t|
+    t.string   "role"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "subscribers", force: true do |t|
@@ -44,6 +53,16 @@ ActiveRecord::Schema.define(version: 20131120195011) do
     t.string   "email"
     t.boolean  "peer"
     t.boolean  "direct"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users", force: true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "remember_token"
+    t.string   "stripe_customer_id"
+    t.boolean  "newsletter_subscription", default: true
     t.datetime "created_at"
     t.datetime "updated_at"
   end
