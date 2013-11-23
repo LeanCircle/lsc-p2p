@@ -20,6 +20,22 @@ class User < ActiveRecord::Base
     Digest::SHA1.hexdigest(token.to_s)
   end
 
+  def self.team_member
+    Role.find_by_role("volunteer").users
+  end
+
+  def self.volunteers
+    Role.find_by_role("volunteer").users
+  end
+
+  def self.organizers
+    Role.find_by_role("organizer").users
+  end
+
+  def self.peers
+    Role.find_by_role("Peer").users
+  end
+
   private
 
     def create_remember_token
