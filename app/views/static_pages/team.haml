@@ -1,6 +1,5 @@
 - provide(:title, "Team")
 %h1.page-title Team
 
-/ team_members is defined in static_pages_helper.rb
 - @volunteers.each do |volunteer|
-  = render partial: "team_member", object: volunteer
+  = render partial: "shared/avatar", object: volunteer
