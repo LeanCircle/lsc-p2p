@@ -36,6 +36,10 @@ class User < ActiveRecord::Base
     Role.find_by_role("Peer").users
   end
 
+  def make_volunteer
+    roles << Role.find_by_role("volunteer") unless roles.include?(Role.find_by_role("volunteer"))
+  end
+
   private
 
     def create_remember_token
