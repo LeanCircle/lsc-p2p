@@ -1,5 +1,12 @@
-- provide(:title, "Team")
-%h1.page-title Team
+- provide(:title, "Teammates")
 
-- @team.each do |teammate|
-  = render partial: "shared/avatar", object: teammate
+#team_page
+  .container
+    .row
+      .col-sm-12
+        %h1.page-title Teammates
+
+    .teammates.row
+      .col-sm-12
+        - @team.each do |teammate|
+          = render partial: "shared/avatar", object: teammate
