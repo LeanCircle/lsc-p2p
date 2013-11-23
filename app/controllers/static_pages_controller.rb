@@ -9,6 +9,7 @@ class StaticPagesController < ApplicationController
   end
 
   def team
+    @volunteers = User.volunteers.shuffle
   end
 
   def thanks
