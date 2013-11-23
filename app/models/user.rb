@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
   end
 
   def self.team_member
-    Role.find_by_role("volunteer").users
+    Role.find_by_role("team_member").users
   end
 
   def self.volunteers

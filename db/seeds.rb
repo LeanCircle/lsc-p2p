@@ -6,6 +6,6 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-%w[Peer, volunteer, organizer, team_member].each do |param|
+%w[Peer volunteer organizer team_member].each do |param|
   Role.find_by_role(param).nil? ? Role.create(role: param) : nil
 end
