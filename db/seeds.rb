@@ -7,5 +7,5 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 %w[Peer, volunteer, organizer, team_member].each do |param|
-  Role.create(role: param)
+  Role.find_by_role(param).nil? ? Role.create(role: param) : nil
 end
