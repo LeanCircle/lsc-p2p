@@ -20,24 +20,37 @@ class User < ActiveRecord::Base
     Digest::SHA1.hexdigest(token.to_s)
   end
 
-  def self.team_member
-    Role.find_by_role("team_member").users
+  # Quick methods for accessing roles. I am lazy.
+  def make_volunteer
+    roles << Role.find_by_role("volunteer") unless roles.include?(Role.find_by_role("volunteer"))
   end
 
   def self.volunteers
     Role.find_by_role("volunteer").users
   end
 
+  def make_organizer
+    roles << Role.find_by_role("organizer") unless roles.include?(Role.find_by_role("organizer"))
+  end
+
   def self.organizers
     Role.find_by_role("organizer").users
+  end
+
+  def self.team_members
+    Role.find_by_role("team_member").users
+  end
+
+  def make_team_member
+    roles << Role.find_by_role("team_member") unless roles.include?(Role.find_by_role("team_member"))
   end
 
   def self.peers
     Role.find_by_role("Peer").users
   end
 
-  def make_volunteer
-    roles << Role.find_by_role("volunteer") unless roles.include?(Role.find_by_role("volunteer"))
+  def make_peer
+    roles << Role.find_by_role("Peer") unless roles.include?(Role.find_by_role("peer"))
   end
 
   private
