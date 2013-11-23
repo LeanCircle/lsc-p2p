@@ -1,4 +1,4 @@
-%w[Peer volunteer organizer team_member].each do |role|
+%w[Peer volunteer organizer team_member speaker].each do |role|
    Role.create(role: role) unless Role.find_by_role(role)
 end
 
