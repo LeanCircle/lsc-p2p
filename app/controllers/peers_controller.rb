@@ -87,14 +87,15 @@ class PeersController < ApplicationController
     def change_step(prev_or_next)
       case prev_or_next
         when 'previous'
-          @peer.previous_step unless @peer.first_step?
+        if @peer.first_step?
+          redirect_to edit_user_path(current_user)
+        else
+          @peer.previous_step
+          redirect_to registration_peer_path(current_user.peer)
+        end
         when 'next'
           @peer.next_step
-      end
-      if @peer.first_step?
-        redirect_to edit_user_path(current_user)
-      else
-        redirect_to registration_peer_path(current_user.peer)
+          redirect_to registration_peer_path(current_user.peer)
       end
       session[:peer_step] = @peer.current_step
     end
