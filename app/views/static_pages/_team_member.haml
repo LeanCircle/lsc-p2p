@@ -8,4 +8,4 @@
   -#			= link_to image_tag("icons/icon_#{link}.png", alt: url), url, title: "#{link.capitalize} - #{team_member[:name]} #{team_member[:surname]}", target: "_blank"
 
   .col-sm-2.img-container
-    = gravatar_image_tag(team_member.email, alt: team_member.name, title: team_member.name)
+    = gravatar_image_tag(team_member.email, alt: team_member.name, title: team_member.name, gravatar: { :size => 100 })
