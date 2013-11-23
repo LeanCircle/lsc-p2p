@@ -26,7 +26,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
-      redirect_to registration_peer_path(@user)
+      redirect_to registration_peer_path(@user.peer)
     else
       render 'edit'
     end
