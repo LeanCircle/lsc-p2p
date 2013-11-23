@@ -1,11 +1,11 @@
 .row.team-member
 
-	.col-sm-6.col-sm-offset-2
-		%h3.team-member-name #{team_member[:name]} #{team_member[:surname]}
-		%p.bio #{team_member[:bio].html_safe}
-		.links
-			- team_member[:links].each do |link, url|
-				= link_to image_tag("icons/icon_#{link}.png", alt: url), url, title: "#{link.capitalize} - #{team_member[:name]} #{team_member[:surname]}", target: "_blank"
+  -#.col-sm-6.col-sm-offset-2
+  -#	%h3.team-member-name #{team_member[:name]} #{team_member[:surname]}
+  -#	%p.bio #{team_member[:bio].html_safe}
+  -#	.links
+  -#		- team_member[:links].each do |link, url|
+  -#			= link_to image_tag("icons/icon_#{link}.png", alt: url), url, title: "#{link.capitalize} - #{team_member[:name]} #{team_member[:surname]}", target: "_blank"
 
-	.col-sm-2.img-container
-		= image_tag("team_members/#{team_member[:name]}_#{team_member[:surname]}.jpg".downcase, class: "team-member-img", alt: "#{team_member[:name]} #{team_member[:surname]}")
+  .col-sm-2.img-container
+    = gravatar_image_tag(team_member.email, alt: team_member.name, title: team_member.name)
