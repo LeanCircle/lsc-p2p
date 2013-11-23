@@ -9,7 +9,7 @@ class StaticPagesController < ApplicationController
   end
 
   def team
-    @volunteers = User.volunteers.shuffle
+    @team = (User.team_members + User.volunteers + User.volunteers).uniq.shuffle
   end
 
   def thanks

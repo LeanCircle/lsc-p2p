@@ -1,5 +1,5 @@
 - provide(:title, "Team")
 %h1.page-title Team
 
-- @volunteers.each do |volunteer|
-  = render partial: "shared/avatar", object: volunteer
+- @team.each do |teammate|
+  = render partial: "shared/avatar", object: teammate
