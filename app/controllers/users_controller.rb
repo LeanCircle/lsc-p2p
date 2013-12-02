@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  include Mailchimp
 
   #before_action :is_registered,
   #              only: [:index, :edit, :update, :destroy]
@@ -13,6 +14,7 @@ class UsersController < ApplicationController
     if @user.save
       register @user
       @user.create_peer
+      subscribe(@user.email, @user.name) if @user.newsletter_subscription == true
       redirect_to registration_peer_path(@user.peer)
     else
       render 'new'
@@ -25,7 +27,20 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
+    was_subscribed = @user.newsletter_subscription
+    old_email = @user.email
     if @user.update_attributes(user_params)
+      is_subscribed = @user.newsletter_subscription
+      if old_email != @user.email && @user.newsletter_subscription
+        subscribe(@user.email, @user.name)
+      elsif old_email == @user.email && is_subscribed != was_subscribed
+        case is_subscribed
+          when true
+            subscribe(@user.email, @user.name)
+          when false
+            unsubscribe(@user.email)
+        end
+      end
       redirect_to registration_peer_path(@user.peer)
     else
       render 'edit'
