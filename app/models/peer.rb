@@ -10,7 +10,7 @@ class Peer < ActiveRecord::Base
   end
 
   def steps
-    %w[availability startup runaway payment]
+    %w[availability startup runaway]
   end
 
   def next_step
@@ -18,7 +18,7 @@ class Peer < ActiveRecord::Base
   end
 
   def previous_step
-    self.current_step = steps[steps.index(current_step)-1]
+    @current_step = steps[steps.index(current_step)-1]
   end
 
   def first_step?
