@@ -1,0 +1,157 @@
+- provide(:title, "Guía para publicar en el grupo")
+
+#guidelines
+  .row
+    .span12
+      %h1
+        Guía para publicar en el grupo
+      %p.lead
+        %span.text-error
+          *
+        Ayúdanos a mejorar esta guía
+        = succeed '.' do
+          %span.text-error enviándonos tu feedback
+        = link_to "aquí.", contact_path
+
+      %p
+        El objetivo de este grupo de discusión es crear un espacio en el que sus miembros aporten valor unos a otros. La principal motivación es poder aprender de experiencias reales.
+      %p
+        Antes de publicar, pregúntate:
+      %blockquote
+        %p
+          %i "Qué podrá aprender el lector de mi publicación?"
+      %p
+        Si no se puede extraer ningún aprendizaje de tu publicación, por favor
+        %u abstente
+        de escribir.
+
+      %table.table.table-bordered
+        %caption
+          %h2
+            Normas
+          %p.lead
+            Las publicaciones que hagan referencia a un puesto de trabajo, solicitud o publicidad de un negocio serán
+            %span.text-error prohibidas inmediatamente.
+            El moderador podrá prohibir otro tipo de comentarios si así lo encuentra oportuno.
+
+        %thead
+          %tr
+            %th.text-success
+              Bien
+            %th.text-error
+              Mal
+            %th
+              Norma
+        %tbody
+          %tr
+            %td{ :style => 'background: #C8F0C8'}
+              ¿Este MPV* es correcto para
+              %b validar
+              mis
+              %b  hipótesis?
+            %td{ :style => 'background: #FFD5D5'}
+              %b Inscríbete
+              en mi MPV.
+            %td{ :rowspan => "3" }
+              %i
+                No publiques solicitudes.
+                %br
+                No promociones tu blog, producto o encuesta.
+
+          %tr
+            %td{ :style => 'background: #C8F0C8'}
+              %b ¿Me puede ayudar
+              esta encuesta a aprender de mis clientes?
+            %td{ :style => 'background: #FFD5D5'}
+              %b Contesta mi
+              encuesta.
+          %tr
+            %td{ :style => 'background: #C8F0C8'}
+              He leído este libro / blog sobre Lean Startup y tengo dudas sobre... ¿alguien me lo puede
+              %b clarificar / explicar?
+            %td{ :style => 'background: #FFD5D5'}
+              Visita / lee
+              %b mi
+              blog.
+
+          %tr
+            %td{ :style => 'background: #C8F0C8'}
+              Tengo una duda / pregunta sobre
+              %b lean startups...
+            %td{ :style => 'background: #FFD5D5'}
+              Tengo una pregunta legal sobre
+              %b [cualquier tema...]
+            %td
+              %i No hagas preguntas que no estén relacionadas con Lean startup. Si tienes preguntas que no estén directamente relacionadas con Lean Startup, este no es el espacio para preguntarlas.
+
+          %tr
+            %td{ :style => 'background: #C8F0C8'}
+              Estoy de acuerdo
+              %b porque...
+            %td{ :style => 'background: #FFD5D5'}
+              +1!
+            %td
+              %i No contestes comentarios de una lína sin contenido. Por el contrario, si estás de acuerdo con una pregunta y quieres añadir algo, construye un comentario completo que explique / justifique porqué estás de acuerdo y que aporte conocimiento y valor a la comunidad.
+          %tr
+            %td{ :style => 'background: #C8F0C8'}
+              Con todo el respeto, estoy en desacuerdo
+              %b porque...
+            %td{ :style => 'background: #FFD5D5'}
+              No tienes razón, eso es una tontería, no tienes ni idea, etc..
+            %td
+              %i
+                No seas ofensivo con tu lenguage o forma de expresión. Los insultos o los comentarios ofensivos, directos o indirectos, aunque creas que tienes razón.
+                %br
+                Este tipo de comentarios serán rechazados inmediatamente por el moderador.
+              %div{ :style => 'margin-top:10px;'}
+              Si tienes algún problema, trata de ser mejor persona y solucionarlos fuera de la comunidad.
+          %tr
+            %td{ :style => 'background: #C8F0C8'}
+              Hay un
+              %b evento de Lean Startup
+              que se puede ver
+              %b online...
+            %td{ :style => 'background: #FFD5D5'}
+              %b Recuerda!
+              Ven a
+              %b mi evento...
+            %td
+              %i
+                No publiques eventos al menos que están directamente relacionados con Lean Startups y que se puedan ver online para que todos los miembros de la comunidad se puedan beneficiar. Si es el caso, publícalo sólo una vez.
+                %br
+                No publiques eventos locales que no se puedan ver online porque no aportan valor al resto de los miembros que residen en otros lugares del mundo.
+          %tr
+            %td
+            %td{ :style => 'background: #FFD5D5'}
+              Estoy
+              %b buscando
+              un co-fundador, socio, o consultor.
+            %td{ :style => 'font-style: italic;' }
+              No publiques ofertas de trabajo. Este tipo de publicaciones serán
+              %span.text-error rechazdas inmediatamente
+              por los moderadores.
+              Publica ofertas de trabajo en
+              = link_to 'Lean Startup Jobs Group', 'https://groups.google.com/group/lean-startup-jobs'
+
+      %h2 Recibiendo comentarios
+      %p
+        Si estás buscando respuestas de calidad a tu publicación, te recomendamos que expliques de manera clara y ordenada tu proceso de trabajo. Incluye:
+        %ul
+          %li Tus hipótesis - ¿qué estás tratantdo de aprender?
+          %li Métricas - ¿cómo vas a medir tus resultados?
+          %li Experimento - ¿qué necesitas construir para conseguir el aprendizaje que buscas?
+
+      %h2 Escribiendo comentarios
+      %p Preguntar es muy a menudo una buena manera de devolver comentarios. Si la publicación es vaga o confusa, pregunta a la otra persona que clarifique los aspectos necesarios para construir a partir de ellos.
+      %p Ofrece comentarios completos, no sólo menciones a herramientas, métodos o fuentes.
+      %p Como grupo internacional de habla hispana, pueden haber variantes del idioma tanto en la expresión como en la lectura que dificulten la comprensión de las publicaciones. Trata de ser claro, comprensivo y flexibe.
+
+      %h2 ¿Tu publicación ha sido rechazada?
+      %p
+        Los moderadores intentan aplicar
+        = link_to 'las guías de moderación', moderation_guidelines_url
+        inteligente.
+      %ul
+        %li Los moderadores residen en diferentes partes del mundo y puede haber diferencias horarias importantes. Por favor, ten paciencia.
+        %li Si en 48 horas no ves tu publicación y tmapoco has recibido un correo electrónico por parte de un moderador, siéntete libre de preguntar.
+        %li Si tu publicación ha sido rechazada y no estás de acuerdo, piensa que alguna razón debe tener el moderador. La mejor manera de proceder es preguntarle qué puedes mejorar para añadir valor a la comunidad. Es preferible evitar discusiones sobre la interpretación de esta guía y concentrarse en cómo mejorar el tipo de publicaciones para el bien de la comunidad.
