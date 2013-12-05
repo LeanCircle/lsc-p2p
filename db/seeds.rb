@@ -17,7 +17,7 @@ end
   { name: "Shilpa Pulipaka", email: "shilpa@shilpapulipaka.com" },
   { name: "Daniil Brodovich", email: "dbrodovich@gmail.com" },
   { name: "Thomas Rampelberg", email: "thomas@saunter.org" },
-  { name: "Dan Stiefel", email: "danstiefel@gmail.com" },
+  { name: "Dan Stiefel", email: "danstiefel88@gmail.com" },
   { name: "Aaron Brown", email: "aaron.w.brown13@gmail.com" },
   { name: "Fardeen Rahaman", email: "fardeenrahaman@gmail.com" },
   { name: "Jeffrey Lorton", email: "jslorton@mac.com" },
@@ -33,7 +33,7 @@ end
   { name: "Rich Collins", email: "richcollins@gmail.com" },
   { name: "Hiten Shah", email: "hnshah@gmail.com" },
   { name: "Sean K Murphy", email: "skmurphy@skmurphy.com" },
-  { name: "Josh Liu", email: "josh@acrossio.com" }].each do |user|
+  { name: "Josh Liu", email: "josh@acrossio.com" } ].each do |user|
   volunteer = User.find_by_email(user[:email]) || User.create(name: user[:name], email: user[:email])
   volunteer.make_volunteer
 end

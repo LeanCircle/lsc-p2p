@@ -1,0 +1,61 @@
+- provide(:title, "Moderation Guidelines")
+
+#moderation_guidelines
+  .row
+    .span12
+      %h1
+        Moderation Guidelines
+      %p.lead
+        %span.text-error
+          *
+        This guide is meant to be
+        = succeed '.' do
+          %span.text-error continually improved
+        Please provide feedback
+        = link_to "here.", contact_path
+
+      %h2
+        Goal
+      %p
+        The moderators goal is to improve the quality of discussion on LSC by
+        %i advising members
+        on how to improve substandard posts and
+        %i eliminate unacceptable posts
+        such as spam.
+      %p
+        Messages referred to the moderation queue should be accepted or denied in 48 hours.
+
+      %h2
+        Standard Operating Procedure
+      %p
+        On finding a post that violates the
+        = link_to 'posting guidelines', guidelines_url
+        either in the moderation queue or posted publicly:
+
+      %ol
+        %li Reply to message (privately if in the moderation queue.) The reply should:
+        %ul
+          %li thank the person for posting;
+          %li state the rule;
+          %li explain the rationale behind the rule;
+          %li provide a link to the guidelines;
+          %li (optional) include any tips to make the post acceptable for posting.
+      %p At the moderator's discretion and if the thread bypassed the moderation queue, additional steps can be taken:
+      %ol{ :start => 2 }
+        %li Delete the message and other messages in the thread;
+        %li Lock the thread to avoid additional responses;
+        %li Ban the user if a repeat offender.
+
+      %h2
+        Banning
+      %p.lead
+        Users may be
+        %span.text-error
+          permanently banned
+        at the discretion of the moderator.
+      %p
+        This should be avoided, but reasons include:
+      %ul
+        %li Soliciting jobs or job opportunities;
+        %li Repeatedly violating the guidelines and being unresponsive to feedback;
+        %li Users which are clearly not real people but are instead shared business accounts.
