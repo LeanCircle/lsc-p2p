@@ -16,6 +16,7 @@ gem 'jquery-turbolinks'
 gem 'jbuilder', '1.5.2'
 
 gem 'figaro' # Config env variables with config/application.yml using config/application.yml.example
+gem 'heroku_san' # Deploy scripst for heroku
 gem 'recaptcha', require: 'recaptcha/rails' # Add captcha
 gem 'gravatar_image_tag' # For user images
 
