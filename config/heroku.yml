@@ -9,8 +9,6 @@
 
 production:
   app: lsc-p2p-production
-  tag: production/*
 
 staging:
   app: lsc-p2p-staging
-  tag: staging/*
