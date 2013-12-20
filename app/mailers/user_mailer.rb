@@ -3,7 +3,7 @@ class UserMailer < ActionMailer::Base
 
   def contact(message)
     @message = message
-    mail to: "alessandroprioni@gmail.com",
+    mail to: "p2p@leanstartupcircle.com",
          from: "P2PC contact form <contact@p2p.leanstartupcircle.com>",
          reply_to: @message.email,
          subject: "Message from P2PC contact form"
