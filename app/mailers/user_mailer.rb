@@ -12,7 +12,7 @@ class UserMailer < ActionMailer::Base
   def registration_confirmed(peer_email, peer_name)
     @name = peer_name.titleize
     mail to: peer_email,
-         reply_to: "alessandroprioni@gmail.com",
+         reply_to: "p2p@leanstartupcircle.com",
          subject: "Thanks #{@name}! Your invite has been requested :)"
   end
 
