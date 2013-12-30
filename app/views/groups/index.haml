@@ -1,0 +1,26 @@
+- provide(:title, "Find a Lean Startup Meetup")
+
+#index_groups
+  .row
+    .span12
+      %table.table.table-condensed.table-striped.groups
+        %caption
+          %h1{ :style => "display: inline"}
+            Lean Startup Meetups Worldwide
+          -#%span.pull-right
+          -#  = link_to "Add a Meetup", new_group_path, :class => "btn btn-primary"
+        %thead
+          %tr
+            %th Name
+            %th Location
+            %th Links
+        %tbody#groups
+          - @groups.each do |group|
+            %td= link_to group.name, group.link
+            %td= group.address
+            %td
+              = link_to_if(!group.meetup_link.blank?, "#{image_tag 'links/link_meetup.png', :width => '50px'}".html_safe, group.meetup_link){}
+              = link_to_if(!group.facebook_link.blank?, "#{image_tag 'links/link_facebook.png'}".html_safe, group.facebook_link){}
+              = link_to_if(!group.linkedin_link.blank?, "#{image_tag 'links/link_linkedin.png', :width => '50px'}".html_safe, group.linkedin_link){}
+              = link_to_if(!group.twitter_link.blank?, "#{image_tag 'links/link_twitter.png'}".html_safe, group.twitter_link){}
+              = link_to_if(!group.googleplus_link.blank?, "#{image_tag 'links/link_googleplus.png'}".html_safe, group.googleplus_link){}

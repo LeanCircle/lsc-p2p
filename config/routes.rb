@@ -29,4 +29,6 @@ P2pc::Application.routes.draw do
   match "/contact", to: 'contacts#new', via: :get
   match "/contact/thanks", to: 'contacts#thanks', via: :get
 
+  # Group routes
+  resources :groups, :except => [:edit, :update, :destroy]
 end
