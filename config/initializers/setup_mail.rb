@@ -7,7 +7,7 @@ ActionMailer::Base.smtp_settings = {
   authentication: ENV['SMTP_AUTHENTICATION'],
   enable_starttls_auto: ENV['SMTP_STARTTLS']  }
 
-if  Rails.env.development? || Rails.env.staging?
+unless Rails.env.production?
   require 'development_mail_interceptor'
   ActionMailer::Base.register_interceptor(DevelopmentMailInterceptor)
 end
