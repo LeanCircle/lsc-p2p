@@ -1,0 +1,17 @@
+%div
+  %h1
+    New group application:
+    = @group.name
+
+  %h2 Location
+  %p
+    #{@group.city}, #{@group.province}, #{@group.country}
+
+  %h2 Links
+  %ul
+    %li= @group.meetup_link
+    %li= @group.facebook_link
+    %li= @group.twitter_link
+    %li= @group.linkedin_link
+    %li= @group.googleplus_link
+    %li= @group.other_link

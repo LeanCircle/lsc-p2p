@@ -1,6 +1,13 @@
 class UserMailer < ActionMailer::Base
   default from: "P2PC <mailer@p2p.leanstartupcircle.com>"
 
+  def group_application(group)
+    @group = group
+    mail to: "tristan@leanstartupcircle.com",
+         from: "New Group Application <info@leanstartupcircle.com>",
+         subject: "New Group in " + group.name
+  end
+
   def contact(message)
     @message = message
     mail to: "p2p@leanstartupcircle.com",

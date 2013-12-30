@@ -12,6 +12,7 @@ class GroupsController < ApplicationController
     redirect_to groups_path if params[:commit].eql?('Cancel')
     @group = Group.new(post_params)
     if @group.try(:save)
+      UserMailer.group_application(@group).deliver
       flash[:success] = "Your group still needs to be approved. A human will check it shortly!"
       redirect_to groups_path
     else
