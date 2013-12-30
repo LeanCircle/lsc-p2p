@@ -51,11 +51,11 @@
         .help-inline= @group.errors.full_message(:country, "is dubious")
 
   .control-group{ :class => if !@group.errors[:meetup_link].blank? then "error" end }
-    = f.label :facebook_link, "Meetup.com URL", :class => "control-label"
+    = f.label :meetup_link, "Meetup.com URL", :class => "control-label"
     .controls
-      = f.text_field :facebook_link, :placeholder => 'http://meetup.com/LeanStartupCircleMoon', :class => "span5"
-      - if !@group.errors[:facebook_link].blank?
-        .help-inline= @group.errors.full_message(:facebook_link, "is dubious")
+      = f.text_field :meetup_link, :placeholder => 'http://meetup.com/LeanStartupCircleMoon', :class => "span5"
+      - if !@group.errors[:meetup_link].blank?
+        .help-inline= @group.errors.full_message(:meetup_link, "is dubious")
 
   .control-group{ :class => if !@group.errors[:facebook_link].blank? then "error" end }
     = f.label :facebook_link, "Facebook URL", :class => "control-label"
