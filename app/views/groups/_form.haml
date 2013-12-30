@@ -1,0 +1,98 @@
+= form_for(@group, :html => { :class => "form-horizontal" } ) do |f|
+  %legend
+
+  -#.control-group
+  -#  .controls
+  -#    = link_to user_omniauth_authorize_url(:meetup) do
+  -#      Import your groups from
+  -#      = image_tag 'links/link_meetup.png', :width => '50px'
+  -#
+  -#.control-group
+  -#  .controls
+  -#    %p.lead
+  -#      OR
+
+  -#- if current_user.present? && current_user.admin?
+  -#  .control-group{ :class => if !@group.errors[:meetup_identifier].blank? then "error" end }
+  -#    = f.label :meetup_identifier, 'Meetup Group', :class => "control-label"
+  -#    .controls
+  -#      = f.text_field :meetup_identifier, :placeholder => 'URL or Meetup Group ID', :class => "span3", :autofocus => true
+  -#      - if !@group.errors[:meetup_identifier].blank?
+  -#        .help-inline= @group.errors.full_message(:meetup_identifier, "is dubious")
+  -#      - else
+  -#        .help-inline We'll import the rest of these fields if you have a meetup.com group.
+
+  .control-group{ :class => if !@group.errors[:name].blank? then "error" end }
+    = f.label :name, "Name", :class => "control-label"
+    .controls
+      = f.text_field :name, :placeholder => 'Lean Startup Circle Moonbase Alpha', :class => "span5"
+      - if !@group.errors[:name].blank?
+        .help-inline= @group.errors.full_message(:name, "is dubious")
+
+  .control-group{ :class => if !@group.errors[:city].blank? then "error" end }
+    = f.label :city, "City", :class => "control-label"
+    .controls
+      = f.text_field :city, :placeholder => 'e.g. San Francisco', :class => "span5"
+      - if !@group.errors[:city].blank?
+        .help-inline= @group.errors.full_message(:city, "is dubious")
+
+  .control-group{ :class => if !@group.errors[:province].blank? then "error" end }
+    = f.label :province, "Province / State", :class => "control-label"
+    .controls
+      = f.text_field :province, :placeholder => 'e.g. California', :class => "span5"
+      - if !@group.errors[:province].blank?
+        .help-inline= @group.errors.full_message(:province, "is dubious")
+
+  .control-group{ :class => if !@group.errors[:country].blank? then "error" end }
+    = f.label :country, "Country", :class => "control-label"
+    .controls
+      = f.text_field :country, :placeholder => 'e.g. United States of America', :class => "span5"
+      - if !@group.errors[:country].blank?
+        .help-inline= @group.errors.full_message(:country, "is dubious")
+
+  .control-group{ :class => if !@group.errors[:meetup_link].blank? then "error" end }
+    = f.label :facebook_link, "Meetup.com URL", :class => "control-label"
+    .controls
+      = f.text_field :facebook_link, :placeholder => 'http://meetup.com/LeanStartupCircleMoon', :class => "span5"
+      - if !@group.errors[:facebook_link].blank?
+        .help-inline= @group.errors.full_message(:facebook_link, "is dubious")
+
+  .control-group{ :class => if !@group.errors[:facebook_link].blank? then "error" end }
+    = f.label :facebook_link, "Facebook URL", :class => "control-label"
+    .controls
+      = f.text_field :facebook_link, :placeholder => 'http://facebook.com/LeanStartupCircleMoon', :class => "span5"
+      - if !@group.errors[:facebook_link].blank?
+        .help-inline= @group.errors.full_message(:facebook_link, "is dubious")
+
+  .control-group{ :class => if !@group.errors[:twitter_link].blank? then "error" end }
+    = f.label :twitter_link, "Twitter URL", :class => "control-label"
+    .controls
+      = f.text_field :twitter_link, :placeholder => 'http://twitter.com/LeanCircleMoon', :class => "span5"
+      - if !@group.errors[:twitter_link].blank?
+        .help-inline= @group.errors.full_message(:twitter_link, "is dubious")
+
+  .control-group{ :class => if !@group.errors[:linkedin_link].blank? then "error" end }
+    = f.label :linkedin_link, "LinkedIn URL", :class => "control-label"
+    .controls
+      = f.text_field :linkedin_link, :placeholder => 'http://linkedin.com/groups?gid=LONGNUMBER', :class => "span5"
+      - if !@group.errors[:linkedin_link].blank?
+        .help-inline= @group.errors.full_message(:linkedin_link, "is dubious")
+
+  .control-group{ :class => if !@group.errors[:googleplus_link].blank? then "error" end }
+    = f.label :googleplus_link, "Google+ URL", :class => "control-label"
+    .controls
+      = f.text_field :googleplus_link, :placeholder => 'http://plus.google.com/LONGNUMBER', :class => "span5"
+      - if !@group.errors[:googleplus_link].blank?
+        .help-inline= @group.errors.full_message(:googleplus_link, "is dubious")
+
+  .control-group{ :class => if !@group.errors[:other_link].blank? then "error" end }
+    = f.label :other_link, "Other URL", :class => "control-label"
+    .controls
+      = f.text_field :other_link, :placeholder => 'http://superfancyurl.com', :class => "span5"
+      - if !@group.errors[:other_link].blank?
+        .help-inline= @group.errors.full_message(:other_link, "is dubious")
+
+  .control-group
+    .controls
+      = f.submit "Submit", :class => 'btn btn-primary'
+      = f.submit "Cancel", :class => 'btn'
