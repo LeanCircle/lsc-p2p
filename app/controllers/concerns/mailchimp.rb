@@ -17,4 +17,14 @@ module Mailchimp
     })
     return true
   end
+
+  def unsubscribe(email)
+    Subscriber.find_by(email: email).destroy
+    mailchimp.lists.unsubscribe(
+      id: ENV['MAILCHIMP_LIST_ID'],
+      email: {email: email},
+      send_notify: true,
+      send_goodbye: true
+    )
+  end
 end

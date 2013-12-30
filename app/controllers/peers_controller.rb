@@ -101,7 +101,6 @@ class PeersController < ApplicationController
     end
 
     def thank_peer
-      subscribe(@peer.user.email, @peer.user.name) if @peer.user.newsletter_subscription == true
       UserMailer.registration_confirmed(@peer.user.email, @peer.user.name).deliver
       redirect_to thanks_path
       forget_user
