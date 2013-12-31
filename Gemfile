@@ -13,6 +13,7 @@ gem 'jquery-turbolinks'
 gem 'jbuilder', '1.5.2'
 
 gem 'friendly_id' # For nice url slugs
+gem 'activeadmin', github: 'gregbell/active_admin' # Basic admin panel
 
 # Various APIs
 gem 'gibbon', '1.0.4' # For mailchimp integration
