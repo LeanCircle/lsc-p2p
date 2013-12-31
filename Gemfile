@@ -14,6 +14,7 @@ gem 'jbuilder', '1.5.2'
 
 gem 'friendly_id', '~> 5.0.0' # For nice url slugs
 gem 'activeadmin', github: 'gregbell/active_admin' # Basic admin panel
+gem 'cancan' # for access control
 
 # Various APIs
 gem 'gibbon', '1.0.4' # For mailchimp integration
