@@ -13,10 +13,29 @@ ActiveAdmin.register Group do
     column :name, sortable: :name do |group|
       link_to group.name, admin_group_path(group)
     end
-    column :approval do |group|
+    column do |group|
+      link_to_if(!group.meetup_link.blank?, "#{image_tag 'links/link_meetup.png', width: '25px'}".html_safe, group.meetup_link){}
+    end
+    column do |group|
+      link_to_if(!group.facebook_link.blank?, "#{image_tag 'links/link_facebook.png', width: '25px'}".html_safe, group.facebook_link){}
+    end
+    column do |group|
+      link_to_if(!group.linkedin_link.blank?, "#{image_tag 'links/link_linkedin.png', width: '25px'}".html_safe, group.linkedin_link){}
+    end
+    column do |group|
+      link_to_if(!group.twitter_link.blank?, "#{image_tag 'links/link_twitter.png', width: '25px'}".html_safe, group.twitter_link){}
+    end
+    column do |group|
+      link_to_if(!group.googleplus_link.blank?, "#{image_tag 'links/link_googleplus.png', width: '25px'}".html_safe, group.googleplus_link){}
+    end
+    column do |group|
+      link_to_if(!group.other_link.blank?, "#{image_tag 'links/link_home_black.png', width: '25px'}".html_safe, group.other_link){}
+    end
+
+    column :approval, sortable: :approval do |group|
       link_to group.approval.to_s, toggle_approval_admin_group_path(group), method: :put
     end
-    column :lsc do |group|
+    column :lsc, sortable: :lsc do |group|
       link_to group.lsc.to_s, toggle_lsc_admin_group_path(group), method: :put
     end
     actions
