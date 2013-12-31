@@ -1,5 +1,7 @@
 P2pc::Application.routes.draw do
 
+  devise_for :users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   root 'subscribers#landing_page'
 
   # Static page routes
