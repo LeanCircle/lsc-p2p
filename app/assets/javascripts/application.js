@@ -17,3 +17,5 @@
 //= require_tree .
 
 //= require bootstrap
+//= require underscore-min
+//= require gmaps/google

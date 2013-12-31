@@ -2,6 +2,10 @@ class GroupsController < ApplicationController
 
   def index
     @groups = Group.approved
+    @gmaps_hash = Gmaps4rails.build_markers(@groups) do |group, marker|
+      marker.lat group.latitude
+      marker.lng group.longitude
+    end
   end
 
   def new

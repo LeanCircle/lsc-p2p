@@ -9,26 +9,20 @@ class Group < ActiveRecord::Base
   validates_uniqueness_of :name,
                           :meetup_id,
                           :meetup_link, :allow_blank => true
-  #after_validation :geocode, :reverse_geocode
+  after_validation :geocode, :reverse_geocode
 
-  #geocoded_by :address
-  #reverse_geocoded_by :latitude, :longitude do |group, results|
-  #  if geo = results.first
-  #    group.city = geo.city
-  #    group.province = geo.state_code
-  #    group.country_code = geo.country_code
-  #    group.country = geo.country
-  #  end
-  #end
-  #acts_as_gmappable :validation => false,
-  #                  :process_geocoding => false,
-  #                  :address => "address"
-  #
-  #extend FriendlyId
-  #friendly_id :name, use: :slugged
+  geocoded_by :address
+  reverse_geocoded_by :latitude, :longitude do |group, results|
+    if geo = results.first
+      group.city = geo.city
+      group.province = geo.state_code
+      group.country_code = geo.country_code
+      group.country = geo.country
+    end
+  end
 
-  #scope :red, where(color: 'red')
-  #scope :red, -> { where(color: 'red') }
+  extend FriendlyId
+  friendly_id :name, use: :slugged
 
   scope :approved, -> { where(approval: true) }
   scope :by_country, -> { select(:country).uniq.order("country asc") }
