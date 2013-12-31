@@ -224,7 +224,7 @@ DEPENDENCIES
   bootstrap-sass!
   coffee-rails (= 4.0.0)
   figaro
-  friendly_id
+  friendly_id (~> 5.0.0)
   geocoder
   gibbon (= 1.0.4)
   gmaps4rails
