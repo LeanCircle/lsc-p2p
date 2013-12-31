@@ -1,5 +1,5 @@
 ActiveAdmin.register User do
-  permit_params :email, :password, :password_confirmation
+  permit_params :email, :newsletter_subscription, :password, :password_confirmation
 
   index do
     column :name, sortable: :name do |user|
@@ -23,7 +23,7 @@ ActiveAdmin.register User do
   form do |f|
     f.inputs "Admin Details" do
       f.input :email
-      f.input :newsletter_subscription, :as => :radio # TODO: This doesn't seem to be working.
+      f.input :newsletter_subscription, :as => :radio
       f.input :password
       f.input :password_confirmation
     end

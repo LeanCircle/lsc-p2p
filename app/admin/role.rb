@@ -1,5 +1,5 @@
 ActiveAdmin.register Role do
-  permit_params :list, :of, :attributes, :on, :model
+  permit_params :name
 
   index do
     selectable_column
