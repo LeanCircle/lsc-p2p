@@ -4,8 +4,8 @@ class UserMailer < ActionMailer::Base
   def group_application(group)
     @group = group
     mail to: "tristan@leanstartupcircle.com",
-         from: "New Group Application <info@leanstartupcircle.com>",
-         subject: "New Group in " + group.name
+         from: "New Group Application <feedback@leanstartupcircle.com>",
+         subject: "[LSC] " + group.name
   end
 
   def contact(message)
