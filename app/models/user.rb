@@ -24,37 +24,26 @@ class User < ActiveRecord::Base
     Digest::SHA1.hexdigest(token.to_s)
   end
 
-  # Quick methods for accessing roles. I am lazy.
-  def make_volunteer
-    roles << Role.find_by_role("volunteer") unless roles.include?(Role.find_by_role("volunteer"))
+  # Quick methods for dealing with roles. I am lazy.
+
+  def self.find_by_role(role_name)
+    Role.find_by_name(role_name).try(:users)
   end
 
-  def self.volunteers
-    Role.find_by_role("volunteer").users
+  def add_role(role_name)
+    role = Role.find_by_name role_name
+    roles << role unless roles.include? role
+    is? role_name
   end
 
-  def make_organizer
-    roles << Role.find_by_role("organizer") unless roles.include?(Role.find_by_role("organizer"))
+  def remove_role(role_name)
+    role = Role.find_by_name role_name
+    roles.delete role if roles.include? role
+    !(is? role_name)
   end
 
-  def self.organizers
-    Role.find_by_role("organizer").users
-  end
-
-  def self.team_members
-    Role.find_by_role("team_member").users
-  end
-
-  def make_team_member
-    roles << Role.find_by_role("team_member") unless roles.include?(Role.find_by_role("team_member"))
-  end
-
-  def self.peers
-    Role.find_by_role("Peer").users
-  end
-
-  def make_peer
-    roles << Role.find_by_role("Peer") unless roles.include?(Role.find_by_role("peer"))
+  def is?(role_name)
+    roles.include? Role.find_by_name role_name
   end
 
   private

@@ -9,7 +9,7 @@ class StaticPagesController < ApplicationController
   end
 
   def team
-    @team = (User.team_members + User.volunteers + User.volunteers).uniq.shuffle
+    @team = (User.find_by_role(:team_member) + User.find_by_role(:volunteer)).uniq.shuffle
   end
 
   def thanks
