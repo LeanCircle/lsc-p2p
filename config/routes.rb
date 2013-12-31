@@ -25,9 +25,9 @@ P2pc::Application.routes.draw do
       get 'registration', on: :member
   end
 
-  resources :contacts, only: [:create]
-  match "/contact", to: 'contacts#new', via: :get
-  match "/contact/thanks", to: 'contacts#thanks', via: :get
+  resources :contact_messages, only: [:create]
+  match "/contact-us", to: 'contact_messages#new', via: :get, as: :new_contact_message
+  match "/thanks-for-contacting-us", to: 'contact_messages#thanks', via: :get, as: :contact_message_thanks
 
   # Group routes
   resources :groups, :except => [:edit, :update, :destroy]

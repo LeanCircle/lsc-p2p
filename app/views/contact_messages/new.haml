@@ -1,5 +1,5 @@
-- provide(:title, "Contact")
-%h1.page-title Contact Us
+- provide(:title, "ContactMessage")
+%h1.page-title ContactMessage Us
 
 .row
   .col-sm-6.col-sm-offset-3
@@ -17,15 +17,15 @@
 
       .form-group
         = f.label :name
-        = f.text_field :name
+        = f.text_field :name, :placeholder => 'John Smith'
 
       .form-group
         = f.label :email
-        = f.email_field :email
+        = f.email_field :email, :placeholder => 'John.Smith@domain.com'
 
       .form-group
         = f.label :message
-        = f.text_area :message
+        = f.text_area :message, :placeholder => 'I want to talk about...'
 
       .form-group
         = recaptcha_tags display: { :theme => "white", iframe_width: "100%" }, ajax: true
