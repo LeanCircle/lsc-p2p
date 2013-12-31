@@ -1,5 +1,5 @@
 %w[Peer volunteer organizer team_member speaker].each do |role|
-   Role.create(role: role) unless Role.find_by_role(role)
+   Role.create(name: role) unless Role.find_by_role(role)
 end
 
 # Add some team members
