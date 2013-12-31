@@ -1,5 +1,5 @@
 ActiveAdmin.register Group do
-  permit_params :name, :description, :approval, :lsc, :city, :province, :country,
+  permit_params :name, :user_id, :description, :approval, :lsc, :city, :province, :country,
                 :meetup_link, :facebook_link, :twitter_link, :linkedin_link, :googleplus_link, :other_link
 
   controller do
@@ -13,25 +13,31 @@ ActiveAdmin.register Group do
     column :name, sortable: :name do |group|
       link_to group.name, admin_group_path(group)
     end
+    column "Organizer" do |group|
+      link_to_unless(group.user.nil?, group.user.try(:name), admin_user_path(group.user))
+    end
+    column :address, sortable: :country
     column do |group|
-      link_to_if(!group.meetup_link.blank?, "#{image_tag 'links/link_meetup.png', width: '25px'}".html_safe, group.meetup_link){}
+      link_to_unless(group.meetup_link.blank?, "#{image_tag 'links/link_meetup.png', width: '25px'}".html_safe, group.meetup_link, target: "_blank"){}
     end
     column do |group|
-      link_to_if(!group.facebook_link.blank?, "#{image_tag 'links/link_facebook.png', width: '25px'}".html_safe, group.facebook_link){}
+      link_to_unless(group.facebook_link.blank?, "#{image_tag 'links/link_facebook.png', width: '25px'}".html_safe, group.facebook_link, target: "_blank"){}
     end
     column do |group|
-      link_to_if(!group.linkedin_link.blank?, "#{image_tag 'links/link_linkedin.png', width: '25px'}".html_safe, group.linkedin_link){}
+      link_to_unless(group.linkedin_link.blank?, "#{image_tag 'links/link_linkedin.png', width: '25px'}".html_safe, group.linkedin_link, target: "_blank"){}
     end
     column do |group|
-      link_to_if(!group.twitter_link.blank?, "#{image_tag 'links/link_twitter.png', width: '25px'}".html_safe, group.twitter_link){}
+      link_to_unless(group.twitter_link.blank?, "#{image_tag 'links/link_twitter.png', width: '25px'}".html_safe, group.twitter_link, target: "_blank"){}
     end
     column do |group|
-      link_to_if(!group.googleplus_link.blank?, "#{image_tag 'links/link_googleplus.png', width: '25px'}".html_safe, group.googleplus_link){}
+      link_to_unless(group.googleplus_link.blank?, "#{image_tag 'links/link_googleplus.png', width: '25px'}".html_safe, group.googleplus_link, target: "_blank"){}
     end
     column do |group|
-      link_to_if(!group.other_link.blank?, "#{image_tag 'links/link_home_black.png', width: '25px'}".html_safe, group.other_link){}
+      link_to_unless(group.other_link.blank?, "#{image_tag 'links/link_home_black.png', width: '25px'}".html_safe, group.other_link, target: "_blank"){}
     end
-
+    column "Lng & Lat", sortable: :country do |group|
+      group.longitude? && group.latitude? ? "Yes" : "No"
+    end
     column :approval, sortable: :approval do |group|
       link_to group.approval.to_s, toggle_approval_admin_group_path(group), method: :put
     end
@@ -45,6 +51,7 @@ ActiveAdmin.register Group do
     f.inputs 'Details' do
       f.input :name
       f.input :description
+      f.input :user
     end
     f.inputs 'Status' do
       f.input :approval, as: :radio
