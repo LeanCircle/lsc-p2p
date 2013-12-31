@@ -1,17 +1,37 @@
 ActiveAdmin.register Role do
+  permit_params :list, :of, :attributes, :on, :model
 
-  
-  # See permitted parameters documentation:
-  # https://github.com/gregbell/active_admin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-  #
-  # permit_params :list, :of, :attributes, :on, :model
-  #
-  # or
-  #
-  # permit_params do
-  #  permitted = [:permitted, :attributes]
-  #  permitted << :other if resource.something?
-  #  permitted
-  # end
-  
+  index do
+    selectable_column
+    column :name, sortable: :name do |role|
+      link_to role.name, admin_role_path(role)
+    end
+    actions
+  end
+
+  show do
+    attributes_table do
+      row :id
+      row :name
+      row :created_at
+      row :updated_at
+    end
+    active_admin_comments
+  end
+
+  sidebar "Users with role", only: :show do
+    table_for role.users do
+      column "name" do |user|
+        link_to user.name, admin_user_path(user)
+      end
+    end
+  end
+
+  form do |f|
+    f.inputs "Details" do
+      f.input :name
+    end
+    f.actions
+  end
+
 end
