@@ -6,15 +6,15 @@ class PeersController < ApplicationController
   before_action :is_already_a_peer, only: [:new, :create]
 
   def new
-  	@peer = current_user.create_peer
+  	@peer = current_member.create_peer
     session[:peer_step] = @peer.current_step
   end
 
   def create
-  	@peer = current_user.build_peer(peer_params)
+  	@peer = current_member.build_peer(peer_params)
     if @peer.save
       if params[:back_button]
-        redirect_to edit_user_path(current_user)
+        redirect_to edit_user_path(current_member)
       else
         redirect_to registration_peer_path(@peer)
         @peer.next_step
@@ -26,7 +26,7 @@ class PeersController < ApplicationController
   end
 
   def registration
-    @peer = current_user.peer
+    @peer = current_member.peer
     @peer.current_step = session[:peer_step]
   end
 
@@ -34,7 +34,7 @@ class PeersController < ApplicationController
   end
 
   def update
-    @peer = current_user.peer
+    @peer = current_member.peer
     @peer.current_step = session[:peer_step]
 
     if @peer.update_attributes(peer_params)
@@ -88,14 +88,14 @@ class PeersController < ApplicationController
       case prev_or_next
         when 'previous'
         if @peer.first_step?
-          redirect_to edit_user_path(current_user)
+          redirect_to edit_user_path(current_member)
         else
           @peer.previous_step
-          redirect_to registration_peer_path(current_user.peer)
+          redirect_to registration_peer_path(current_member.peer)
         end
         when 'next'
           @peer.next_step
-          redirect_to registration_peer_path(current_user.peer)
+          redirect_to registration_peer_path(current_member.peer)
       end
       session[:peer_step] = @peer.current_step
     end
@@ -111,15 +111,15 @@ class PeersController < ApplicationController
 
     def correct_user
       @peer = Peer.find(params[:id])
-      unless current_user.peer == @peer
-        redirect_to registration_peer_path(current_user.peer)
+      unless current_member.peer == @peer
+        redirect_to registration_peer_path(current_member.peer)
         flash[:warning] = "You can't see that!"
       end
     end
 
     def is_already_a_peer
-      if current_user.peer
-        redirect_to registration_peer_path(current_user.peer)
+      if current_member.peer
+        redirect_to registration_peer_path(current_member.peer)
         flash[:warning] = "Please complete your application"
       end
     end
