@@ -1,10 +1,6 @@
 class UsersController < ApplicationController
   include Mailchimp
 
-  #before_action :is_registered,
-  #              only: [:index, :edit, :update, :destroy]
-  #before_action :correct_user,   only: [:edit, :update]
-
   def new
     @user = User.new
   end
@@ -51,12 +47,5 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:name, :email, :stripe_customer_id, :newsletter_subscription)
-    end
-
-    # Before filters
-
-    def correct_user
-      @user = User.find(params[:id])
-      redirect_to(root_url) unless current_user?(@user)
     end
 end
