@@ -3,7 +3,7 @@ class Group < ActiveRecord::Base
 
   #belongs_to :authentication #, :primary_key => "id", :foreign_key => "auth_id" # TODO: scope this to :provider => "meetup"
   belongs_to :user
-  #has_many :events
+  has_many :events
 
   validates_presence_of :name
   validates_uniqueness_of :name,
@@ -58,6 +58,10 @@ class Group < ActiveRecord::Base
   #def average_attendance(events)
   #  events.average(:yes_rsvp_count).round(2)
   #end
+
+  def next_event
+    events.next.blank? ? "No next event" : events.next.start_datetime
+  end
 
   def update_from_meetup
     Group.init_rmeetup
