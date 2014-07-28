@@ -5,13 +5,12 @@
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-        
       = link_to image_tag("p2pc_logo.png", id: "navbar-logo"), root_path, class: "navbar-brand"
 
     .navbar-collapse.collapse
       %ul.nav.navbar-nav
         / nav_link defined in app/helpers/static_pages_helper.rb
-        = nav_link("Groups",  "http://groups.leanstartupcircle.com/groups", "_blank")
+        = nav_link("Groups",  groups_path)
         = nav_link("Forum", "https://groups.google.com/forum/#!forum/lean-startup-circle", "_blank")
         = nav_link("Wiki", "http://wiki.leanstartupcircle.com", "_blank")
         = nav_link("About", about_path)
