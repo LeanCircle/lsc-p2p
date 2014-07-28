@@ -10,7 +10,7 @@ class Group < ActiveRecord::Base
                           :meetup_id,
                           :meetup_link, :allow_blank => true
 
-  after_create :update_from_meetup
+  after_create :update_and_overwrite_from_meetup
   after_validation :geocode, :reverse_geocode
 
   geocoded_by :address
@@ -59,15 +59,15 @@ class Group < ActiveRecord::Base
   #  events.average(:yes_rsvp_count).round(2)
   #end
 
-  def update_from_meetup
+  def update_and_overwrite_from_meetup
     Group.init_rmeetup
     method = Group.query_method(meetup_link)
     query = Group.clean_query(meetup_link)
     response = RMeetup::Client.fetch( :groups,{ method => query }).first
-    update_from_meetup_api_response(response) unless response.blank?
+    overwrite_from_meetup_api_response(response) unless response.blank?
   end
 
-  def update_from_meetup_api_response(response)
+  def overwrite_from_meetup_api_response(response)
     # Assign attributes from response
     response.name ? update_attributes(name: response.name) : nil
     response.id ? update_attributes(meetup_id: response.id) : nil
