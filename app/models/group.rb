@@ -92,14 +92,16 @@ class Group < ActiveRecord::Base
     save!
   end
 
-  # def self.fetch_events_from_meetup(group)
-  #   init_rmeetup
-  #   responses = RMeetup::Client.fetch(:events,{:group_id => group.meetup_id, :status => 'past'})
-  #   responses += RMeetup::Client.fetch(:events,{:group_id => group.meetup_id, :status => 'upcoming', :desc => true}).last(5)
-  #   responses.each do |response|
-  #      create_events_from_meetup_api_response(response,group.id)
-  #   end
-  # end
+  def fetch_events_from_meetup
+    Group.init_rmeetup
+    # responses = RMeetup::Client.fetch(:events,{:group_id => meetup_id, :status => 'past'})
+    responses = RMeetup::Client.fetch(:events,{:group_id => meetup_id, :status => 'upcoming', :desc => true}).last(5)
+    unless responses.blank?
+      responses.each do |response|
+         Group.update_event_from_meetup_api_response(response, id) unless response.blank?
+      end
+    end
+  end
   #
   #def self.fetch_members_count_from_meetup(group)
   #  init_rmeetup
@@ -109,17 +111,19 @@ class Group < ActiveRecord::Base
   #  end
   #end
   #
-  #def self.create_events_from_meetup_api_response(response,group_id)
-  #  event = Event.find_or_create_by_event_url_and_group_id(response.try(:event_url), group_id,
-  #                                                         :event_id => response.try(:id),
-  #                                                         :name => response.try(:name),
-  #                                                         :meeting_at => response.try(:time),
-  #                                                         :location_name => response.try(:venue).try(:[], 'name'),
-  #                                                         :location_address => [response.try(:venue).try(:[], 'address_1'), response.try(:venue).try(:[], 'city'), response.try(:venue).try(:[], 'state')].compact.join(', '),
-  #                                                         :event_url => response.try(:event_url)
-  #                                                        )
-  #  event.update_attributes( :yes_rsvp_count => response.try(:yes_rsvp_count) )
-  #end
+  def self.update_event_from_meetup_api_response(response, group_id)
+    Event.find_or_create_by(event_id: response.try!(:id),) do |event|
+      event.group_id = group_id
+      event.event_id = response.try!(:id)
+      event.start_datetime = response.try!(:time)
+      event.event_url = response.try!(:event_url)
+      event.status = response.try!(:status)
+      event.published_status = response.try!(:published_status)
+      event.yes_rsvp_count = response.try!(:yes_rsvp_count)
+      puts event.event_id
+    end
+    puts Event.count
+  end
   #
   #def self.fetch_meetups_with_authentication(auth)
   #  init_rmeetup

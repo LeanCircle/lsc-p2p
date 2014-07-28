@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 20140728213413) do
     t.string   "status"
     t.integer  "group_id"
     t.string   "event_url"
-    t.integer  "event_id"
+    t.string   "event_id"
     t.integer  "yes_rsvp_count"
     t.datetime "created_at"
     t.datetime "updated_at"
