@@ -65,14 +65,14 @@ class Group < ActiveRecord::Base
   #  create_from_meetup_api_response(response)
   #end
   #
-  #def self.fetch_events_from_meetup(group)
-  #  init_rmeetup
-  #  responses = RMeetup::Client.fetch(:events,{:group_id => group.meetup_id, :status => 'past'})
-  #  responses += RMeetup::Client.fetch(:events,{:group_id => group.meetup_id, :status => 'upcoming', :desc => true}).last(5)
-  #  responses.each do |response|
-  #    create_events_from_meetup_api_response(response,group.id)
-  #  end
-  #end
+  def self.fetch_events_from_meetup(group)
+    init_rmeetup
+    responses = RMeetup::Client.fetch(:events,{:group_id => group.meetup_id, :status => 'past'})
+    responses += RMeetup::Client.fetch(:events,{:group_id => group.meetup_id, :status => 'upcoming', :desc => true}).last(5)
+    responses.each do |response|
+       create_events_from_meetup_api_response(response,group.id)
+    end
+  end
   #
   #def self.fetch_members_count_from_meetup(group)
   #  init_rmeetup
