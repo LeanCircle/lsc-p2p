@@ -94,7 +94,7 @@ class Group < ActiveRecord::Base
     responses += RMeetup::Client.fetch(:events,{:group_id => meetup_id, :status => 'upcoming', :desc => true}).last(5)
     unless responses.blank?
       responses.each do |response|
-         Group.update_event_from_meetup_api_response(response, id) unless response.blank?
+         Event.create_or_update_event_from_meetup_api_response(response, id) unless response.blank?
       end
     end
   end
@@ -106,19 +106,6 @@ class Group < ActiveRecord::Base
   #    group.update_attributes( :members_count => response.try(:members) )
   #  end
   #end
-  #
-  def self.update_event_from_meetup_api_response(response, group_id)
-    Event.find_or_create_by(event_id: response.try!(:id),) do |event|
-      event.group_id = group_id
-      event.event_id = response.try!(:id)
-      event.start_datetime = response.try!(:time)
-      event.event_url = response.try!(:event_url)
-      event.status = response.try!(:status)
-      event.yes_rsvp_count = response.try!(:yes_rsvp_count)
-      puts event.event_id
-    end
-    puts Event.count
-  end
   #
   #def self.fetch_meetups_with_authentication(auth)
   #  init_rmeetup
