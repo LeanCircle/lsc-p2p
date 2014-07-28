@@ -90,8 +90,8 @@ class Group < ActiveRecord::Base
 
   def fetch_events_from_meetup
     Group.init_rmeetup
-    # responses = RMeetup::Client.fetch(:events,{:group_id => meetup_id, :status => 'past'})
-    responses = RMeetup::Client.fetch(:events,{:group_id => meetup_id, :status => 'upcoming', :desc => true}).last(5)
+    responses = RMeetup::Client.fetch(:events,{:group_id => meetup_id, :status => 'past'})
+    responses += RMeetup::Client.fetch(:events,{:group_id => meetup_id, :status => 'upcoming', :desc => true}).last(5)
     unless responses.blank?
       responses.each do |response|
          Group.update_event_from_meetup_api_response(response, id) unless response.blank?
