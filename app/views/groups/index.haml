@@ -23,14 +23,14 @@
         %tbody#groups
           - @groups.each do |group|
             %tr
-              %td= link_to group.name, group.link
+              %td= link_to group.name, group.link, target: "_blank"
               %td= group.address
-              %td= group.next_event
+              %td= link_to group.events.upcoming.first.start_datetime, group.events.upcoming.first.event_url, target: "_blank"
               %td
-                = link_to_if(!group.meetup_link.blank?, "#{image_tag 'links/link_meetup.png', :width => '50px'}".html_safe, group.meetup_link){}
-                = link_to_if(!group.facebook_link.blank?, "#{image_tag 'links/link_facebook.png'}".html_safe, group.facebook_link){}
-                = link_to_if(!group.linkedin_link.blank?, "#{image_tag 'links/link_linkedin.png', :width => '50px'}".html_safe, group.linkedin_link){}
-                = link_to_if(!group.twitter_link.blank?, "#{image_tag 'links/link_twitter.png'}".html_safe, group.twitter_link){}
-                = link_to_if(!group.googleplus_link.blank?, "#{image_tag 'links/link_googleplus.png'}".html_safe, group.googleplus_link){}
+                = link_to_if(!group.meetup_link.blank?, "#{image_tag 'links/link_meetup.png', :width => '50px'}".html_safe, group.meetup_link, target: "_blank"){}
+                = link_to_if(!group.facebook_link.blank?, "#{image_tag 'links/link_facebook.png'}".html_safe, group.facebook_link, target: "_blank"){}
+                = link_to_if(!group.linkedin_link.blank?, "#{image_tag 'links/link_linkedin.png', :width => '50px'}".html_safe, group.linkedin_link, target: "_blank"){}
+                = link_to_if(!group.twitter_link.blank?, "#{image_tag 'links/link_twitter.png'}".html_safe, group.twitter_link, target: "_blank"){}
+                = link_to_if(!group.googleplus_link.blank?, "#{image_tag 'links/link_googleplus.png'}".html_safe, group.googleplus_link, target: "_blank"){}
 
 = render 'gmap'

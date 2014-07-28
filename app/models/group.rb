@@ -59,10 +59,6 @@ class Group < ActiveRecord::Base
   #  events.average(:yes_rsvp_count).round(2)
   #end
 
-  def next_event
-    events.upcoming.first.blank? ? "No next event" : events.upcoming.first
-  end
-
   def update_from_meetup
     Group.init_rmeetup
     method = Group.query_method(meetup_link)
