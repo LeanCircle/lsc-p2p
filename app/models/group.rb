@@ -57,13 +57,13 @@ class Group < ActiveRecord::Base
   #  events.average(:yes_rsvp_count).round(2)
   #end
 
-  # def self.fetch_from_meetup(query)
-  #   init_rmeetup
-  #   method = query_method(query)
-  #   query = clean_query(query)
-  #   response = RMeetup::Client.fetch( :groups,{ method => query }).first
-  #   create_from_meetup_api_response(response)
-  # end
+  def self.fetch_from_meetup(query)
+    init_rmeetup
+    method = query_method(query)
+    query = clean_query(query)
+    response = RMeetup::Client.fetch( :groups,{ method => query }).first
+    create_from_meetup_api_response(response)
+  end
 
   # def self.fetch_events_from_meetup(group)
   #   init_rmeetup
@@ -108,29 +108,60 @@ class Group < ActiveRecord::Base
   #  return meetups_added ||= []
   #end
   #
-  #def self.create_from_meetup_api_response(response)
-  #  group = Group.new
-  #
-  #  # Assign attributes from response
-  #  group.name = response.try(:name) if response.try(:name) && group.name.blank?
-  #  group.description = response.try(:description)
-  #  group.meetup_id = response.try(:id)
-  #  group.organizer_id = response.try(:organizer).try(:[], 'member_id')
-  #  group.meetup_link = response.try(:link)
-  #  group.city = response.try(:city)
-  #  group.country_code = response.try(:country)
-  #  group.province = response.try(:state)
-  #  group.latitude = response.try(:lat)
-  #  group.longitude = response.try(:lon)
-  #  group.highres_photo_url = response.try(:group_photo).try(:[], 'highres_link')
-  #  group.photo_url = response.try(:group_photo).try(:[], 'photo_link')
-  #  group.thumbnail_url = response.try(:group_photo).try(:[], 'thumb_link')
-  #  group.join_mode = response.try(:join_mode)
-  #  group.visibility = response.try(:visibility)
-  #  group.members_count = response.try(:members)
-  #  group.save!
-  #  return group
-  #end
+  def self.create_from_meetup_api_response(response)
+    group = Group.new
+
+    # Assign attributes from response
+    response.name ? group.name = response.name : nil
+
+    response.id ? group.meetup_id = response.id : nil
+    # group.meetup_id = response.try(:id)
+
+    response.description ? group.description = response.description : nil
+    # group.description = response.try(:description)
+
+    response.organizer["member_id"] ? group.organizer_id = response.organizer["member_id"] : nil
+    # group.organizer_id = response.try(:organizer).try(:[], 'member_id')
+
+    response.link ? group.meetup_link = response.link : nil
+    # group.meetup_link = response.try(:link)
+
+    response.city ? group.city = response.city : nil
+    # group.city = response.try(:city)
+
+    response.country ? group.country_code = response.country : nil
+    # group.country_code = response.try(:country)
+
+    response.state ? group.province = response.state : nil
+    # group.province = response.try(:state)
+
+    response.lat ? group.latitude = response.lat : nil
+    # group.latitude = response.try(:lat)
+
+    response.lon ? group.longitude = response.lon : nil
+    # group.longitude = response.try(:lon)
+
+    response.group_photo["highres_link"] ? group.highres_photo_url = response.group_photo["highres_link"] : nil
+    # group.highres_photo_url = response.try(:group_photo).try(:[], 'highres_link')
+
+    response.group_photo["photo_link"] ? group.photo_url = response.group_photo["photo_link"] : nil
+    # group.photo_url = response.try(:group_photo).try(:[], 'photo_link')
+
+    response.group_photo["thumb_link"] ? group.thumbnail_url = response.group_photo["thumb_link"] : nil
+    # group.thumbnail_url = response.try(:group_photo).try(:[], 'thumb_link')
+
+    response.join_mode ? group.join_mode = response.join_mode : nil
+    # group.join_mode = response.try(:join_mode)
+
+    response.visibility ? group.visibility = response.visibility : nil
+    # group.visibility = response.try(:visibility)
+
+    response.members ? group.members_count = response.members : nil
+    # group.members_count = response.try(:members)
+
+    group.save!
+    return group
+  end
   #
   #def self.assign_groups_to_user(user, session)
   #  user.groups << session["auth"].groups if session["auth"] && !session["auth"].groups.blank?
@@ -143,21 +174,21 @@ class Group < ActiveRecord::Base
   def self.init_rmeetup
     RMeetup::Client.api_key = ENV['MEETUP_API_KEY']
   end
-  #
-  #def self.clean_query(query)
-  #  query = query.sub(/^https?\:\/\//, '').sub(/\/+$/,'')
-  #  query = URI::parse("http://" + query).path.sub(/\/*/,"").sub(/\/+$/,'') if query.include?("meetup.com")
-  #  query
-  #end
-  #
-  #def self.query_method(query)
-  #  if !!(query =~ /^[-+]?[0-9]+$/) # If the query is a number, assume it's a group_id
-  #    return :group_id
-  #  elsif query.include?("meetup.com")
-  #    return :group_urlname
-  #  else
-  #    return :domain
-  #  end
-  #end
+
+  def self.clean_query(query)
+    query = query.sub(/^https?\:\/\//, '').sub(/\/+$/,'')
+    query = URI::parse("http://" + query).path.sub(/\/*/,"").sub(/\/+$/,'') if query.include?("meetup.com")
+    query
+  end
+
+  def self.query_method(query)
+    if !!(query =~ /^[-+]?[0-9]+$/) # If the query is a number, assume it's a group_id
+       return :group_id
+    elsif query.include?("meetup.com")
+       return :group_urlname
+    else
+       return :domain
+    end
+  end
 
 end
