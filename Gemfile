@@ -24,7 +24,7 @@ gem 'gravatar_image_tag' # For user images
 gem 'recaptcha', require: 'recaptcha/rails' # Add captcha to contact forms
 gem 'geocoder' # To geolocate groups
 gem 'gmaps4rails' # To make a pretty map of the groups
-# gem 'rmeetup', :git => 'git://github.com/pbajaria/rmeetup.git' # to talk to meetup's api
+gem 'rmeetup', :git => 'git://github.com/pbajaria/rmeetup.git' # to talk to meetup's api
 
 # Developer tools
 gem 'figaro' # Config env variables with config/application.yml using config/application.yml.example

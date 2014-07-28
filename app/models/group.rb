@@ -57,22 +57,22 @@ class Group < ActiveRecord::Base
   #  events.average(:yes_rsvp_count).round(2)
   #end
 
-  #def self.fetch_from_meetup(query)
-  #  init_rmeetup
-  #  method = query_method(query)
-  #  query = clean_query(query)
-  #  response = RMeetup::Client.fetch( :groups,{ method => query }).first
-  #  create_from_meetup_api_response(response)
-  #end
-  #
-  def self.fetch_events_from_meetup(group)
-    init_rmeetup
-    responses = RMeetup::Client.fetch(:events,{:group_id => group.meetup_id, :status => 'past'})
-    responses += RMeetup::Client.fetch(:events,{:group_id => group.meetup_id, :status => 'upcoming', :desc => true}).last(5)
-    responses.each do |response|
-       create_events_from_meetup_api_response(response,group.id)
-    end
-  end
+  # def self.fetch_from_meetup(query)
+  #   init_rmeetup
+  #   method = query_method(query)
+  #   query = clean_query(query)
+  #   response = RMeetup::Client.fetch( :groups,{ method => query }).first
+  #   create_from_meetup_api_response(response)
+  # end
+
+  # def self.fetch_events_from_meetup(group)
+  #   init_rmeetup
+  #   responses = RMeetup::Client.fetch(:events,{:group_id => group.meetup_id, :status => 'past'})
+  #   responses += RMeetup::Client.fetch(:events,{:group_id => group.meetup_id, :status => 'upcoming', :desc => true}).last(5)
+  #   responses.each do |response|
+  #      create_events_from_meetup_api_response(response,group.id)
+  #   end
+  # end
   #
   #def self.fetch_members_count_from_meetup(group)
   #  init_rmeetup
@@ -140,9 +140,9 @@ class Group < ActiveRecord::Base
   #
   #private
   #
-  #def self.init_rmeetup
-  #  RMeetup::Client.api_key = ENV['MEETUP_API_KEY']
-  #end
+  def self.init_rmeetup
+    RMeetup::Client.api_key = ENV['MEETUP_API_KEY']
+  end
   #
   #def self.clean_query(query)
   #  query = query.sub(/^https?\:\/\//, '').sub(/\/+$/,'')
