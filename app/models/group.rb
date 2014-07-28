@@ -65,6 +65,7 @@ class Group < ActiveRecord::Base
     query = Group.clean_query(meetup_link)
     response = RMeetup::Client.fetch( :groups,{ method => query }).first
     overwrite_from_meetup_api_response(response) unless response.blank?
+    fetch_events_from_meetup
   end
 
   def overwrite_from_meetup_api_response(response)
