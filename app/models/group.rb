@@ -9,6 +9,8 @@ class Group < ActiveRecord::Base
   validates_uniqueness_of :name,
                           :meetup_id,
                           :meetup_link, :allow_blank => true
+
+  after_create :update_from_meetup
   after_validation :geocode, :reverse_geocode
 
   geocoded_by :address
@@ -57,12 +59,33 @@ class Group < ActiveRecord::Base
   #  events.average(:yes_rsvp_count).round(2)
   #end
 
-  def self.fetch_from_meetup(query)
-    init_rmeetup
-    method = query_method(query)
-    query = clean_query(query)
+  def update_from_meetup
+    Group.init_rmeetup
+    method = Group.query_method(meetup_link)
+    query = Group.clean_query(meetup_link)
     response = RMeetup::Client.fetch( :groups,{ method => query }).first
-    create_from_meetup_api_response(response)
+    update_from_meetup_api_response(response) unless response.blank?
+  end
+
+  def update_from_meetup_api_response(response)
+    # Assign attributes from response
+    response.name ? update_attributes(name: response.name) : nil
+    response.id ? update_attributes(meetup_id: response.id) : nil
+    response.description ? update_attributes(description: response.description) : nil
+    response.organizer["member_id"] ? update_attributes(organizer_id: response.organizer["member_id"]) : nil
+    response.link ? update_attributes(meetup_link: response.link) : nil
+    response.city ? update_attributes(city: response.city) : nil
+    response.country ? update_attributes(country_code: response.country) : nil
+    response.state ? update_attributes(province: response.state) : nil
+    response.lat ? update_attributes(latitude: response.lat) : nil
+    response.lon ? update_attributes(longitude: response.lon) : nil
+    response.group_photo["highres_link"] ? update_attributes(highres_photo_url: response.group_photo["highres_link"]) : nil
+    response.group_photo["photo_link"] ? update_attributes(photo_url: response.group_photo["photo_link"]) : nil
+    response.group_photo["thumb_link"] ? update_attributes(thumbnail_url: response.group_photo["thumb_link"]) : nil
+    response.join_mode ? update_attributes(join_mode: response.join_mode) : nil
+    response.visibility ? update_attributes(visibility: response.visibility) : nil
+    response.members ? update_attributes(members_count: response.members) : nil
+    save!
   end
 
   # def self.fetch_events_from_meetup(group)
@@ -108,60 +131,6 @@ class Group < ActiveRecord::Base
   #  return meetups_added ||= []
   #end
   #
-  def self.create_from_meetup_api_response(response)
-    group = Group.new
-
-    # Assign attributes from response
-    response.name ? group.name = response.name : nil
-
-    response.id ? group.meetup_id = response.id : nil
-    # group.meetup_id = response.try(:id)
-
-    response.description ? group.description = response.description : nil
-    # group.description = response.try(:description)
-
-    response.organizer["member_id"] ? group.organizer_id = response.organizer["member_id"] : nil
-    # group.organizer_id = response.try(:organizer).try(:[], 'member_id')
-
-    response.link ? group.meetup_link = response.link : nil
-    # group.meetup_link = response.try(:link)
-
-    response.city ? group.city = response.city : nil
-    # group.city = response.try(:city)
-
-    response.country ? group.country_code = response.country : nil
-    # group.country_code = response.try(:country)
-
-    response.state ? group.province = response.state : nil
-    # group.province = response.try(:state)
-
-    response.lat ? group.latitude = response.lat : nil
-    # group.latitude = response.try(:lat)
-
-    response.lon ? group.longitude = response.lon : nil
-    # group.longitude = response.try(:lon)
-
-    response.group_photo["highres_link"] ? group.highres_photo_url = response.group_photo["highres_link"] : nil
-    # group.highres_photo_url = response.try(:group_photo).try(:[], 'highres_link')
-
-    response.group_photo["photo_link"] ? group.photo_url = response.group_photo["photo_link"] : nil
-    # group.photo_url = response.try(:group_photo).try(:[], 'photo_link')
-
-    response.group_photo["thumb_link"] ? group.thumbnail_url = response.group_photo["thumb_link"] : nil
-    # group.thumbnail_url = response.try(:group_photo).try(:[], 'thumb_link')
-
-    response.join_mode ? group.join_mode = response.join_mode : nil
-    # group.join_mode = response.try(:join_mode)
-
-    response.visibility ? group.visibility = response.visibility : nil
-    # group.visibility = response.try(:visibility)
-
-    response.members ? group.members_count = response.members : nil
-    # group.members_count = response.try(:members)
-
-    group.save!
-    return group
-  end
   #
   #def self.assign_groups_to_user(user, session)
   #  user.groups << session["auth"].groups if session["auth"] && !session["auth"].groups.blank?
