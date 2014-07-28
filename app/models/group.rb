@@ -60,7 +60,7 @@ class Group < ActiveRecord::Base
   #end
 
   def next_event
-    events.next.blank? ? "No next event" : events.next.start_datetime
+    events.upcoming.first.blank? ? "No next event" : events.upcoming.first
   end
 
   def update_from_meetup
@@ -118,7 +118,6 @@ class Group < ActiveRecord::Base
       event.start_datetime = response.try!(:time)
       event.event_url = response.try!(:event_url)
       event.status = response.try!(:status)
-      event.published_status = response.try!(:published_status)
       event.yes_rsvp_count = response.try!(:yes_rsvp_count)
       puts event.event_id
     end
