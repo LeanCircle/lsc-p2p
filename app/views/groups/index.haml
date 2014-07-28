@@ -25,7 +25,11 @@
             %tr
               %td= link_to group.name, group.link, target: "_blank"
               %td= group.address
-              %td= link_to group.events.upcoming.first.start_datetime, group.events.upcoming.first.event_url, target: "_blank"
+              %td
+                - if group.events.upcoming.blank?
+                  None scheduled
+                - else
+                  = link_to group.events.upcoming.first.start_datetime, group.events.upcoming.first.event_url, target: "_blank"
               %td
                 = link_to_if(!group.meetup_link.blank?, "#{image_tag 'links/link_meetup.png', :width => '50px'}".html_safe, group.meetup_link, target: "_blank"){}
                 = link_to_if(!group.facebook_link.blank?, "#{image_tag 'links/link_facebook.png'}".html_safe, group.facebook_link, target: "_blank"){}
