@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/gregbell/active_admin.git
-  revision: a8ae008ec9632110bf33443ce7090dfef9cca480
+  revision: efe5a86968c81fd12244e6c4b6957d93d0a4b7ee
   specs:
     activeadmin (1.0.0.pre)
       arbre (~> 1.0)
@@ -23,19 +23,12 @@ GIT
 
 GIT
   remote: git://github.com/stripe/stripe-ruby.git
-  revision: 9cf5089dc15534b7ed581e0ce4d84fa82f592efb
+  revision: 4aed61af42df22d77106558354bd2f5370c04e06
   specs:
-    stripe (1.14.0)
+    stripe (1.15.0)
       json (~> 1.8.1)
       mime-types (>= 1.25, < 3.0)
       rest-client (~> 1.4)
-
-GIT
-  remote: git://github.com/thomas-mcdonald/bootstrap-sass.git
-  revision: 4d367c4fbbb2ba6fc0d86cd02c338add90fa54d2
-  specs:
-    bootstrap-sass (3.2.0.0)
-      sass (~> 3.2)
 
 GEM
   remote: https://rubygems.org/
@@ -69,7 +62,11 @@ GEM
     arbre (1.0.1)
       activesupport (>= 3.0.0)
     arel (5.0.1.20140414130214)
+    autoprefixer-rails (2.2.0.20140727)
+      execjs
     bcrypt (3.1.7)
+    bootstrap-sass (3.2.0.1)
+      sass (~> 3.2)
     bourbon (3.2.3)
       sass (~> 3.2)
       thor
@@ -89,7 +86,7 @@ GEM
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
     erubis (2.7.0)
-    excon (0.38.0)
+    excon (0.39.2)
     execjs (2.2.1)
     figaro (0.7.0)
       bundler (~> 1.0)
@@ -152,7 +149,7 @@ GEM
     multi_json (1.10.1)
     multi_xml (0.5.5)
     netrc (0.7.7)
-    newrelic_rpm (3.9.0.229)
+    newrelic_rpm (3.9.1.236)
     orm_adapter (0.5.0)
     pg (0.17.0)
     polyamorous (1.0.0)
@@ -236,7 +233,8 @@ PLATFORMS
 
 DEPENDENCIES
   activeadmin!
-  bootstrap-sass!
+  autoprefixer-rails
+  bootstrap-sass
   cancan
   coffee-rails
   devise

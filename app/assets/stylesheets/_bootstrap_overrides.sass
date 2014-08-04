@@ -1,30 +1,3 @@
-/* edit bootstrap variable */
-
-$brand-primary: #1a95d3
-$navbarHeight: 100px
-$navbar-default-bg: white
-$link-color: #1a95d3
-$link-hover-color: #ff6e58
-$navbar-default-link-color: $brand-primary
-$navbar-default-link-hover-color: $link-hover-color
-$navbar-default-link-active-color: $link-hover-color
-$navbar-default-link-active-bg: transparent
-$border-radius-base: 2px
-$border-radius-small: 1.5px
-$border-radius-large: 3px
-$gray-dark: #6a5e51
-$btn-default-color: $gray-dark
-
-@import url("http://fonts.googleapis.com/css?family=Open+Sans:300,400,500")
-
-$font-family-sans-serif: "Open Sans", sans-serif
-$font-size-base: 16px
-$line-height-base: 1.5
-$headings-font-weight: 400
-$font-size-large: 16px
-
-@import bootstrap
-
 // Bootstrap overrides
 
 #map img
@@ -128,21 +101,21 @@ div#error_explanation
 form
   input, textarea, select, .uneditable-input
     +box_sizing
-  input:not([type='checkbox']):not([type='radio']), textarea, select, .uneditable-input
-    @extend .form-control
+  //input:not([type='checkbox']):not([type='radio']), textarea, select, .uneditable-input
+  //  @extend .form-control
   input
     height: auto !important
   textarea
     height: 10em
-  label
-    font-weight: normal
-    @extend .control-label
+  //label
+  //  font-weight: normal
+  //  @extend .control-label
   label label, select
     text-transform: capitalize !important
   .well label
     margin-bottom: 0
-  .field_with_errors
-    @extend .has-error
+  //.field_with_errors
+  //  @extend .has-error
 
 /* pages styling */
 

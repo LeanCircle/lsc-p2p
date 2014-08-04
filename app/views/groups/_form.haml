@@ -28,27 +28,27 @@
       = f.text_field :name, :placeholder => 'Lean Startup Circle Moonbase Alpha', class: "form-control"
       - if !@group.errors[:name].blank?
         %span{ class: "glyphicon glyphicon-remove form-control-feedback" }
-        .help-inline= @group.errors.full_message(:name, "is taken or otherwise dubious.")
+        .help-block= @group.errors.full_message(:name, "is taken or otherwise dubious.")
 
   .form-group
   .form-group{ class: if !@group.errors[:city].blank? then "has-error has-feedback" end }
     = f.label :city, "City", class: "control-label col-sm-2"
     .col-sm-4
-      = f.text_field :city, :placeholder => 'e.g. San Francisco', class: "span5"
+      = f.text_field :city, :placeholder => 'e.g. San Francisco', class: "form-control col-sm-6"
       - if !@group.errors[:city].blank?
         %span{ class: "glyphicon glyphicon-remove form-control-feedback" }
 
   .form-group{ class: if !@group.errors[:province].blank? then "has-error has-feedback" end }
     = f.label :province, "Province / State", class: "control-label col-sm-2"
     .col-sm-4
-      = f.text_field :province, :placeholder => 'e.g. California', class: "span5"
+      = f.text_field :province, :placeholder => 'e.g. California', class: "form-control col-sm-6"
       - if !@group.errors[:province].blank?
         %span{ class: "glyphicon glyphicon-remove form-control-feedback" }
 
   .form-group{ class: if !@group.errors[:country].blank? then "has-error has-feedback" end }
     = f.label :country, "Country", class: "control-label col-sm-2"
     .col-sm-4
-      = f.text_field :country, :placeholder => 'e.g. United States of America', class: "span5"
+      = f.text_field :country, :placeholder => 'e.g. United States of America', class: "form-control col-sm-6"
       - if !@group.errors[:country].blank?
         %span{ class: "glyphicon glyphicon-remove form-control-feedback" }
 
@@ -56,54 +56,53 @@
   .form-group{ class: if !@group.errors[:meetup_link].blank? then "has-error has-feedback" end }
     = f.label :meetup_link, "Meetup.com URL", class: "control-label col-sm-2"
     .col-sm-6
-      = f.text_field :meetup_link, :placeholder => 'http://meetup.com/LeanStartupCircleMoon', class: "span5"
+      = f.text_field :meetup_link, :placeholder => 'http://meetup.com/LeanStartupCircleMoon', class: "form-control col-sm-6"
       - if !@group.errors[:meetup_link].blank?
         %span{ class: "glyphicon glyphicon-remove form-control-feedback" }
-        .help-inline= @group.errors.full_message(:meetup_link, "is already taken or otherwise dubious.")
+        .help-block= @group.errors.full_message(:meetup_link, "is already taken or otherwise dubious.")
 
   .form-group{ class: if !@group.errors[:facebook_link].blank? then "has-error has-feedback" end }
     = f.label :facebook_link, "Facebook URL", class: "control-label col-sm-2"
     .col-sm-6
-      = f.text_field :facebook_link, :placeholder => 'http://facebook.com/LeanStartupCircleMoon', class: "span5"
+      = f.text_field :facebook_link, :placeholder => 'http://facebook.com/LeanStartupCircleMoon', class: "form-control col-sm-6"
       - if !@group.errors[:facebook_link].blank?
         %span{ class: "glyphicon glyphicon-remove form-control-feedback" }
-        .help-inline= @group.errors.full_message(:facebook_link, "is already taken or otherwise dubious.")
+        .help-block= @group.errors.full_message(:facebook_link, "is already taken or otherwise dubious.")
 
   .form-group{ class: if !@group.errors[:twitter_link].blank? then "has-error has-feedback" end }
     = f.label :twitter_link, "Twitter URL", class: "control-label col-sm-2"
     .col-sm-6
-      = f.text_field :twitter_link, :placeholder => 'http://twitter.com/LeanCircleMoon', class: "span5"
+      = f.text_field :twitter_link, :placeholder => 'http://twitter.com/LeanCircleMoon', class: "form-control col-sm-6"
       - if !@group.errors[:twitter_link].blank?
         %span{ class: "glyphicon glyphicon-remove form-control-feedback" }
-        .help-inline= @group.errors.full_message(:twitter_link, "is already taken or otherwise dubious.")
+        .help-block= @group.errors.full_message(:twitter_link, "is already taken or otherwise dubious.")
 
   .form-group{ class: if !@group.errors[:linkedin_link].blank? then "has-error has-feedback" end }
     = f.label :linkedin_link, "LinkedIn URL", class: "control-label col-sm-2"
     .col-sm-6
-      = f.text_field :linkedin_link, :placeholder => 'http://linkedin.com/groups?gid=LONGNUMBER', class: "span5"
+      = f.text_field :linkedin_link, :placeholder => 'http://linkedin.com/groups?gid=LONGNUMBER', class: "form-control col-sm-6"
       - if !@group.errors[:linkedin_link].blank?
         %span{ class: "glyphicon glyphicon-remove form-control-feedback" }
-        .help-inline= @group.errors.full_message(:linkedin_link, "is already taken or otherwise dubious.")
+        .help-block= @group.errors.full_message(:linkedin_link, "is already taken or otherwise dubious.")
 
   .form-group{ class: if !@group.errors[:googleplus_link].blank? then "has-error has-feedback" end }
     = f.label :googleplus_link, "Google+ URL", class: "control-label col-sm-2"
     .col-sm-6
-      = f.text_field :googleplus_link, :placeholder => 'http://plus.google.com/LONGNUMBER', class: "span5"
+      = f.text_field :googleplus_link, :placeholder => 'http://plus.google.com/LONGNUMBER', class: "form-control col-sm-6"
       - if !@group.errors[:googleplus_link].blank?
         %span{ class: "glyphicon glyphicon-remove form-control-feedback" }
-        .help-inline= @group.errors.full_message(:googleplus_link, "is already taken or otherwise dubious.")
+        .help-block= @group.errors.full_message(:googleplus_link, "is already taken or otherwise dubious.")
 
   .form-group{ class: if !@group.errors[:other_link].blank? then "has-error has-feedback" end }
     = f.label :other_link, "Other URL", class: "control-label col-sm-2"
     .col-sm-6
-      = f.text_field :other_link, :placeholder => 'http://superfancyurl.com', class: "span5"
+      = f.text_field :other_link, :placeholder => 'http://superfancyurl.com', class: "form-control col-sm-6"
       - if !@group.errors[:other_link].blank?
         %span{ class: "glyphicon glyphicon-remove form-control-feedback" }
-        .help-inline= @group.errors.full_message(:other_link, "is already taken or otherwise dubious.")
+        .help-block= @group.errors.full_message(:other_link, "is already taken or otherwise dubious.")
 
   .form-group
     .col-sm-3.col-sm-offset-2
       = f.submit "Cancel", class: 'btn'
-    .col-sm-3
-      = f.submit "Submit", class: 'btn btn-success'
+      = f.submit "Submit", class: 'btn btn-primary'
 

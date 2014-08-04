@@ -1,18 +1,19 @@
 source 'https://rubygems.org'
 ruby '2.0.0'
 
-gem 'sass-rails'
 gem 'rails', '4.1.0'
-gem 'bootstrap-sass', github: 'thomas-mcdonald/bootstrap-sass'
 gem 'haml-rails'
+gem 'sass-rails'
+gem 'bootstrap-sass'
+gem 'autoprefixer-rails' # recommended by bootstrap-saas
 gem 'uglifier'
 gem 'coffee-rails'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jquery-turbolinks'
 gem 'jbuilder'
-gem 'devise'
 
+gem 'devise' # For active admin & auth
 gem 'friendly_id', '~> 5.0.0' # For nice url slugs
 gem 'activeadmin', github: 'gregbell/active_admin' # Basic admin panel
 gem 'cancan' # for access control
