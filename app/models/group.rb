@@ -61,34 +61,35 @@ class Group < ActiveRecord::Base
 
   def update_and_overwrite_from_meetup
     unless meetup_link.blank?
-      Group.init_rmeetup
-      method = Group.query_method(meetup_link)
-      query = Group.clean_query(meetup_link)
-      response = RMeetup::Client.fetch( :groups,{ method => query }).first
+      puts Group.init_rmeetup
+      puts method = Group.query_method(meetup_link)
+      puts query = Group.clean_query(meetup_link)
+      puts response = RMeetup::Client.fetch( :groups,{ method => query }).first
       overwrite_from_meetup_api_response(response) unless response.blank?
       fetch_events_from_meetup
     end
+  rescue Exception => e
+    puts e.message
   end
 
   def overwrite_from_meetup_api_response(response)
     # Assign attributes from response
-    response.name ? update_attributes(name: response.name) : nil
-    response.id ? update_attributes(meetup_id: response.id) : nil
-    response.description ? update_attributes(description: response.description) : nil
-    response.organizer["member_id"] ? update_attributes(organizer_id: response.organizer["member_id"]) : nil
-    response.link ? update_attributes(meetup_link: response.link) : nil
-    response.city ? update_attributes(city: response.city) : nil
-    response.country ? update_attributes(country_code: response.country) : nil
-    response.state ? update_attributes(province: response.state) : nil
-    response.lat ? update_attributes(latitude: response.lat) : nil
-    response.lon ? update_attributes(longitude: response.lon) : nil
-    response.group_photo["highres_link"] ? update_attributes(highres_photo_url: response.group_photo["highres_link"]) : nil
-    response.group_photo["photo_link"] ? update_attributes(photo_url: response.group_photo["photo_link"]) : nil
-    response.group_photo["thumb_link"] ? update_attributes(thumbnail_url: response.group_photo["thumb_link"]) : nil
-    response.join_mode ? update_attributes(join_mode: response.join_mode) : nil
-    response.visibility ? update_attributes(visibility: response.visibility) : nil
-    response.members ? update_attributes(members_count: response.members) : nil
-    save!
+    update_attributes(name: response.try!(:name),
+                      meetup_id: response.try!(:id),
+                      description: response.try!(:description),
+                      organizer_id: response.try!(:member_id),
+                      meetup_link: response.try!(:link),
+                      city: response.try!(:city),
+                      province: response.try!(:state),
+                      country_code: response.try!(:country),
+                      latitude: response.try!(:lat),
+                      longitude: response.try!(:lon),
+                      highres_photo_url: response.try!(:group_photo).try!(:[],"highres_link"),
+                      photo_url: response.try!(:group_photo).try!(:[],"photo_link"),
+                      thumbnail_url: response.try!(:group_photo).try!(:[],"thumb_link"),
+                      join_mode: response.try!(:join_mode),
+                      visibility: response.try!(:visibility),
+                      members_count: response.try!(:members))
   end
 
   def fetch_events_from_meetup
