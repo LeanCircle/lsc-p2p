@@ -60,7 +60,7 @@ class Group < ActiveRecord::Base
   #end
 
   def update_and_overwrite_from_meetup
-    if meetup_link
+    unless meetup_link.blank?
       Group.init_rmeetup
       method = Group.query_method(meetup_link)
       query = Group.clean_query(meetup_link)
