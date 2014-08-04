@@ -60,12 +60,14 @@ class Group < ActiveRecord::Base
   #end
 
   def update_and_overwrite_from_meetup
-    Group.init_rmeetup
-    method = Group.query_method(meetup_link)
-    query = Group.clean_query(meetup_link)
-    response = RMeetup::Client.fetch( :groups,{ method => query }).first
-    overwrite_from_meetup_api_response(response) unless response.blank?
-    fetch_events_from_meetup
+    if meetup_link
+      Group.init_rmeetup
+      method = Group.query_method(meetup_link)
+      query = Group.clean_query(meetup_link)
+      response = RMeetup::Client.fetch( :groups,{ method => query }).first
+      overwrite_from_meetup_api_response(response) unless response.blank?
+      fetch_events_from_meetup
+    end
   end
 
   def overwrite_from_meetup_api_response(response)
