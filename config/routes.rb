@@ -11,7 +11,8 @@ P2pc::Application.routes.draw do
     :guidelines,
     :team,
     :moderation_guidelines,
-    :guidelines_espanol].each do |static_page|
+    :guidelines_espanol,
+    :cookie].each do |static_page|
     match "/#{static_page}", to: "static_pages##{static_page}", via: :get
   end
   match "faq.html" => "static_pages#guidelines", via: :get
