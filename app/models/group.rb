@@ -36,7 +36,7 @@ class Group < ActiveRecord::Base
      linkedin_link,
      googleplus_link,
      other_link,
-     twitter_link].compact.first
+     twitter_link].reject! { |c| c.empty? }.first
   end
 
   #def self.country_count(country)
