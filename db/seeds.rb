@@ -1,27 +1,32 @@
-%w[admin Peer volunteer organizer team_member speaker].each do |role|
+%w[admin peer volunteer organizer team_member speaker].each do |role|
    Role.create(name: role) unless Role.find_by_name(role)
 end
 
 #Add at least one admin
-admin = User.find_by_email("tk@tristankromer.com") || User.create(name: "Tristan Kromer", email: "tk@tristankromer.com")
-admin.add_role :admin
-
-# Add some team members
 [ { name: "Tristan Kromer", email: "tk@tristankromer.com" },
   { name: "Spike Morelli", email: "fsm@spikelab.org" }].each do |user|
-  team_member = User.find_by_email(user[:email]) || User.create(name: user[:name], email: user[:email])
-  team_member.add_role :team_member
+  User.find_or_create_by(email: user[:email]) do |admin|
+    admin.name = user[:name]
+    admin.email = user[:email]
+    admin.add_role :admin
+  end
 end
 
 # Add some team members
 [ { name: "Tristan Kromer", email: "tk@tristankromer.com" },
-  { name: "Spike Morelli", email: "fsm@spikelab.org" }].each do |user|
-  team_member = User.find_by_email(user[:email]) || User.create(name: user[:name], email: user[:email])
-  team_member.add_role :team_member
+  { name: "Spike Morelli", email: "fsm@spikelab.org" },
+  { name: "Sean K Murphy", email: "skmurphy@skmurphy.com" }].each do |user|
+  User.find_or_create_by(email: user[:email]) do |team_member|
+    team_member.name = user[:name]
+    team_member.email = user[:email]
+    team_member.add_role :team_member
+  end
 end
 
 # Add some volunteers
-[ { name: "Zac Halbert", email: "zachalbert@gmail.com" },
+[ { name: "Tristan Kromer", email: "tk@tristankromer.com" },
+  { name: "Spike Morelli", email: "fsm@spikelab.org" },
+  { name: "Zac Halbert", email: "zachalbert@gmail.com" },
   { name: "Alessandro Prioni", email: "alessandroprioni@gmail.com" },
   { name: "Nick Noreña", email: "ninorena@gmail.com" },
   { name: "Karl Shaikh", email: "karl.shaikh@gmail.com" },
@@ -45,6 +50,9 @@ end
   { name: "Hiten Shah", email: "hnshah@gmail.com" },
   { name: "Sean K Murphy", email: "skmurphy@skmurphy.com" },
   { name: "Josh Liu", email: "josh@acrossio.com" } ].each do |user|
-  volunteer = User.find_by_email(user[:email]) || User.create(name: user[:name], email: user[:email])
-  volunteer.add_role :volunteer
+  User.find_or_create_by(email: user[:email]) do |volunteer|
+    volunteer.name = user[:name]
+    volunteer.email = user[:email]
+    volunteer.add_role :volunteer
+  end
 end
