@@ -5,22 +5,22 @@ end
 #Add at least one admin
 [ { name: "Tristan Kromer", email: "tk@tristankromer.com" },
   { name: "Spike Morelli", email: "fsm@spikelab.org" }].each do |user|
-  User.find_or_create_by(email: user[:email]) do |admin|
-    admin.name = user[:name]
-    admin.email = user[:email]
-    admin.add_role :admin
-  end
+  admin = User.find_or_create_by(email: user[:email])
+  admin.name = user[:name]
+  admin.email = user[:email]
+  admin.add_role :admin
+  admin.save
 end
 
 # Add some team members
 [ { name: "Tristan Kromer", email: "tk@tristankromer.com" },
   { name: "Spike Morelli", email: "fsm@spikelab.org" },
   { name: "Sean K Murphy", email: "skmurphy@skmurphy.com" }].each do |user|
-  User.find_or_create_by(email: user[:email]) do |team_member|
-    team_member.name = user[:name]
-    team_member.email = user[:email]
-    team_member.add_role :team_member
-  end
+  team_member = User.find_or_create_by(email: user[:email])
+  team_member.name = user[:name]
+  team_member.email = user[:email]
+  team_member.add_role :team_member
+  team_member.save
 end
 
 # Add some volunteers
@@ -50,9 +50,9 @@ end
   { name: "Hiten Shah", email: "hnshah@gmail.com" },
   { name: "Sean K Murphy", email: "skmurphy@skmurphy.com" },
   { name: "Josh Liu", email: "josh@acrossio.com" } ].each do |user|
-  User.find_or_create_by(email: user[:email]) do |volunteer|
-    volunteer.name = user[:name]
-    volunteer.email = user[:email]
-    volunteer.add_role :volunteer
-  end
+  volunteer = User.find_or_create_by(email: user[:email])
+  volunteer.name = user[:name]
+  volunteer.email = user[:email]
+  volunteer.add_role :volunteer
+  volunteer.save
 end
