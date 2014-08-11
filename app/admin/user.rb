@@ -19,7 +19,7 @@ ActiveAdmin.register User do
       user.stripe_customer_id? ? status_tag( "Yes", :ok ) : status_tag( "No" )
     end
     column :last_sign_in_at
-    default_actions
+    actions
   end
 
   show do
