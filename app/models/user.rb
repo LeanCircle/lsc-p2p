@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
   has_many :role_assignments
   has_many :roles, through: :role_assignments
   has_one :peer
+  has_many :groups
 
   def self.new_remember_token
     SecureRandom.urlsafe_base64

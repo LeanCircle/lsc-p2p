@@ -14,7 +14,7 @@ ActiveAdmin.register Group do
       link_to group.name, admin_group_path(group)
     end
     column "Organizer" do |group|
-      link_to_unless(group.user.nil?, group.user.try(:name), admin_user_path(group.user))
+      link_to_unless(group.user.blank?, group.user.try(:name), try(:admin_user_path, group.user))
     end
     column :address, sortable: :country
     column do |group|
