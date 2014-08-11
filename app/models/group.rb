@@ -131,9 +131,9 @@ class Group < ActiveRecord::Base
   #  group = Group.find(session["group_to_assign"]) if session["group_to_assign"].present?
   #  user.groups << group unless group.blank?
   #end
-  #
-  #private
-  #
+
+  private
+
   def self.init_rmeetup
     RMeetup::Client.api_key = ENV['MEETUP_API_KEY']
   end
