@@ -5,6 +5,7 @@
 Make sure you have an application.yml file! You will need it for config variables.
 
 Take application.yml.example and copy it as applcation.yml.
+Please rename INTERCEPT_EMAIL to your email. You will receive all emails sent from the app to that email address if the environment variables are set to development.
 
 Do not delete application.yml.example from the repo!
 
