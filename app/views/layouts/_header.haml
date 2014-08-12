@@ -16,7 +16,8 @@
         = nav_link("About", about_path)
         = nav_link("Team", team_path)
         = nav_link("Contact", new_contact_message_path)
-        - if current_user.is? :admin
+        - if current_user.try(:is?, :admin)
           = nav_link("Admin", admin_dashboard_path)
-        - if current_user
-          = link_to "Log out", sign_out_path, method: :delete
+    .sign_in_out{ style: "position: absolute; top: 0; right: 0;"}
+      - if current_user
+        = link_to "Log out", sign_out_path, method: :delete
