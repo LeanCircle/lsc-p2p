@@ -26,6 +26,7 @@ end
 # Add some volunteers
 [ { name: "Tristan Kromer", email: "tk@tristankromer.com" },
   { name: "Spike Morelli", email: "fsm@spikelab.org" },
+  { name: "Jourdan Bul-lalayao", email: "jpbullalayao@gmail.com" },
   { name: "Zac Halbert", email: "zachalbert@gmail.com" },
   { name: "Alessandro Prioni", email: "alessandroprioni@gmail.com" },
   { name: "Nick Noreña", email: "ninorena@gmail.com" },
