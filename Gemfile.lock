@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/gregbell/active_admin.git
-  revision: efe5a86968c81fd12244e6c4b6957d93d0a4b7ee
+  revision: 73092b1788ff3e2d795dbc8378ae18b90fc1a324
   specs:
     activeadmin (1.0.0.pre)
       arbre (~> 1.0)
@@ -62,7 +62,7 @@ GEM
     arbre (1.0.1)
       activesupport (>= 3.0.0)
     arel (5.0.1.20140414130214)
-    autoprefixer-rails (2.2.0.20140727)
+    autoprefixer-rails (2.2.0.20140804)
       execjs
     bcrypt (3.1.7)
     bootstrap-sass (3.2.0.1)
@@ -86,7 +86,7 @@ GEM
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
     erubis (2.7.0)
-    excon (0.39.2)
+    excon (0.39.4)
     execjs (2.2.1)
     figaro (0.7.0)
       bundler (~> 1.0)
@@ -151,6 +151,7 @@ GEM
     netrc (0.7.7)
     newrelic_rpm (3.9.1.236)
     orm_adapter (0.5.0)
+    pg (0.17.1)
     polyamorous (1.0.0)
       activerecord (>= 3.0)
     polyglot (0.3.5)
@@ -219,7 +220,7 @@ GEM
       polyglot (>= 0.3.1)
     turbolinks (2.2.2)
       coffee-rails
-    tzinfo (1.2.1)
+    tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (2.5.3)
       execjs (>= 0.3.0)
@@ -249,6 +250,7 @@ DEPENDENCIES
   jquery-rails
   jquery-turbolinks
   newrelic_rpm
+  pg
   rails (= 4.1.0)
   rails_12factor (= 0.0.2)
   recaptcha
