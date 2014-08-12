@@ -4,6 +4,9 @@ end
 
 #Add at least one admin
 [ { name: "Tristan Kromer", email: "tk@tristankromer.com" },
+  { name: "Jourdan Bul-lalayao", email: "jpbullalayao@gmail.com" },
+  { name: "Malcolm Anderson", email: "malcolm.b.anderson@gmail.com" },
+  { name: "Sean K Murphy", email: "skmurphy@skmurphy.com" },
   { name: "Spike Morelli", email: "fsm@spikelab.org" }].each do |user|
   admin = User.find_or_create_by(email: user[:email])
   admin.name = user[:name]
@@ -27,6 +30,7 @@ end
 [ { name: "Tristan Kromer", email: "tk@tristankromer.com" },
   { name: "Spike Morelli", email: "fsm@spikelab.org" },
   { name: "Jourdan Bul-lalayao", email: "jpbullalayao@gmail.com" },
+  { name: "Malcolm Anderson", email: "malcolm.b.anderson@gmail.com" },
   { name: "Zac Halbert", email: "zachalbert@gmail.com" },
   { name: "Alessandro Prioni", email: "alessandroprioni@gmail.com" },
   { name: "Nick Noreña", email: "ninorena@gmail.com" },
