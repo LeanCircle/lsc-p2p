@@ -2,6 +2,12 @@
 
 ## Getting started
 
+Make sure you have an application.yml file! You will need it for config variables.
+
+Take application.yml.example and copy it as applcation.yml.
+
+Do not delete application.yml.example from the repo!
+
 ## Environment variables
 
 All environment variables such as api keys are collected in the config/application.yml using Figaro gem - https://github.com/laserlemon/figaro
