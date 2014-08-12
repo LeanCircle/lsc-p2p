@@ -1,6 +1,10 @@
 P2pc::Application.routes.draw do
 
-  devise_for :users, ActiveAdmin::Devise.config
+  devise_for :users
+  devise_scope :user do
+    get "sign_in", to: "devise/sessions#new"
+    delete "sign_out", to: "devise/sessions#destroy"
+  end
   ActiveAdmin.routes(self)
   root 'subscribers#landing_page'
 
