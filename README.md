@@ -9,6 +9,13 @@ Please rename INTERCEPT_EMAIL to your email. You will receive all emails sent fr
 
 Do not delete application.yml.example from the repo!
 
+remember, after making any changes to your gems, use
+  bundle install
+  
+You will also need to run
+  rake db:reset
+before running app for the first time
+
 ## Environment variables
 
 All environment variables such as api keys are collected in the config/application.yml using Figaro gem - https://github.com/laserlemon/figaro
@@ -97,3 +104,14 @@ or
 or
 
     heroku logs --app leanstartupcircle-staging
+	
+
+	
+Useful Development workflow
+  create branch 
+    work in branch
+    when ready commit branch
+  push to staging
+    confirm new code works in staging
+  merge to master
+  delete branch
