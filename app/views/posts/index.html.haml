@@ -14,13 +14,12 @@
 
         %tr
           %th
-          %th
-          %th
-          %th
 
         - @posts.each do |post|
           %tr
-            %td= link_to post.title, post.url, target: "_blank"
-            %td= link_to 'Show', post
-            %td= link_to 'Edit', edit_post_path(post)
-            %td= link_to 'Destroy', post, :method => :delete, :data => { :confirm => 'Are you sure?' }
+            %td
+              = link_to post.title, post.url, target: "_blank"
+              = link_to edit_post_path(post) do
+                .glyphicon.glyphicon-pencil
+              = link_to post, :method => :delete, :data => { :confirm => 'Are you sure?' } do
+                .glyphicon.glyphicon-remove
