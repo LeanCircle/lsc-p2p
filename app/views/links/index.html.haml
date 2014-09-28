@@ -14,11 +14,16 @@
 
         %tr
           %th
+          %th
+          %th
 
         - @links.each do |link|
           %tr
             %td
               = link_to link.title, link.url, target: "_blank"
+            %td
+              = link.reason
+            %td
               - if current_user.try(:is?, :admin)
                 = link_to edit_admin_link_path(link) do
                   .glyphicon.glyphicon-pencil
