@@ -1,14 +1,34 @@
 P2pc::Application.routes.draw do
 
-  resources :links, except: [:edit, :update,:destroy]
+  root "subscribers#landing_page"
+
+  ActiveAdmin.routes(self)
 
   devise_for :users
   devise_scope :user do
     get "sign_in", to: "devise/sessions#new"
     delete "sign_out", to: "devise/sessions#destroy"
   end
-  ActiveAdmin.routes(self)
-  root 'subscribers#landing_page'
+
+  resources :users, only: [:new, :create, :edit, :update]
+
+  resources :subscribers, only: [:create]  do
+    get "thanks", on: :collection
+  end
+
+  resources :peers, only: [:new, :create, :update] do
+    get "registration", on: :member
+  end
+
+  resources :contact_messages, only: [:create]
+  get "contact-us", to: "contact_messages#new", as: :new_contact_message
+  get "thanks-for-contacting-us", to: "contact_messages#thanks", as: :contact_message_thanks
+
+  resources :groups, except: [:edit, :update, :destroy]
+
+  resources :links, except: [:edit, :update,:destroy] do
+    post "upvote", to: "links#upvote"
+  end
 
   # Static page routes
   [ :p2p,
@@ -19,25 +39,10 @@ P2pc::Application.routes.draw do
     :moderation_guidelines,
     :guidelines_espanol,
     :cookie].each do |static_page|
-    match "/#{static_page}", to: "static_pages##{static_page}", via: :get
+    get "#{static_page}", to: "static_pages##{static_page}"
   end
-  match "faq.html" => "static_pages#guidelines", via: :get
-  match "faq" => "static_pages#guidelines", via: :get
-  match '/privacy-policy', to: 'static_pages#privacy', via: :get, as: :privacy
-
-  resources :subscribers, only: [:create]  do
-    get 'thanks', on: :collection
-  end
-
-  resources :users, only: [:new, :create, :edit, :update]
-  resources :peers, only: [:new, :create, :update] do
-      get 'registration', on: :member
-  end
-
-  resources :contact_messages, only: [:create]
-  match "/contact-us", to: 'contact_messages#new', via: :get, as: :new_contact_message
-  match "/thanks-for-contacting-us", to: 'contact_messages#thanks', via: :get, as: :contact_message_thanks
-
-  # Group routes
-  resources :groups, :except => [:edit, :update, :destroy]
+  get "faq.html", to: "static_pages#guidelines"
+  get "faq", to: "static_pages#guidelines"
+  get "privacy-policy", to: "static_pages#privacy", as: :privacy
+  
 end

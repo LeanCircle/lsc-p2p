@@ -16,9 +16,12 @@
           %th
           %th
           %th
+          %th
 
         - @links.each do |link|
           %tr
+            %td
+              = link_to 'upvote', link_upvote_path(link), method: :post
             %td
               = link_to link.title, link.url, target: "_blank"
             %td
@@ -27,5 +30,5 @@
               - if current_user.try(:is?, :admin)
                 = link_to edit_admin_link_path(link) do
                   .glyphicon.glyphicon-pencil
-                = link_to admin_link_path(link), :method => :delete, :data => { :confirm => 'Are you sure?' } do
+                = link_to admin_link_path(link), method: :delete, data: { :confirm => 'Are you sure?' } do
                   .glyphicon.glyphicon-remove

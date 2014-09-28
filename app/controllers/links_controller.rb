@@ -22,6 +22,12 @@ class LinksController < ApplicationController
     end
   end
 
+  def upvote
+    @link = Link.find(params[:link_id])
+    @link.liked_by current_user
+    redirect_to :back
+  end
+
   private
     def link_params
       params.require(:link).permit(:title,
