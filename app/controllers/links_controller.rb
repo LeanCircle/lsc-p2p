@@ -3,7 +3,7 @@ class LinksController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @links = Link.all
+    @links = Link.order(:cached_weighted_score => :desc)
   end
 
   def new
