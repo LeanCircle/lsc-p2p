@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
   has_many :roles, through: :role_assignments
   has_one :peer
   has_many :groups
+  has_many :links
 
   acts_as_voter
 
