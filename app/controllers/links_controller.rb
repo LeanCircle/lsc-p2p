@@ -1,20 +1,20 @@
-class PostsController < ApplicationController
+class LinksController < ApplicationController
 
   load_and_authorize_resource
 
   def index
-    @posts = Post.all
+    @links = Link.all
   end
 
   def new
-    @post = Post.new
+    @link = Link.new
   end
 
   def create
     redirect_to posts_path if params[:commit].eql?('Cancel')
-    @post = Post.new(post_params)
-    @post.user_id = current_user.id
-    if @post.try(:save)
+    @link = Link.new(post_params)
+    @link.user_id = current_user.id
+    if @link.try(:save)
       flash[:success] = "Your post still needs to be approved. A human will check it shortly!"
       redirect_to posts_path
     else

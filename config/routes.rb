@@ -1,6 +1,6 @@
 P2pc::Application.routes.draw do
 
-  resources :posts
+  resources :links, except: [:edit, :update,:destroy]
 
   devise_for :users
   devise_scope :user do

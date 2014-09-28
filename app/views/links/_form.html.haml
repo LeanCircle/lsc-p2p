@@ -1,21 +1,21 @@
-= form_for @post, :html => { class: "form-horizontal" } do |f|
+= form_for @link, :html => { class: "form-horizontal" } do |f|
   %legend
 
-  .form-group{ class: if !@post.errors[:name].blank? then "has-error has-feedback" end }
+  .form-group{ class: if !@link.errors[:name].blank? then "has-error has-feedback" end }
     = f.label :title, "Title", class: "control-label col-sm-2"
     .col-sm-6
       = f.text_field :title, class: "form-control"
-      - if !@post.errors[:name].blank?
+      - if !@link.errors[:name].blank?
         %span{ class: "glyphicon glyphicon-remove form-control-feedback" }
-        .help-block= @post.errors.full_message(:name, "is taken or otherwise dubious.")
+        .help-block= @link.errors.full_message(:name, "is taken or otherwise dubious.")
 
-  .form-group{ class: if !@post.errors[:name].blank? then "has-error has-feedback" end }
+  .form-group{ class: if !@link.errors[:name].blank? then "has-error has-feedback" end }
     = f.label :url, "URL", class: "control-label col-sm-2"
     .col-sm-6
       = f.text_field :url, class: "form-control"
-      - if !@post.errors[:url].blank?
+      - if !@link.errors[:url].blank?
         %span{ class: "glyphicon glyphicon-remove form-control-feedback" }
-        .help-block= @post.errors.full_message(:url, "has already been submitted.")
+        .help-block= @link.errors.full_message(:url, "has already been submitted.")
 
   .form-group
     .col-sm-3.col-sm-offset-2

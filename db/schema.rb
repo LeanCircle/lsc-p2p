@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140928044613) do
+ActiveRecord::Schema.define(version: 20140928125616) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -87,6 +87,15 @@ ActiveRecord::Schema.define(version: 20140928044613) do
   add_index "groups", ["latitude", "longitude"], name: "index_groups_on_latitude_and_longitude"
   add_index "groups", ["slug"], name: "index_groups_on_slug", unique: true
 
+  create_table "links", force: true do |t|
+    t.string   "user_id"
+    t.string   "title"
+    t.string   "url"
+    t.text     "reason"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "peers", force: true do |t|
     t.integer  "user_id"
     t.datetime "created_at"
@@ -107,15 +116,6 @@ ActiveRecord::Schema.define(version: 20140928044613) do
     t.string   "runway_desc"
     t.string   "runway_milestone"
     t.text     "runway_constraints"
-  end
-
-  create_table "posts", force: true do |t|
-    t.string   "user_id"
-    t.string   "title"
-    t.string   "url"
-    t.text     "reason"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "role_assignments", force: true do |t|

@@ -1,12 +1,12 @@
 - provide(:title, "Good Reads")
 
-#index_posts
+#index_links
   .row
     .span12
       %h1
         Good Reads
 
-      = link_to new_post_path do
+      = link_to new_link_path do
         .btn.btn_warning
           Suggest a Good Read
 
@@ -15,12 +15,12 @@
         %tr
           %th
 
-        - @posts.each do |post|
+        - @links.each do |link|
           %tr
             %td
-              = link_to post.title, post.url, target: "_blank"
+              = link_to link.title, link.url, target: "_blank"
               - if current_user.try(:is?, :admin)
-                = link_to edit_post_path(post) do
+                = link_to edit_admin_link_path(link) do
                   .glyphicon.glyphicon-pencil
-                = link_to post, :method => :delete, :data => { :confirm => 'Are you sure?' } do
+                = link_to admin_link_path(link), :method => :delete, :data => { :confirm => 'Are you sure?' } do
                   .glyphicon.glyphicon-remove
