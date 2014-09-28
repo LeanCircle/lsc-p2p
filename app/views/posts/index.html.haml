@@ -19,7 +19,8 @@
           %tr
             %td
               = link_to post.title, post.url, target: "_blank"
-              = link_to edit_post_path(post) do
-                .glyphicon.glyphicon-pencil
-              = link_to post, :method => :delete, :data => { :confirm => 'Are you sure?' } do
-                .glyphicon.glyphicon-remove
+              - if current_user.try(:is?, :admin)
+                = link_to edit_post_path(post) do
+                  .glyphicon.glyphicon-pencil
+                = link_to post, :method => :delete, :data => { :confirm => 'Are you sure?' } do
+                  .glyphicon.glyphicon-remove
