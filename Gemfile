@@ -28,6 +28,7 @@ gem 'gmaps4rails' # To make a pretty map of the groups
 gem 'rmeetup', :git => 'git://github.com/pbajaria/rmeetup.git' # to talk to meetup's api
 
 # Developer tools
+gem 'activevalidators' # some easier validation
 gem 'figaro' # Config env variables with config/application.yml using config/application.yml.example
 gem 'heroku_san' # Deploy scripst for heroku
 gem 'newrelic_rpm' # Basic error notifications and dev metrics
