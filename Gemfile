@@ -17,6 +17,7 @@ gem 'devise' # For active admin & auth
 gem 'friendly_id', '~> 5.0.0' # For nice url slugs
 gem 'activeadmin', github: 'gregbell/active_admin' # Basic admin panel
 gem 'cancancan' # for access control
+gem 'acts_as_votable', '~> 0.10.0' # for voting on links
 
 # Various APIs
 gem 'gibbon', '1.0.4' # For mailchimp integration

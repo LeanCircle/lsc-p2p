@@ -5,4 +5,5 @@ class Link < ActiveRecord::Base
   validates_uniqueness_of :url
   validates :url, url: true
 
+  acts_as_votable
 end
