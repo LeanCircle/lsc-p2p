@@ -11,21 +11,22 @@ class LinksController < ApplicationController
   end
 
   def create
-    redirect_to posts_path if params[:commit].eql?('Cancel')
-    @link = Link.new(post_params)
+    redirect_to links_path if params[:commit].eql?('Cancel')
+    @link = Link.new(link_params)
     @link.user_id = current_user.id
     if @link.try(:save)
-      flash[:success] = "Your post still needs to be approved. A human will check it shortly!"
-      redirect_to posts_path
+      flash[:success] = "Success! Your link was posted."
+      redirect_to links_path
     else
       render :action => "new"
     end
   end
 
   private
-    def post_params
-      params.require(:post).permit(:title,
-                                    :url)
+    def link_params
+      params.require(:link).permit(:title,
+                                   :url,
+                                   :reason)
     end
 
 end
