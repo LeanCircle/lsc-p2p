@@ -22,6 +22,7 @@
           %tr
             %td
               = link_to 'upvote', link_upvote_path(link), method: :post
+              = link_to 'downvote', link_downvote_path(link), method: :post
             %td
               = link_to link.title, link.url, target: "_blank"
             %td

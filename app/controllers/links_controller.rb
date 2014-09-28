@@ -28,6 +28,13 @@ class LinksController < ApplicationController
     redirect_to :back
   end
 
+  def downvote
+    @link = Link.find(params[:link_id])
+    @link.disliked_by current_user
+    redirect_to :back
+  end
+
+
   private
     def link_params
       params.require(:link).permit(:title,
