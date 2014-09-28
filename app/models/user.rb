@@ -11,14 +11,14 @@ class User < ActiveRecord::Base
   before_create :create_remember_token
 
   validates :name, presence: true, length: { maximum: 50 }
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
-  validates :email, presence: true, uniqueness: { case_sensitive: false },
-                    format: { with: VALID_EMAIL_REGEX }
+  validates :email, presence: true, uniqueness: { case_sensitive: false }, email: true
 
   has_many :role_assignments
   has_many :roles, through: :role_assignments
   has_one :peer
   has_many :groups
+
+  acts_as_voter
 
   def self.new_remember_token
     SecureRandom.urlsafe_base64
