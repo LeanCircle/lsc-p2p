@@ -1,7 +1,7 @@
 class PeersController < ApplicationController
   include Mailchimp
 
-  before_action :is_registered
+  before_action :is_registered, except: [:p2p, :thanks]
   before_action :correct_user,      only: [:edit, :update, :registration]
   before_action :is_already_a_peer, only: [:new, :create]
 

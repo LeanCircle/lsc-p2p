@@ -21,6 +21,8 @@ P2pc::Application.routes.draw do
   resources :peers, only: [:new, :create, :update] do
     get "registration", on: :member
   end
+  get "p2p", to: "peers#p2p"
+  get "thanks", to: "peers#thanks"
 
   resources :contact_messages, only: [:create]
   get "contact-us", to: "contact_messages#new", as: :new_contact_message
