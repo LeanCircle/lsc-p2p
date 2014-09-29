@@ -9,15 +9,14 @@
 
     .navbar-collapse.collapse
       %ul.nav.navbar-nav
-        / nav_link defined in app/helpers/static_pages_helper.rb
-        = nav_link("Groups",  groups_path)
-        = nav_link("Forum", "https://groups.google.com/forum/#!forum/lean-startup-circle", "_blank")
-        = nav_link("Wiki", "http://wiki.leanstartupcircle.com", "_blank")
-        = nav_link("About", about_path)
-        = nav_link("Team", team_users_path)
-        = nav_link("Contact", new_contact_message_path)
+        %li= link_to "Groups", groups_path
+        %li= link_to "Forum", "https://groups.google.com/forum/#!forum/lean-startup-circle", target: "_blank"
+        %li= link_to "Wiki", "http://wiki.leanstartupcircle.com", target: "_blank"
+        %li= link_to "About", about_path
+        %li= link_to "Team", team_users_path
+        %li= link_to "Contact", new_contact_message_path
         - if current_user.try(:is?, :admin)
-          = nav_link("Admin", admin_dashboard_path)
-    .sign_in_out{ style: "position: absolute; top: 0; right: 0;"}
+          %li= link_to "Admin", admin_dashboard_path
+    .sign_in_out{ style: "position: absolute; top: 5px; right: 5px;" }
       - if current_user
         = link_to "Log out", sign_out_path, method: :delete
