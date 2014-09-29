@@ -1,18 +1,12 @@
 module ApplicationHelper
 
 	def full_title(page_title)
-		base_title = "P2PC"
-		if page_title.empty?
-			base_title
-		else
-			"#{page_title} | #{base_title}"
-		end
+		base_title = "Lean Startup Circle"
+    page_title.empty? ? base_title : "#{page_title} | #{base_title}"
 	end
 
-  def ga_tracking
-    flash[:tracking].map do |event|
-      "_gaq.push(#{raw event.to_json});"
-    end.join("\n")
+  def bootstrap_class_for flash_type
+    { success: "alert-success", error: "alert-danger", alert: "alert-warning", notice: "alert-info" }[flash_type.to_sym] || flash_type.to_s
   end
 
 end

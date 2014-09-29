@@ -14,16 +14,7 @@
     = render 'layouts/heap_analytics'
   %body
     = render 'layouts/header'
-
-    - flash.each do |key, value|
-      - if key == :tracking
-        :javascript
-          #{ga_tracking}
-      - else
-        .container
-          %div{class: "alert alert-#{key} alert-dismissable"}
-            %button.close{type: "button", "data-dismiss" => "alert", "aria-hidden" => "true"} &times;
-            = value
+    = render partial: "shared/flash_messages", flash: flash
 
     - if yield(:full_width) == "true"
       = yield
