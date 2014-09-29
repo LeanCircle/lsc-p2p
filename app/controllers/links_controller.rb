@@ -23,6 +23,7 @@ class LinksController < ApplicationController
   end
 
   def upvote
+    authorize! :upvote, :links
     @link = Link.find(params[:link_id])
     @link.liked_by current_user
     redirect_to :back
