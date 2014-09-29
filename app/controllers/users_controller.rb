@@ -50,6 +50,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :stripe_customer_id, :newsletter_subscription)
+    params.require(:user).permit(:name, :email, :password, :newsletter_subscription)
   end
 end

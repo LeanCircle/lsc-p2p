@@ -21,7 +21,6 @@ gem 'acts_as_votable', '~> 0.10.0' # for voting on links
 
 # Various APIs
 gem 'gibbon', '1.0.4' # For mailchimp integration
-gem 'stripe', github: 'stripe/stripe-ruby' # For payments
 gem 'gravatar_image_tag' # For user images
 gem 'recaptcha', require: 'recaptcha/rails' # Add captcha to contact forms
 gem 'geocoder' # To geolocate groups
