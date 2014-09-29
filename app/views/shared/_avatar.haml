@@ -1,2 +1,2 @@
 .avatar
-  = gravatar_image_tag(avatar.email, alt: avatar.name, title: avatar.name, gravatar: { :size => 100 })
+  = gravatar_image_tag(avatar.email, alt: avatar.name, title: avatar.name, gravatar: { size: 100 }, "data-toggle" => "tooltip")
