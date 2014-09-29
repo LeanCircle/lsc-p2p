@@ -18,12 +18,6 @@ P2pc::Application.routes.draw do
     get "thanks", on: :collection
   end
 
-  resources :peers, only: [:new, :create, :update] do
-    get "registration", on: :member
-  end
-  get "p2p", to: "peers#p2p"
-  get "thanks", to: "peers#thanks"
-
   resources :contact_messages, only: [:create]
   get "contact-us", to: "contact_messages#new", as: :new_contact_message
   get "thanks-for-contacting-us", to: "contact_messages#thanks", as: :contact_message_thanks
@@ -36,8 +30,7 @@ P2pc::Application.routes.draw do
   end
 
   # Static page routes
-  [ :p2p,
-    :about,
+  [ :about,
     :thanks,
     :guidelines,
     :moderation_guidelines,
@@ -48,5 +41,10 @@ P2pc::Application.routes.draw do
   get "faq.html", to: "static_pages#guidelines"
   get "faq", to: "static_pages#guidelines"
   get "privacy-policy", to: "static_pages#privacy", as: :privacy
+
+  # Redirect routes
+  get 'peers/new', to: redirect('/')
+  get 'p2p', to: redirect('/')
+  get "thanks", to: redirect('/')
   
 end
