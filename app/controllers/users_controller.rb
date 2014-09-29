@@ -43,9 +43,13 @@ class UsersController < ApplicationController
     end
   end
 
+  def team
+    @team = (User.find_by_role(:team_member) + User.find_by_role(:volunteer)).uniq.shuffle
+  end
+
   private
 
-    def user_params
-      params.require(:user).permit(:name, :email, :password, :stripe_customer_id, :newsletter_subscription)
-    end
+  def user_params
+    params.require(:user).permit(:name, :email, :password, :stripe_customer_id, :newsletter_subscription)
+  end
 end

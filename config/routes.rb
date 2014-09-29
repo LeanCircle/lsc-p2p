@@ -10,7 +10,9 @@ P2pc::Application.routes.draw do
     delete "sign_out", to: "devise/sessions#destroy"
   end
 
-  resources :users, only: [:new, :create, :edit, :update]
+  resources :users, only: [:new, :create, :edit, :update] do
+    get "team", on: :collection
+  end
 
   resources :subscribers, only: [:create]  do
     get "thanks", on: :collection
@@ -36,7 +38,6 @@ P2pc::Application.routes.draw do
     :about,
     :thanks,
     :guidelines,
-    :team,
     :moderation_guidelines,
     :guidelines_espanol,
     :cookie].each do |static_page|
