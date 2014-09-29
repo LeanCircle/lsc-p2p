@@ -30,18 +30,19 @@ To push variables to heroku, use:
 
 ### Development workflow
 
-* Create branch with a semantic name (e.g. meetup_api_bug_fixes)
-** Work in branch
-** Write tests first
-** Commit in nice small chunks
-* Test your code!
-** Push to staging
-** Confirm new code works in staging
-* Deploy to production
-** Merge to master
-** Deploy to production
-** Confirm new code works in production
-** Delete branch
+* Work in a Branch
+  * Create branch with a semantic name (e.g. meetup_api_bug_fixes)
+  * Write tests first
+  * Make the tests pass!
+  * Commit in nice small chunks
+* Test on Staging
+  * Push to staging
+  * Confirm new code works in staging
+* Deploy to Production
+  * Merge to master
+  * Deploy to production
+  * Confirm new code works in production
+  * Delete branch
 
 ### When pulling
 
