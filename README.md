@@ -28,6 +28,21 @@ To push variables to heroku, use:
 
 ## Checking in Code and Deploying
 
+### Development workflow
+
+* Create branch with a semantic name (e.g. meetup_api_bug_fixes)
+** Work in branch
+** Write tests first
+** Commit in nice small chunks
+* Test your code!
+** Push to staging
+** Confirm new code works in staging
+* Deploy to production
+** Merge to master
+** Deploy to production
+** Confirm new code works in production
+** Delete branch
+
 ### When pulling
 
 Use rebase to make git a bit cleaner.
@@ -63,55 +78,32 @@ To deploy the code to staging manually: (assuming your remotes are set up correc
 
 WARNING: This will clobber your local db files
 
-    rake heroku:pull
+    heroku pgbackups:capture --app lsc-p2p-production
+    curl -o latest.dump `heroku pgbackups:url --app lsc-p2p-production`
+    pg_restore --verbose --clean --no-acl --no-owner -h localhost -U myuser -d mydb latest.dump
 
-or
-
-    rake heroku:pull TARGET=staging
+Note, you'd better have postgres installed locally for this!
 
 ### Copy db from production to staging
 
-    heroku pgbackups:capture --app leanstartupcircle-production
-    heroku pgbackups:restore DATABASE `heroku pgbackups:url --app leanstartupcircle-production` --app leanstartupcircle-staging --confirm leanstartupcircle-staging
-
-### Copy db to production / staging
-
-WARNING: this will clobber your remote db files. NEVER do this.
-
-    rake heroku:push TARGET = staging
-
-or only in a dire circumstance
-
-    rake heroku:push TARGET = production
-
-Didn't work did it? If you can't figure out how, you shouldn't be doing it.
+    heroku pgbackups:capture --app lsc-p2p-production
+    heroku pgbackups:restore DATABASE `heroku pgbackups:url --app lsc-p2p-production` --app lsc-p2p-staging --confirm lsc-p2p-staging
 
 
 ## Misc Heroku Tasks
 
 ### Script console on production / staging
 
-    heroku console --app leanstartupcircle-production
+    heroku console --app lsc-p2p-production
 
 or
 
-    heroku console --app leanstartupcircle-staging
+    heroku console --app lsc-p2p-staging
 
 ### Copy logs from production / staging
 
-    heroku logs --app leanstartupcircle-production
+    heroku logs --app lsc-p2p-production
 
 or
 
-    heroku logs --app leanstartupcircle-staging
-	
-
-	
-Useful Development workflow
-  create branch 
-    work in branch
-    when ready commit branch
-  push to staging
-    confirm new code works in staging
-  merge to master
-  delete branch
+    heroku logs --app lsc-p2p-staging
