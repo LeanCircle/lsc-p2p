@@ -12,7 +12,7 @@
         = succeed '.' do
           %span.text-danger continually improved
         Please provide feedback
-        = link_to "here.", new_contact_message_path
+        = link_to 'here.', new_contact_message_path
 
       %p
         The discussion group is a place for members to
@@ -47,61 +47,61 @@
               Rule
         %tbody
           %tr
-            %td{ style: 'background: #C8F0C8'}
+            %td.success
               Will this MVP
               %b help me validate
               my
               %b hypothesis?
-            %td{ style: 'background: #FFD5D5'}
+            %td.danger
               %b Sign up
               for my MVP.
-            %td{ :rowspan => "3" }
+            %td{ rowspan: '3' }
               %i
                 No solicitations.
                 %br
                 Do not promote your blog, product, or survey.
           %tr
-            %td{ style: 'background: #C8F0C8'}
+            %td.success
               Will this survey
               %b help me learn
               about my customers?
-            %td{ style: 'background: #FFD5D5'}
+            %td.danger
               Take
               %b my
               survey.
           %tr
-            %td{ style: 'background: #C8F0C8'}
+            %td.success
               I read this lean startup book / blog and was confused.
               %br
               Can someone
               %b explain?
-            %td{ style: 'background: #FFD5D5'}
+            %td.danger
               Read
               %b my
               blog.
           %tr
-            %td{ style: 'background: #C8F0C8'}
+            %td.success
               I have a question about
               %b lean startups...
-            %td{ style: 'background: #FFD5D5'}
+            %td.danger
               I have a legal question about
               %b random stuff...
             %td
               %i Do not ask general questions unrelated to lean startups.
 
           %tr
-            %td{ style: 'background: #C8F0C8'}
+            %td.success
               I agree
               %b because...
-            %td{ style: 'background: #FFD5D5'}
+            %td.danger
               +1!
             %td
               %i Do not post one line messages with no content.
           %tr
-            %td{ style: 'background: #C8F0C8'}
+            %td.success
               I respectfully disagree
               %b because...
-            %td{ style: 'background: #FFD5D5'}
+            %td.danger
               You suck.
             %td
               %i
@@ -112,12 +112,12 @@
               If you have a problem, be a better person and resolve your issues
               %b offline.
           %tr
-            %td{ style: 'background: #C8F0C8'}
+            %td.success
               There is a
               %b lean startup event
               going on that will be
               %b available for viewing online...
-            %td{ style: 'background: #FFD5D5'}
+            %td.danger
               %b
                 Reminder,
               Come to
@@ -128,16 +128,17 @@
               %i Do not post events unless they are directly related to Lean Startups and are available for viewing online. Only post once.
           %tr
             %td
-            %td{ style: 'background: #FFD5D5'}
+            %td.danger
               I am
               %b
                 looking for
               a co-founder or consultant.
-            %td{ style: 'font-style: italic;' }
-              Do not post jobs. This will result in an
-              %span.text-danger immediate ban.
-              Post jobs on the
-              = link_to 'Lean Startup Jobs Group', 'https://groups.google.com/group/lean-startup-jobs'
+            %td
+              %i
+                Do not post jobs. This will result in an
+                %span.text-danger immediate ban.
+                Post jobs on the
+                = link_to 'Lean Startup Jobs Group', 'https://groups.google.com/group/lean-startup-jobs'
 
       %h2 Getting Feedback
       %p
