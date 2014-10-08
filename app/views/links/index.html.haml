@@ -21,8 +21,10 @@
         - @links.each do |link|
           %tr
             %td
-              = link_to 'upvote', link_upvote_path(link), method: :post
-              = link_to 'downvote', link_downvote_path(link), method: :post
+              = link_to link_upvote_path(link), method: :post do
+                .glyphicon.glyphicon-chevron-up
+              = link_to link_downvote_path(link), method: :post do
+                .glyphicon.glyphicon-chevron-down
             %td
               = link_to link.title, link.url, target: "_blank"
             %td
