@@ -35,7 +35,7 @@ P2pc::Application.routes.draw do
     :guidelines,
     :moderation_guidelines,
     :guidelines_espanol,
-    :cookie].each do |static_page|
+    :cookie ].each do |static_page|
     get "#{static_page}", to: "static_pages##{static_page}"
   end
   get "faq.html", to: "static_pages#guidelines"
