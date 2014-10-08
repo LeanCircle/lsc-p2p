@@ -21,10 +21,16 @@
         - @links.each do |link|
           %tr
             %td
-              = link_to link_upvote_path(link), method: :post do
-                .glyphicon.glyphicon-chevron-up
-              = link_to link_downvote_path(link), method: :post do
-                .glyphicon.glyphicon-chevron-down
+              - unless current_user.voted_up_on? link
+                = link_to link_upvote_path(link), method: :post do
+                  .glyphicon.glyphicon-chevron-up
+              - else
+                .glyphicon.glyphicon-chevron-up{ style: 'color: red;'}
+              - unless current_user.voted_down_on? link
+                = link_to link_downvote_path(link), method: :post do
+                  .glyphicon.glyphicon-chevron-down
+              - else
+                .glyphicon.glyphicon-chevron-down{ style: 'color: red;'}
             %td
               = link_to link.title, link.url, target: "_blank"
             %td
