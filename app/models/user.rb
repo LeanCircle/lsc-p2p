@@ -51,6 +51,10 @@ class User < ActiveRecord::Base
     roles.include? Role.find_by_name role_name
   end
 
+  def first_name
+    name.sub(/ .*/, '')
+  end
+
   private
 
     def create_remember_token

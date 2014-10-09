@@ -1,0 +1,28 @@
+%div
+  %p Hi #{@user.first_name},
+
+  %p Thanks for helping to moderate! Here are the links submitted today:
+  %table
+    %tr
+      %th
+      %th Link
+      %th Why is this a good read?
+    %tr
+      - @links.each do |link|
+        %td
+          - unless @user.voted_up_on? link
+            = link_to link_upvote_path(link), method: :post do
+              &#x25B2;
+          - else
+            %span{ style: 'color: red;' } &#x25B2;
+          - unless @user.voted_down_on? link
+            = link_to link_downvote_path(link), method: :post do
+              &#x25BC;
+          - else
+            %span{ style: 'color: red;' } &#x25BC;
+        %td
+          = link_to link.title, link.url, target: "_blank"
+        %td
+          = link.reason
+
+  %p If you'd like to unsubscribe, please just reply to this email with "UNSUBSCRIBE"
