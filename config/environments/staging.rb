@@ -79,7 +79,7 @@ P2pc::Application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
 
-    # Set default url for mailer.
-  config.action_mailer.default_url_options = { :host => 'p2p-staging.leanstartupcircle.com' }
+  # Set default url for mailer.
+  config.action_mailer.default_url_options = { host: 'p2p-staging.leanstartupcircle.com' }
 
 end

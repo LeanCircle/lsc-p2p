@@ -28,5 +28,5 @@ P2pc::Application.configure do
   config.assets.debug = true
 
   # Set default url for mailer.
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.default_url_options = { host: 'localhost:3000' }
 end
