@@ -25,8 +25,8 @@ P2pc::Application.routes.draw do
   resources :groups, except: [:edit, :update, :destroy]
 
   resources :links, except: [:edit, :update,:destroy] do
-    post "upvote", to: "links#upvote"
-    post "downvote", to: "links#downvote"
+    get "upvote", to: "links#upvote"
+    get "downvote", to: "links#downvote"
   end
 
   # Static page routes

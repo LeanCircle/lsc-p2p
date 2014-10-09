@@ -11,12 +11,12 @@
       - @links.each do |link|
         %td
           - unless @user.voted_up_on? link
-            = link_to link_upvote_url(link), method: :post do
+            = link_to link_upvote_url(link) do
               &#x25B2;
           - else
             %span{ style: 'color: red;' } &#x25B2;
           - unless @user.voted_down_on? link
-            = link_to link_downvote_url(link), method: :post do
+            = link_to link_downvote_url(link) do
               &#x25BC;
           - else
             %span{ style: 'color: red;' } &#x25BC;
