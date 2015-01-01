@@ -1,5 +1,5 @@
 ActiveAdmin.register User do
-  permit_params :email, :newsletter_subscription, :password, :password_confirmation, role_ids: []
+  permit_params :name, :email, :newsletter_subscription, :password, :password_confirmation, role_ids: []
 
   index do
     column :name, sortable: :name do |user|
