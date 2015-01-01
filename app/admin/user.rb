@@ -42,6 +42,7 @@ ActiveAdmin.register User do
 
   form do |f|
     f.inputs "Admin Details" do
+      f.input :name
       f.input :email
       f.input :newsletter_subscription, :as => :radio
       f.input :roles, :as => :check_boxes
