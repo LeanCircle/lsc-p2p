@@ -3,7 +3,7 @@ class LinksController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @links = Link.order(:cached_weighted_score => :desc)
+    @links = Link.where(created_at: Date.today.beginning_of_week(:sunday)..(Time.now)).order(:cached_weighted_score => :desc)
   end
 
   def new
