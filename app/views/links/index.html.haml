@@ -8,16 +8,17 @@
         = Date.today.beginning_of_week(:sunday) + 7
 
       = link_to new_link_path do
-        .btn.btn_warning
+        .btn.btn_primary
           Suggest a Good Read
 
       %table.table.table-condensed.table-striped.groups
 
         %tr
-          %th
-          %th
-          %th
-          %th
+          %th Vote!
+          %th Link
+          %th Why?
+          - if current_user.try(:is?, :admin)
+            %th
 
         - @links.each do |link|
           %tr
@@ -36,8 +37,8 @@
               = link_to link.title, link.url, target: "_blank"
             %td
               = link.reason
-            %td
-              - if current_user.try(:is?, :admin)
+            - if current_user.try(:is?, :admin)
+              %td
                 = link_to edit_admin_link_path(link) do
                   .glyphicon.glyphicon-pencil
                 = link_to admin_link_path(link), method: :delete, data: { :confirm => 'Are you sure?' } do
