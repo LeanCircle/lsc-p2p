@@ -7,8 +7,8 @@
       %th
       %th Link
       %th Why is this a good read?
-    %tr
-      - @links.each do |link|
+    - @links.each do |link|
+      %tr
         %td
           - unless @user.voted_up_on? link
             = link_to link_upvote_url(link) do
