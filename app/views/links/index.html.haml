@@ -18,7 +18,7 @@
           %th Link
           %th Why?
           - if current_user.try(:is?, :admin)
-            %th Votes
+            %th Total
             %th # of Voters
             %th
 
@@ -41,9 +41,9 @@
               = link.reason
             - if current_user.try(:is?, :admin)
               %td
-                = link.votes_for.size
+                = link.weighted_score
               %td
-                = link.votes_for.voters.count
+                = link.votes_for.size
               %td
                 = link_to edit_admin_link_path(link) do
                   .glyphicon.glyphicon-pencil
