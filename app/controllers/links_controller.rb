@@ -11,7 +11,7 @@ class LinksController < ApplicationController
   end
 
   def create
-    redirect_to links_path if params[:commit].eql?('Cancel')
+    redirect_to links_path and return if params[:commit].eql?('Cancel')
     @link = Link.new(link_params)
     @link.user_id = current_user.id
     if @link.try(:save)
