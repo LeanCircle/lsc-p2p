@@ -15,6 +15,7 @@ class LinksController < ApplicationController
     @link = Link.new(link_params)
     @link.user_id = current_user.id
     if @link.try(:save)
+      @link.liked_by current_user
       flash[:success] = "Success! Your link was posted."
       redirect_to links_path
     else
