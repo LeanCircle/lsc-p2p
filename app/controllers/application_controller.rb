@@ -14,5 +14,11 @@ class ApplicationController < ActionController::Base
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to sign_in_path, :alert => exception.message
   end
+
+  def redirect_back_or_default(default = root_path, *options)
+    tag_options = {}
+    options.first.each { |k,v| tag_options[k] = v } unless options.empty?
+    redirect_to (request.referer.present? ? :back : default), tag_options
+  end
   
 end
