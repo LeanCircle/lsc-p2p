@@ -18,6 +18,8 @@
           %th Link
           %th Why?
           - if current_user.try(:is?, :admin)
+            %th Votes
+            %th # of Voters
             %th
 
         - @links.each do |link|
@@ -39,7 +41,12 @@
               = link.reason
             - if current_user.try(:is?, :admin)
               %td
+                = link.votes_for.size
+              %td
+                = link.votes_for.voters.count
+              %td
                 = link_to edit_admin_link_path(link) do
                   .glyphicon.glyphicon-pencil
                 = link_to admin_link_path(link), method: :delete, data: { :confirm => 'Are you sure?' } do
                   .glyphicon.glyphicon-remove
+
