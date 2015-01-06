@@ -13,7 +13,6 @@ class Ability
 
     can :read, ActiveAdmin::Page, name: "Dashboard"
     can :read, :all
-    cannot :new, Link
   end
 
 end
