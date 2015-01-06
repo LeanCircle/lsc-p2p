@@ -24,14 +24,12 @@ class LinksController < ApplicationController
   end
 
   def upvote
-    authorize! :upvote, :links
     @link = Link.find(params[:link_id])
     @link.liked_by current_user
     redirect_to links_path
   end
 
   def downvote
-    authorize! :downvote, :links
     @link = Link.find(params[:link_id])
     @link.disliked_by current_user
     redirect_to links_path

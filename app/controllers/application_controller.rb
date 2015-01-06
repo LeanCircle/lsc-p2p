@@ -7,12 +7,16 @@ class ApplicationController < ActionController::Base
   	Gibbon::API.new
   end
 
-  def access_denied(exception)
-    redirect_to sign_in_path, :alert => exception.message
+  rescue_from CanCan::AccessDenied do |exception|
+    access_denied(exception)
   end
 
-  rescue_from CanCan::AccessDenied do |exception|
-    redirect_to sign_in_path, :alert => exception.message
+  def access_denied(exception)
+    if current_user
+      redirect_to root_path, :alert => exception.message
+    else
+      redirect_to sign_in_path, :alert => exception.message
+    end
   end
 
   def redirect_back_or_default(default = root_path, *options)
