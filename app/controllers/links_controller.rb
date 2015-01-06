@@ -6,6 +6,11 @@ class LinksController < ApplicationController
     @links = Link.where(created_at: Date.today.beginning_of_week(:sunday)..(Time.now)).order(:cached_weighted_score => :desc)
   end
 
+  def show
+    @link = Link.find(params[:id])
+    render layout: 'link'
+  end
+
   def new
     @link = Link.new
   end

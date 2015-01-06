@@ -1,0 +1,45 @@
+!!!
+%html{ style: "height: 100%;" }
+  %head
+    %title= full_title(yield(:title))
+
+    %meta{charset: 'utf-8'}
+    %meta{name: 'viewport', content: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'}
+
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+
+    = render 'layouts/google_analytics'
+    = render 'layouts/heap_analytics'
+
+  %body{ style: "height: 100%; margin: 0; overflow: hidden;" }
+    .navbar.navbar-default
+      .container
+        .navbar-header
+          = link_to image_tag("p2pc_logo.png", id: "navbar-logo"), links_path, class: "navbar-brand"
+
+          %div{ style: 'float: left; margin-left: 50px' }
+            - unless current_user.try(:voted_up_on?, @link)
+              = link_to link_upvote_path(@link) do
+                .btn.btn-primary
+                  .glyphicon.glyphicon-chevron-up Awesome!
+            - else
+              .btn.btn-primary{ disabled: "disabled" }
+                .glyphicon.glyphicon-chevron-up Awesome!
+            - unless current_user.try(:voted_down_on?, @link)
+              = link_to link_downvote_path(@link) do
+                .btn.btn-primary
+                  .glyphicon.glyphicon-chevron-down Sucks.
+            - else
+              .btn.btn-primary{ disabled: "disabled" }
+                .glyphicon.glyphicon-chevron-down Sucks.
+            .back{ style: "position: absolute; top: 5px; right: 5px;" }
+              = link_to "<- back", links_path
+    = render 'shared/flash_messages', flash: flash
+
+    = yield
+
+    - if Rails.env.development?
+      .container
+        = debug(params)

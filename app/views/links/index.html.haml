@@ -4,15 +4,13 @@
   .row
     .span12
       %h1
-        Good Reads Newsletter for the Week of
+        Good Reads for Week of
         = Date.today.beginning_of_week(:sunday) + 7
-
       = link_to new_link_path do
         .btn.btn-primary
           Suggest a Good Read
 
       %table.table.table-condensed.table-striped.groups
-
         %tr
           %th Vote!
           %th Link
@@ -21,7 +19,6 @@
             %th Total
             %th # of Voters
             %th
-
         - @links.each do |link|
           %tr
             %td
@@ -36,7 +33,7 @@
               - else
                 .glyphicon.glyphicon-chevron-down{ style: 'color: red;'}
             %td
-              = link_to link.title, link.url, target: "_blank"
+              = link_to link.title, link_path(link)
             %td
               = link.reason
             - if current_user.try(:is?, :admin)
@@ -49,4 +46,3 @@
                   .glyphicon.glyphicon-pencil
                 = link_to admin_link_path(link), method: :delete, data: { :confirm => 'Are you sure?' } do
                   .glyphicon.glyphicon-remove
-
