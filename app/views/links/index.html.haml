@@ -33,7 +33,7 @@
               - else
                 .glyphicon.glyphicon-chevron-down{ style: 'color: red;'}
             %td
-              = link_to link.title, link_path(link)
+              = link_to link.title, link.url, target: "_blank"
             %td
               = link.reason
             - if current_user.try(:is?, :admin)
