@@ -16,6 +16,7 @@
           %th Link
           %th Why?
           - if current_user.try(:is?, :admin)
+            %th User
             %th Total
             %th # of Voters
             %th
@@ -38,6 +39,7 @@
             %td{ style: 'vertical-align: middle;' }
               = link.reason
             - if current_user.try(:is?, :admin)
+              %td= render partial: "shared/avatar", object: link.user
               %td{ style: 'vertical-align: middle;' }
                 = link.weighted_score
               %td{ style: 'vertical-align: middle;' }
