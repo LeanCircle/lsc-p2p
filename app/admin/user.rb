@@ -11,9 +11,11 @@ ActiveAdmin.register User do
     column :roles do |user|
       user.roles.map { |role| link_to(role.name, admin_role_path(role)) }.join(', ').html_safe
     end
-
     column :newsletter_subscription, sortable: :newsletter_subscription do |user|
       user.newsletter_subscription? ? status_tag( "True", :ok ) : status_tag( "False" )
+    end
+    column :links do |user|
+      user.links.count
     end
     column :last_sign_in_at
     actions
