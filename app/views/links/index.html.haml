@@ -21,18 +21,18 @@
             %th
         - @links.each do |link|
           %tr
-            %td{ style: 'font-size: 1.1em;'}
+            %td{ style: 'font-size: 1.1em;' }
               - unless current_user.try(:voted_up_on?, link)
                 = link_to link_upvote_path(link) do
                   &#x25B2;
               - else
-                &#x25B2;{ style: 'color: red;'}
+                .span{ style: 'color: red; display: inline;' } &#x25B2;
               %br
               - unless current_user.try(:voted_down_on?, link)
                 = link_to link_downvote_path(link) do
                   &#x25BC;
               - else
-                &#x25BC;{ style: 'color: red;' }
+                .span{ style: 'color: red; display: inline;' } &#x25BC;
             %td{ style: 'vertical-align: middle;' }
               = link_to link.title, link.url, target: "_blank"
             %td{ style: 'vertical-align: middle;' }
