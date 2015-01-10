@@ -39,7 +39,7 @@
             %td{ style: 'vertical-align: middle;' }
               = link.reason
             - if current_user.try(:is?, :admin)
-              %td= render partial: "shared/avatar", object: link.user
+              %td= render partial: "shared/avatar", object: link.user, locals: { size: 50 }
               %td{ style: 'vertical-align: middle;' }
                 = link.weighted_score
               %td{ style: 'vertical-align: middle;' }
