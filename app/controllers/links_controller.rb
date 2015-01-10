@@ -4,6 +4,8 @@ class LinksController < ApplicationController
 
   def index
     @links = Link.where(created_at: Date.today.beginning_of_week(:sunday)..(Time.now)).order(:cached_weighted_score => :desc)
+    seen = current_user.votes.votables
+    @links = (@links - seen) + seen
   end
 
   def show
