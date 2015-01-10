@@ -5,7 +5,7 @@ class LinksController < ApplicationController
   def index
     @links = Link.where(created_at: Date.today.beginning_of_week(:sunday)..(Time.now)).order(:cached_weighted_score => :desc)
     if current_user
-      seen = current_user.votes.votables
+      seen = current_user.votes.votables.sort_by { |k| k["cached_weighted_score"] }.reverse
       @links = (@links - seen) + seen
     end
   end
