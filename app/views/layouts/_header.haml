@@ -5,18 +5,24 @@
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      = link_to image_tag("p2pc_logo.png", id: "navbar-logo"), root_path, class: "navbar-brand"
+      - if current_user
+        = link_to image_tag("p2pc_logo.png", id: "navbar-logo"), links_path, class: "navbar-brand"
+      - else
+        = link_to image_tag("p2pc_logo.png", id: "navbar-logo"), root_path, class: "navbar-brand"
 
     .navbar-collapse.collapse
       %ul.nav.navbar-nav
+        - if current_user.try(:is?, :admin)
+          %li= link_to "Admin", admin_dashboard_path
+        - if current_user
+          %li= link_to "Good Reads", links_path
+        - else
+          %li= link_to "Forum", "https://groups.google.com/forum/#!forum/lean-startup-circle", target: "_blank"
+          %li= link_to "Wiki", "http://wiki.leanstartupcircle.com", target: "_blank"
         %li= link_to "Groups", groups_path
-        %li= link_to "Forum", "https://groups.google.com/forum/#!forum/lean-startup-circle", target: "_blank"
-        %li= link_to "Wiki", "http://wiki.leanstartupcircle.com", target: "_blank"
         %li= link_to "About", about_path
         %li= link_to "Team", team_users_path
         %li= link_to "Contact", new_contact_message_path
-        - if current_user.try(:is?, :admin)
-          %li= link_to "Admin", admin_dashboard_path
     .sign_in_out{ style: "position: absolute; top: 5px; right: 5px;" }
       - if current_user
         = link_to "Log out", sign_out_path, method: :delete
