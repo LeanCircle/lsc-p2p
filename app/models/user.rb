@@ -4,8 +4,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable,
          :recoverable,
          :rememberable,
-         :trackable
-         :validatable
+         :trackable,
+         :validatable,
+         :registerable
 
   before_save { email.downcase! }
   before_create :create_remember_token
