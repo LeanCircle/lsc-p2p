@@ -41,6 +41,7 @@ P2pc::Application.routes.draw do
   get "faq.html", to: "static_pages#guidelines"
   get "faq", to: "static_pages#guidelines"
   get "privacy-policy", to: "static_pages#privacy", as: :privacy
+  get "volunteer-with-us", to: "static_pages#volunteers"
 
   # Redirect routes
   get 'peers/new', to: redirect('/')
