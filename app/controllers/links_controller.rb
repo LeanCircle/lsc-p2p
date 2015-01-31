@@ -3,10 +3,10 @@ class LinksController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @links = Link.all
+    @links = Link.all.order(:created_at => :desc)
     if current_user
-      seen = current_user.votes.votables.reject{ |p| p.created_at < Date.today.beginning_of_week(:sunday)}.sort_by { |k| k["cached_weighted_score"] }.reverse
-      @links = (@links - seen) + seen
+      seen = current_user.votes.votables
+      @unseen = (@links - seen)
     end
   end
 

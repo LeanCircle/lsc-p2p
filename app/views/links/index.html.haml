@@ -7,6 +7,13 @@
         .btn.btn-primary
           Suggest a Good Read
 
+      - if current_user
+        %table.table.table-condensed.table-striped.groups
+          %h2
+            Unread
+            %small
+          = render partial: "links", object: @unseen.take(3)
+
       %table.table.table-condensed.table-striped.groups
         %h2
           This Week
@@ -14,8 +21,6 @@
             = Date.today.beginning_of_week(:sunday).strftime("%B %d")
             \-
             = (Date.today.beginning_of_week(:sunday)+7).strftime("%B %d")
-
-
         = render partial: "links", object: Link.where(created_at: Date.today.beginning_of_week(:sunday)..(Time.now)).order(:cached_weighted_score => :desc)
 
       %table.table.table-condensed.table-striped.groups
