@@ -16,7 +16,10 @@
       = link_to link.title, link.url, target: "_blank"
     %td{ style: 'vertical-align: middle;' }
       = link.reason
+    %td{ style: 'vertical-align: middle;' }
+      = link.created_at
     - if current_user.try(:is?, :admin)
+
       %td= render partial: "shared/avatar", object: link.user, locals: { size: 50 }
       %td{ style: 'vertical-align: middle;' }
         = link.weighted_score

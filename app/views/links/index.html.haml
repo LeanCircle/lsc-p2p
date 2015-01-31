@@ -3,21 +3,35 @@
 #index_links
   .row
     .span12
-      %h1
-        Good Reads for Week of
-        = Date.today.beginning_of_week(:sunday) + 7
       = link_to new_link_path do
         .btn.btn-primary
           Suggest a Good Read
 
       %table.table.table-condensed.table-striped.groups
-        %tr
-          %th Vote!
-          %th Link
-          %th Why?
-          - if current_user.try(:is?, :admin)
-            %th User
-            %th Total
-            %th # of Voters
-            %th
-        = render partial: "links", object: @links
+        %h2
+          This Week
+          %small
+            = Date.today.beginning_of_week(:sunday).strftime("%B %d")
+            \-
+            = (Date.today.beginning_of_week(:sunday)+7).strftime("%B %d")
+
+
+        = render partial: "links", object: Link.where(created_at: Date.today.beginning_of_week(:sunday)..(Time.now)).order(:cached_weighted_score => :desc)
+
+      %table.table.table-condensed.table-striped.groups
+        %h2
+          Last Week
+          %small
+            = (Date.today.beginning_of_week(:sunday)-7).strftime("%B %d")
+            \-
+            = Date.today.beginning_of_week(:sunday).strftime("%B %d")
+        = render partial: "links", object: Link.where(created_at: Date.today.beginning_of_week(:sunday).days_ago(7)..Date.today.beginning_of_week(:sunday)).order(:cached_weighted_score => :desc)
+
+      %table.table.table-condensed.table-striped.groups
+        %h2
+          2 Weeks Ago
+          %small
+            = (Date.today.beginning_of_week(:sunday)-14).strftime("%B %d")
+            \-
+            = (Date.today.beginning_of_week(:sunday)-7).strftime("%B %d")
+        = render partial: "links", object: Link.where(created_at: Date.today.beginning_of_week(:sunday).days_ago(7)..Date.today.beginning_of_week(:sunday)).order(:cached_weighted_score => :desc)
