@@ -47,5 +47,6 @@ P2pc::Application.routes.draw do
   get 'peers/new', to: redirect('/')
   get 'p2p', to: redirect('/')
   get "thanks", to: redirect('/')
+  get "contact", to: redirect('/contact-us')
   
 end
