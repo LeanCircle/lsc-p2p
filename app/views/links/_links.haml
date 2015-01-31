@@ -1,0 +1,29 @@
+- links.each do |link|
+  %tr
+    %td{ style: 'font-size: 1.1em;' }
+      - unless current_user.try(:voted_up_on?, link)
+        = link_to link_upvote_path(link) do
+          &#x25B2;
+      - else
+        .span{ style: 'color: red; display: inline;' } &#x25B2;
+      %br
+      - unless current_user.try(:voted_down_on?, link)
+        = link_to link_downvote_path(link) do
+          &#x25BC;
+      - else
+        .span{ style: 'color: red; display: inline;' } &#x25BC;
+    %td{ style: 'vertical-align: middle;' }
+      = link_to link.title, link.url, target: "_blank"
+    %td{ style: 'vertical-align: middle;' }
+      = link.reason
+    - if current_user.try(:is?, :admin)
+      %td= render partial: "shared/avatar", object: link.user, locals: { size: 50 }
+      %td{ style: 'vertical-align: middle;' }
+        = link.weighted_score
+      %td{ style: 'vertical-align: middle;' }
+        = link.votes_for.size
+      %td{ style: 'vertical-align: middle;' }
+        = link_to edit_admin_link_path(link) do
+          .glyphicon.glyphicon-pencil
+        = link_to admin_link_path(link), method: :delete, data: { :confirm => 'Are you sure?' } do
+          .glyphicon.glyphicon-remove

@@ -69,4 +69,12 @@ end
   volunteer.email = user[:email]
   volunteer.add_role :volunteer
   volunteer.save
+
+# Add some fake articles
+# i = 1
+# while i < 28 do
+#   Link.create(title: "Article " + i.to_s, url: "http://google.com/"+i.to_s, reason: "Reason " + i.to_s, created_at: i.days.ago)
+#   i=i+1
+# end
+
 end
