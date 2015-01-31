@@ -1,2 +1,3 @@
-.avatar
-  = gravatar_image_tag(avatar.email, alt: avatar.name, title: avatar.name, gravatar: { size: size||=100 }, "data-toggle" => "tooltip")
+- if defined?(avatar)
+  .avatar
+    = gravatar_image_tag(avatar.email, alt: avatar.name, title: avatar.name, gravatar: { size: size||=100 }, "data-toggle" => "tooltip")

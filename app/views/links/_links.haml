@@ -20,7 +20,7 @@
     - if current_user.try(:is?, :admin)
       %td= render partial: "shared/avatar", object: link.user, locals: { size: 50 }
       %td{ style: 'vertical-align: middle;' }
-        = link.weighted_score
+        = link.cached_weighted_average
       %td{ style: 'vertical-align: middle;' }
         = link.votes_for.size
       %td{ style: 'vertical-align: middle;' }
