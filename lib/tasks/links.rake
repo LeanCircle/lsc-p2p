@@ -31,9 +31,12 @@ namespace :links do
                                             auto_tweet: true,
                                             auto_fb_post: [ENV['FACEBOOK_PAGE_ID']],
                                             fb_comments: true
-                                  },
-                                 content: { sections: { body: ApplicationController.new.render_to_string(:template => 'user_mailer/weekly_newsletter', layout: false, :locals => { }) } }
-                               })
+                                 },
+                                 content: { sections: { body: ApplicationController.new.render_to_string(template: 'user_mailer/weekly_newsletter',
+                                                                                                         layout: false,
+                                                                                                         locals: { links: Link.where(created_at: Date.today.beginning_of_week(:sunday)..(Time.now)).order(:cached_weighted_average => :desc).take(5) }
+                                 ) } }
+    })
   end
 
 end

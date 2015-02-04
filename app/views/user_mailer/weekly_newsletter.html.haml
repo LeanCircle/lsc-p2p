@@ -1,1 +1,22 @@
-This is a test
+%h1
+  Lean Update
+  = Time.now.strftime("%b %e")
+Hi *|FNAME|*,
+%div{:style => "margin: 0px 0px 0.7em; padding: 0px; color: rgb(0, 0, 0); line-height: 18px;"}
+  %br/
+  %em{:style => "color:rgb(0, 0, 0); line-height:18px"}
+    %strong{:style => "display:inline; font-family:inherit"} tl;dr
+  %span{:style => "color:rgb(0, 0, 0); line-height:18px"} &nbsp;
+  %em
+    %em{:style => "color:rgb(0, 0, 0); line-height:18px"}
+      Read of the week:&nbsp;
+      = link_to links.first.title, links.first.url
+  %br/
+  %br/
+  %strong{:style => "color:rgb(51, 51, 51); display:inline; font-family:inherit; line-height:20.7999992370605px"} Good Reads:
+%ul
+  - links.each do |link|
+    %li= link_to link.title, link.url
+  %li
+    %span{:style => "line-height:1.6em"} Got a good read?&nbsp;
+    = link_to "Submit it", "http://www.leanstartupcircle.com/links/new"
