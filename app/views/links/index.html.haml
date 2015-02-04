@@ -21,7 +21,7 @@
             = Date.today.beginning_of_week(:sunday).strftime("%B %d")
             \-
             = (Date.today.beginning_of_week(:sunday)+7).strftime("%B %d")
-        = render partial: "links", object: Link.where(created_at: Date.today.beginning_of_week(:sunday)..(Time.now)).order(:cached_weighted_score => :desc)
+        = render partial: "links", object: Link.where(created_at: Date.today.beginning_of_week(:sunday)..(Time.now)).order(:cached_weighted_average => :desc)
 
       %table.table.table-condensed.table-striped.groups
         %h2
@@ -30,7 +30,7 @@
             = (Date.today.beginning_of_week(:sunday)-7).strftime("%B %d")
             \-
             = Date.today.beginning_of_week(:sunday).strftime("%B %d")
-        = render partial: "links", object: Link.where(created_at: Date.today.beginning_of_week(:sunday).days_ago(7)..Date.today.beginning_of_week(:sunday)).order(:cached_weighted_score => :desc)
+        = render partial: "links", object: Link.where(created_at: Date.today.beginning_of_week(:sunday).days_ago(7)..Date.today.beginning_of_week(:sunday)).order(:cached_weighted_average => :desc)
 
       %table.table.table-condensed.table-striped.groups
         %h2
@@ -39,4 +39,4 @@
             = (Date.today.beginning_of_week(:sunday)-14).strftime("%B %d")
             \-
             = (Date.today.beginning_of_week(:sunday)-7).strftime("%B %d")
-        = render partial: "links", object: Link.where(created_at: Date.today.beginning_of_week(:sunday).days_ago(7)..Date.today.beginning_of_week(:sunday)).order(:cached_weighted_score => :desc)
+        = render partial: "links", object: Link.where(created_at: Date.today.beginning_of_week(:sunday).days_ago(7)..Date.today.beginning_of_week(:sunday)).order(:cached_weighted_average => :desc)
