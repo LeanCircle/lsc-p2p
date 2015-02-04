@@ -20,7 +20,7 @@ gem 'cancancan' # for access control
 gem 'acts_as_votable', github: 'ryanto/acts_as_votable' # for voting on links
 
 # Various APIs
-gem 'gibbon', '1.0.4' # For mailchimp integration
+gem 'gibbon' # For mailchimp integration
 gem 'gravatar_image_tag' # For user images
 gem 'recaptcha', require: 'recaptcha/rails' # Add captcha to contact forms
 gem 'geocoder' # To geolocate groups
