@@ -108,3 +108,7 @@ or
 or
 
     heroku logs --app lsc-p2p-staging
+
+#### Updating votes
+
+    Link.find_each(&:update_cached_votes)
