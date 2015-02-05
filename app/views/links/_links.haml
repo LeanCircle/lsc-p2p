@@ -1,6 +1,6 @@
 - links.each do |link|
   %tr
-    %td{ style: 'font-size: 1.1em;' }
+    %td.col-md-1{ style: 'font-size: 1.1em;' }
       - unless current_user.try(:voted_up_on?, link)
         = link_to link_upvote_path(link) do
           &#x25B2;
@@ -14,8 +14,9 @@
         .span{ style: 'color: red; display: inline;' } &#x25BC;
     %td{ style: 'vertical-align: middle;' }
       = link_to link.title, link.url, target: "_blank"
-    %td{ style: 'vertical-align: middle;' }
-      = link.reason
+      %br
+      %small
+        = link.reason
 
     - if current_user.try(:is?, :admin)
       %td= render partial: "shared/avatar", object: link.user, locals: { size: 50 }
