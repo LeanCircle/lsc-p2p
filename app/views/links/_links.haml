@@ -13,7 +13,7 @@
       - else
         .span{ style: 'color: red; display: inline;' } &#x25BC;
     %td{ style: 'vertical-align: middle;' }
-      = link_to link.title, link.url, target: "_blank"
+      = link_to link.title, link_path(link)
       %br
       %small
         = link.reason

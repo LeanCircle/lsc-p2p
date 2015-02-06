@@ -1,3 +1,3 @@
 - provide(:title, @link.title)
 
-%iframe{ src: @link.url, height: '100%', width: '100%', style: "border-width: 0" }
+%iframe#preview{ src: "http://lsc-dzr.herokuapp.com/?proxy_url=" + @link.url, height: '95%', width: '100%', style: "border-width: 0" }
