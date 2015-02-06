@@ -5,13 +5,12 @@
   %p
     If you've got an article you think should be listed,
     = link_to "submit it here", new_link_url
-  %p If you need to log in, use your email address and reset your password if you don't have one.
   %table
     %tr
       %th
       %th Link
       %th Why is this a good read?
-    - @links.each do |link|
+    - @links.take(3).each do |link|
       %tr
         %td
           - unless @user.voted_up_on? link
@@ -28,5 +27,13 @@
           = link_to link.title, link.url, target: "_blank"
         %td
           = link.reason
+    - if @links.count > 3
+      %tr
+        %td
+          ...
+          = link_to links_path do
+            read
+            = (@links.count - 3).to_s
+            more
 
   %p If you'd like to unsubscribe, please just reply to this email with "UNSUBSCRIBE"
