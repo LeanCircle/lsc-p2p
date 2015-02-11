@@ -33,7 +33,6 @@ class LinksController < ApplicationController
     @link = Link.find(params[:link_id])
     @link.liked_by current_user
     redirect_to redirect_url_after_voting
-    end
   end
 
   def downvote
@@ -64,5 +63,6 @@ class LinksController < ApplicationController
       else
         set_unvoted
         return link_path(@unvoted.first)
+      end
     end
 end
