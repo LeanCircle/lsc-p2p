@@ -1,7 +1,8 @@
 class GroupsController < ApplicationController
+  before_filter :find_location
 
   def index
-    @groups = Group.approved
+    @groups = Group.near(@location.coordinates, 20000).approved
     @gmaps_hash = Gmaps4rails.build_markers(@groups) do |group, marker|
       marker.lat group.latitude
       marker.lng group.longitude
@@ -25,6 +26,13 @@ class GroupsController < ApplicationController
   end
 
   private
+  def find_location
+    return unless @location.blank?
+    @location = request.location
+    @location = Geocoder.search("Boston").first if (!Rails.env.production? || !Rails.env.staging? || @location.blank?)
+    @nearest_groups = Group.near(@location.coordinates, 50).approved
+  end
+
     def post_params
       params.require(:group).permit(:name,
                                     :city,
