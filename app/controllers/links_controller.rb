@@ -4,10 +4,7 @@ class LinksController < ApplicationController
 
   def index
     @links = Link.all.order(:created_at => :desc)
-    if current_user
-      seen = current_user.votes.votables
-      @unseen = (@links - seen)
-    end
+    set_unvoted
   end
 
   def show
@@ -35,13 +32,14 @@ class LinksController < ApplicationController
   def upvote
     @link = Link.find(params[:link_id])
     @link.liked_by current_user
-    redirect_to links_path
+    redirect_to redirect_url_after_voting
+    end
   end
 
   def downvote
     @link = Link.find(params[:link_id])
     @link.disliked_by current_user
-    redirect_to links_path
+    redirect_to redirect_url_after_voting
   end
 
   private
@@ -51,4 +49,20 @@ class LinksController < ApplicationController
                                    :reason)
     end
 
+    def set_unvoted
+      if current_user
+        seen = current_user.votes.votables
+        @unvoted = (Link.all.order(:created_at => :desc) - seen)
+      end
+    end
+
+    def redirect_url_after_voting
+      puts "referrer: " + URI(request.referer).path.to_s
+      puts "links_path: " + links_path.to_s
+      if current_user && (!request.referer.present? || URI(request.referer).path == links_path)
+        return links_path
+      else
+        set_unvoted
+        return link_path(@unvoted.first)
+    end
 end
