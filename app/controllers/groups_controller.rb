@@ -29,7 +29,7 @@ class GroupsController < ApplicationController
   def find_location
     return unless @location.blank?
     @location = request.location
-    @location = Geocoder.search("Boston").first if (!Rails.env.production? || !Rails.env.staging? || @location.blank?)
+    @location = Geocoder.search("Boston").first if (!Rails.env.production? && !Rails.env.staging?) || @location.blank?
     @nearest_groups = Group.near(@location.coordinates, 50).approved
   end
 

@@ -37,6 +37,14 @@ group :development do
   gem 'sqlite3', '1.3.8'
 end
 
+group :development, :test do
+  gem "factory_girl_rails", "~> 4.0"
+  gem 'pry-byebug'
+  gem 'pry-rails'
+  gem 'rspec-rails', '~> 3.0'
+  gem 'shoulda-matchers', require: false
+end
+
 group :doc do
   gem 'sdoc', '0.3.20', require: false
 end
