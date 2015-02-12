@@ -69,22 +69,22 @@ end
   volunteer.email = user[:email]
   volunteer.add_role :volunteer
   volunteer.save
-
-# Add some fake articles
-# i = 1
-# while i < 28 do
-#   Link.create(title: "Article " + i.to_s, url: "http://google.com/"+i.to_s, reason: "Reason " + i.to_s, created_at: i.days.ago)
-#   i=i+1
-# end
-
 end
 
 case Rails.env
   when "development"
+  # Add some fake groups
   10.times do |n|
     lat = rand(3771..3781)/1000.to_f
     long = rand(-12251..-12238)/1000.to_f
     Group.create(name: "awesome_group#{n}", facebook_link: "https://www.facebook.com/LeanStartupCircle", description: "group #{n} is great!", latitude: "#{lat}", longitude: "#{long}", approval: true)
+  end
+
+  # Add some fake articles
+  i = 1
+  while i < 28 do
+    Link.create(title: "Article " + i.to_s, url: "http://google.com/"+i.to_s, reason: "Reason " + i.to_s, created_at: i.days.ago)
+    i=i+1
   end
 end
 
