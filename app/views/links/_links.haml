@@ -19,12 +19,12 @@
         = link.reason
 
     - if current_user.try(:is?, :admin)
-      %td= render partial: "shared/avatar", object: link.user, locals: { size: 50 }
-      %td{ style: 'vertical-align: middle;' }
+      %td.col-md-1= render partial: "shared/avatar", object: link.user, locals: { size: 50 }
+      %td.col-md-1{ style: 'vertical-align: middle;' }
         = '%.2f' % link.cached_weighted_average
-      %td{ style: 'vertical-align: middle;' }
+      %td.col-md-1{ style: 'vertical-align: middle;' }
         = link.votes_for.size
-      %td{ style: 'vertical-align: middle;' }
+      %td.col-md-1{ style: 'vertical-align: middle;' }
         = link_to edit_admin_link_path(link) do
           .glyphicon.glyphicon-pencil
         = link_to admin_link_path(link), method: :delete, data: { :confirm => 'Are you sure?' } do
