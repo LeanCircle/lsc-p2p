@@ -12,7 +12,6 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jquery-turbolinks'
 gem 'jbuilder'
-gem 'pg'
 
 gem 'devise' # For active admin & auth
 gem 'friendly_id', '~> 5.0.0' # For nice url slugs
