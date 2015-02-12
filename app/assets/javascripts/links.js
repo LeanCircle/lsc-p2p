@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
       // Grab the iFrame from above
-      var the_iframe = $("iframe#preview");
+      var the_iframe = $("iframe #preview");
 
       // Function to resize iFrame we grabbed
       function resize_iframe () {
