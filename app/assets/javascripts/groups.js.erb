@@ -1,0 +1,94 @@
+// 	var infowindow = null;
+
+// 	function initialize() {
+// 		var latitude = JSON.parse(document.getElementById('photo').getAttribute('data-photo'))['latitude'];
+// 		var longitude = JSON.parse(document.getElementById('photo').getAttribute('data-photo'))['longitude'];
+
+// 		function addMarkers(){
+// 			for (i=0; i < locations.length; i++){
+// 				var marker = new google.maps.Marker({
+// 					position: new google.maps.LatLng(locations[i][0],locations[i][1]),
+// 					map: map,
+// 					html: (i+1).toString()
+// 				})
+// 				markers.push(marker)  
+// 			}
+
+// 			for (var i=0; i < markers.length; i++){
+// 				var marker = markers[i];
+// 				google.maps.event.addListener(marker, 'click', function(){
+// 					infowindow.setContent(this.html);
+// 					infowindow.open(map, this)
+
+// 				});
+// 			}
+// 		}
+
+// 		center = new google.maps.LatLng(37.77, -122.43)
+// 		var mapCanvas = document.getElementById('map-canvas');
+// 		var mapOptions = {
+// 			center: center,
+// 			zoom: 12,
+// 			mapTypeId: google.maps.MapTypeId.ROADMAP
+// 		}
+
+// 		var map = new google.maps.Map(mapCanvas, mapOptions)
+// 		var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+// 		var markers = []
+// 		var locations = []  
+
+// 		infowindow = new google.maps.InfoWindow({
+// 			content: "test"
+// 		});
+
+// 		addMarkers();
+
+// 		if(locations.length < 1){
+// 			locations.push([latitude, longitude]);
+// 			addMarkers();
+// 		}
+// 	} 
+
+// 	  $(document).ready(function(){
+//     initialize();
+//   	});
+
+// 	console.log(document.getElementById('photo_longitude'));
+// 	</script>
+// </div>
+
+
+var map;
+
+function initialize() {
+	
+	var maps_hash = JSON.parse(document.getElementById('silly').getAttribute('data'));
+	var markers=[]
+  var mapOptions = {
+    zoom: 1,
+    center: new google.maps.LatLng(37.77, -122.43)
+  };
+
+  map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+	for (i=0; i < maps_hash.length; i++){
+		var marker = new google.maps.Marker({
+			position: new google.maps.LatLng(maps_hash[i]["lat"],maps_hash[i]["lng"]),
+			map: map,
+			html: (i+1).toString()
+		})
+		markers.push(marker)  
+	}
+
+	var mc = new MarkerClusterer(map, markers);
+
+	//Implement MarkerClusterer
+  
+  
+}
+
+ $(document).ready(function(){
+    initialize();
+ });
+
+

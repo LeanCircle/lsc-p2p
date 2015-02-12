@@ -78,3 +78,18 @@ end
 # end
 
 end
+
+case Rails.env
+  when "development"
+  10.times do |n|
+    lat = rand(3771..3781)/1000.to_f
+    long = rand(-12251..-12238)/1000.to_f
+    Group.create(name: "awesome_group#{n}", facebook_link: "https://www.facebook.com/LeanStartupCircle", description: "group #{n} is great!", latitude: "#{lat}", longitude: "#{long}", approval: true)
+  end
+end
+
+
+
+
+
+
