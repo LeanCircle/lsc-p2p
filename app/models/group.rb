@@ -30,6 +30,15 @@ class Group < ActiveRecord::Base
   scope :by_country, -> { select(:country).uniq.order("country asc") }
   scope :lsc, -> { where(:lsc => true) }
 
+  def self.nearest(location)
+    Group.near(location.coordinates, 50).approved.to_a.delete_if(&:remove_inactive)
+  end
+
+  def remove_inactive
+    return true if events.empty?
+    events.order(:start_datetime).first.start_datetime < 6.months.ago
+  end
+
   def link
     [meetup_link,
      facebook_link,

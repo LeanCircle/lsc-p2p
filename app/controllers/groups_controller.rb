@@ -1,5 +1,7 @@
 class GroupsController < ApplicationController
-  before_filter :find_location
+  before_filter :location_setup
+
+  @location = nil
 
   def index
     @groups = Group.near(@location.coordinates, 20000).approved
@@ -26,11 +28,16 @@ class GroupsController < ApplicationController
   end
 
   private
-  def find_location
+
+  def location_setup
+    setup_location
+    @nearest_groups = Group.nearest(@location)
+  end
+
+  def setup_location
     return unless @location.blank?
     @location = request.location
-    @location = Geocoder.search("Boston").first if (!Rails.env.production? && !Rails.env.staging?) || @location.blank?
-    @nearest_groups = Group.near(@location.coordinates, 50).approved
+    @location = Geocoder.search("Boston").first if Rails.env.development? || @location.blank?
   end
 
     def post_params
