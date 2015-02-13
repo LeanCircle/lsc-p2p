@@ -70,15 +70,15 @@ class Group < ActiveRecord::Base
 
   def update_and_overwrite_from_meetup
     unless meetup_link.blank?
-      puts Group.init_rmeetup
-      puts method = Group.query_method(meetup_link)
-      puts query = Group.clean_query(meetup_link)
-      puts response = RMeetup::Client.fetch( :groups,{ method => query }).first
+      Rails.logger.info Group.init_rmeetup
+      Rails.logger.info method = Group.query_method(meetup_link)
+      Rails.logger.info query = Group.clean_query(meetup_link)
+      Rails.logger.info response = RMeetup::Client.fetch( :groups,{ method => query }).first
       overwrite_from_meetup_api_response(response) unless response.blank?
       fetch_events_from_meetup
     end
   rescue Exception => e
-    puts e.message
+    Rails.logger.error e.message
   end
 
   def overwrite_from_meetup_api_response(response)
