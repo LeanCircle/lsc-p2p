@@ -15,11 +15,11 @@
 #= require jquery_ujs
 #= require jquery-readyselector
 
-#= require turbolinks
 #= require bootstrap-sprockets
 #= require gmaps/google
-
 #= require_tree .
+
+#= require turbolinks
 
 # Highlight active links for nav bar
 $(document).ready ->
