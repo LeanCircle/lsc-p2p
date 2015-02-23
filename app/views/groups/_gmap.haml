@@ -1,12 +1,5 @@
-= javascript_include_tag "https://maps.googleapis.com/maps/api/js"
+= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=" + ENV["GOOGLE_API_KEY"]
 = javascript_include_tag "http://google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.14/src/markerclusterer_packed.js"
-/ :javascript
-/   handler = Gmaps.build('Google');
-/   handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-/     markers = handler.addMarkers(#{@gmaps_hash.to_json});
-/     handler.bounds.extendWith(markers);
-/     handler.fitMapToBounds();
-/   });
 
 #groups_map{ style: 'max-width: 1200px; height: 400px;'}
 #map_data{ data: @gmaps_hash.to_json }
