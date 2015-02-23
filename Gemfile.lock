@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/gregbell/active_admin.git
-  revision: 76f194ebe33303fb12dd0dbecb069e27fa8a8de9
+  revision: ed1fbca8c64af827616c58f274d7be256ca513b6
   specs:
     activeadmin (1.0.0.pre)
       arbre (~> 1.0, >= 1.0.2)
@@ -67,15 +67,15 @@ GEM
     arbre (1.0.3)
       activesupport (>= 3.0.0)
     arel (5.0.1.20140414130214)
-    autoprefixer-rails (5.1.3)
+    autoprefixer-rails (5.1.7)
       execjs
       json
     bcrypt (3.1.10)
     bootstrap-sass (3.3.3)
       autoprefixer-rails (>= 5.0.0.1)
       sass (>= 3.2.19)
-    bourbon (4.1.1)
-      sass (~> 3.3)
+    bourbon (4.2.0)
+      sass (~> 3.4)
       thor
     builder (3.2.2)
     byebug (3.5.1)
@@ -90,7 +90,7 @@ GEM
     coffee-script (2.3.0)
       coffee-script-source
       execjs
-    coffee-script-source (1.9.0)
+    coffee-script-source (1.9.1)
     columnize (0.9.0)
     countries (0.9.3)
       currencies (~> 0.4.2)
@@ -107,7 +107,7 @@ GEM
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
     erubis (2.7.0)
-    excon (0.44.1)
+    excon (0.44.2)
     execjs (2.3.0)
     factory_girl (4.5.0)
       activesupport (>= 3.0.0)
@@ -122,9 +122,9 @@ GEM
     friendly_id (5.0.5)
       activerecord (>= 4.0.0)
     geocoder (1.2.7)
-    gibbon (1.1.4)
+    gibbon (1.1.5)
       httparty
-      multi_json (>= 1.3.4)
+      multi_json (>= 1.9.0)
     gmaps4rails (2.1.2)
     gravatar_image_tag (1.2.0)
     haml (4.0.6)
@@ -135,7 +135,7 @@ GEM
       haml (>= 3.1, < 5.0)
       html2haml (>= 1.0.1)
       railties (>= 4.0.1)
-    has_scope (0.6.0.rc)
+    has_scope (0.6.0)
       actionpack (>= 3.2, < 5)
       activesupport (>= 3.2, < 5)
     heroku-api (0.3.22)
@@ -160,7 +160,7 @@ GEM
       has_scope (~> 0.6.0.rc)
       railties (>= 3.2, < 5)
       responders
-    jbuilder (2.2.6)
+    jbuilder (2.2.8)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
     jquery-rails (3.1.2)
@@ -172,7 +172,7 @@ GEM
     jquery-ui-rails (5.0.3)
       railties (>= 3.2.16)
     json (1.8.2)
-    kaminari (0.16.2)
+    kaminari (0.16.3)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
     mail (2.6.3)
@@ -183,12 +183,12 @@ GEM
     minitest (5.5.1)
     multi_json (1.10.1)
     multi_xml (0.5.5)
-    newrelic_rpm (3.9.9.275)
+    newrelic_rpm (3.10.0.279)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
     orm_adapter (0.5.0)
     pg (0.18.1)
-    phony (2.10.3)
+    phony (2.10.4)
     polyamorous (1.1.0)
       activerecord (>= 3.0)
     pry (0.10.1)
@@ -256,7 +256,7 @@ GEM
     rspec-support (3.2.1)
     ruby_parser (3.6.4)
       sexp_processor (~> 4.1)
-    sass (3.4.11)
+    sass (3.4.12)
     sass-rails (5.0.1)
       railties (>= 4.0.0, < 5.0)
       sass (~> 3.1)
