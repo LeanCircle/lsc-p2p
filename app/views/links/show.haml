@@ -1,4 +1,4 @@
 - provide(:title, @link.title)
 
-#iframe_parent{ style: "-webkit-overflow-scrolling: touch; overflow-y: scroll;" }
+#iframe_parent{ style: "-webkit-overflow-scrolling: touch !important; overflow-y: scroll !important; position: fixed; right: 0; bottom: 0; left: 0; top: 0;" }
   %iframe#link_preview{ src: "http://lsc-dzr.herokuapp.com/?proxy_url=" + @link.url, height: '95%', width: '100%', style: "border-width: 0" }
