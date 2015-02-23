@@ -24,14 +24,14 @@
           - else
             %span{ style: 'color: red;' } &#x25BC;
         %td
-          = link_to link.title, link.url, target: "_blank"
+          = link_to link.title, link_url(link), target: "_blank"
         %td
           = link.reason
     - if @links.count > 3
       %tr
         %td
-          ...
-          = link_to links_path do
+          \...
+          = link_to links_url do
             read
             = (@links.count - 3).to_s
             more
