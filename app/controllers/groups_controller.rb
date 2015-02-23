@@ -40,17 +40,17 @@ class GroupsController < ApplicationController
     @location = Geocoder.search("Boston").first if Rails.env.development? || @location.blank?
   end
 
-    def post_params
-      params.require(:group).permit(:name,
-                                    :city,
-                                    :province,
-                                    :country,
-                                    :meetup_link,
-                                    :facebook_link,
-                                    :googleplus_link,
-                                    :linkedin_link,
-                                    :twitter_link,
-                                    :other_link)
-    end
+  def post_params
+    params.require(:group).permit(:name,
+                                  :city,
+                                  :province,
+                                  :country,
+                                  :meetup_link,
+                                  :facebook_link,
+                                  :googleplus_link,
+                                  :linkedin_link,
+                                  :twitter_link,
+                                  :other_link)
+  end
 
 end

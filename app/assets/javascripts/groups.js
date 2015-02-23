@@ -1,15 +1,15 @@
 var map;
 
-function initialize() {
+function initialize_map() {
 	
-	var maps_hash = JSON.parse(document.getElementById('silly').getAttribute('data'));
-	var markers=[]
-  var mapOptions = {
-    zoom: 1,
-    center: new google.maps.LatLng(37.77, -122.43)
-  };
+    var maps_hash = JSON.parse(document.getElementById('silly').getAttribute('data'));
+	var markers=[];
+    var mapOptions = {
+        zoom: 1,
+        center: new google.maps.LatLng(37.77, -122.43)
+    };
 
-  map = new google.maps.Map(document.getElementById('map'), mapOptions);
+    map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
 	for (i=0; i < maps_hash.length; i++){
 		var marker = new google.maps.Marker({
@@ -18,14 +18,11 @@ function initialize() {
 			html: (i+1).toString()
 		})
 		markers.push(marker)  
-	}
+    };
 
 	var mc = new MarkerClusterer(map, markers);
-  
 }
 
- $(document).ready(function(){
-    initialize();
- });
-
-
+$('#index_groups').ready(function(){
+    initialize_map();
+});
