@@ -87,7 +87,7 @@ Note, you'd better have postgres installed locally for this!
 
 ### Copy db from production to staging
 
-    heroku pgbackups:capture --app lsc-p2p-production
+    heroku pgbackups:capture --app lsc-p2p-production --expire
     heroku pgbackups:restore DATABASE `heroku pgbackups:url --app lsc-p2p-production` --app lsc-p2p-staging --confirm lsc-p2p-staging
 
 
