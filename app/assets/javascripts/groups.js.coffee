@@ -2,6 +2,7 @@ $('#map_data').ready ->
 
   initialize = ->
     maps_hash = JSON.parse(document.getElementById('map_data').getAttribute('data'))
+    markers = []
     mapOptions =
       zoom: 1
       center: new (google.maps.LatLng)(37.77, -122.43)
