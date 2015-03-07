@@ -36,6 +36,7 @@ gem 'newrelic_rpm' # Basic error notifications and dev metrics
 group :development do
   gem 'sqlite3', '1.3.8'
   gem 'quiet_assets'
+  gem 'guard-rspec', require: false
 end
 
 group :development, :test do
