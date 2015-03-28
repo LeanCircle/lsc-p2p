@@ -15,6 +15,11 @@
 
   %body{ style: "height: 100%; margin: 0; overflow: hidden;" }
     .navbar.navbar-default
+      .navbar-buttons{ style: "margin-bottom: .5em;" }
+        .back{ style: "float: left; margin-left: 1em;" }
+          = link_to "<- Back", links_path
+        .close-navbar{ style: "float: right; margin-right: 1em;" }
+          = link_to "X Close", @link.url
       .container
         .navbar-header
           = link_to image_tag("p2pc_logo.png", id: "navbar-logo"), links_path, class: "navbar-brand"
@@ -30,12 +35,10 @@
             - unless current_user.try(:voted_down_on?, @link)
               = link_to link_downvote_path(@link) do
                 .btn.btn-primary
-                  .glyphicon.glyphicon-chevron-down Sucks.
+                  .glyphicon.glyphicon-chevron-down Sucks
             - else
               .btn.btn-primary{ disabled: "disabled" }
-                .glyphicon.glyphicon-chevron-down Sucks.
-            .back{ style: "position: absolute; top: 5px; right: 5px;" }
-              = link_to "<- back", links_path
+                .glyphicon.glyphicon-chevron-down Sucks
     = render 'shared/flash_messages', flash: flash
 
     = yield
