@@ -19,6 +19,8 @@ gem 'activeadmin', github: 'gregbell/active_admin' # Basic admin panel
 gem 'cancancan' # for access control
 gem 'acts_as_votable', github: 'ryanto/acts_as_votable' # for voting on links
 
+gem 'activerecord_any_of'
+
 # Various APIs
 gem 'gibbon' # For mailchimp integration
 gem 'gravatar_image_tag' # For user images

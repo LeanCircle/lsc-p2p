@@ -4,8 +4,8 @@ class GroupsController < ApplicationController
   @location = nil
 
   def index
-    @groups = Group.near(@location.coordinates, 20000).approved
-    @gmaps_hash = Gmaps4rails.build_markers(@groups) do |group, marker|
+    @groups = Group.near(@location.coordinates, 20000).approved.active
+    @gmaps_hash = Gmaps4rails.build_markers(@groups.approved.active) do |group, marker|
       marker.lat group.latitude
       marker.lng group.longitude
     end
