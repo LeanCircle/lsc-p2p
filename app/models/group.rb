@@ -33,10 +33,7 @@ class Group < ActiveRecord::Base
   scope :meetups, -> { where.not(meetup_link: ["", nil]) }
   scope :non_meetups, -> { where(meetup_link: ["", nil]) }
   scope :active, -> { active_meetups + non_meetups }
-
-  def self.nearest(location)
-    Group.near(location.coordinates, 50).approved.to_a.delete_if(&:remove_inactive)
-  end
+  scope :nearest, ->(location) { near(location.coordinates, 5000) }
 
   def link
     [meetup_link,

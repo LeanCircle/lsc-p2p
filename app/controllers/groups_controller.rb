@@ -4,7 +4,7 @@ class GroupsController < ApplicationController
   @location = nil
 
   def index
-    @groups = Group.near(@location.coordinates, 20000).approved.active
+    @groups = Group.nearest(@location).approved.active
     @gmaps_hash = Gmaps4rails.build_markers(@groups) do |group, marker|
       marker.lat group.latitude
       marker.lng group.longitude
@@ -30,14 +30,9 @@ class GroupsController < ApplicationController
   private
 
   def location_setup
-    setup_location
-    @nearest_groups = Group.nearest(@location)
-  end
-
-  def setup_location
     return unless @location.blank?
     @location = request.location
-    @location = Geocoder.search("Boston").first if Rails.env.development? || @location.blank?
+    @location = Geocoder.search("New York").first if Rails.env.development? || @location.blank?
   end
 
   def post_params
