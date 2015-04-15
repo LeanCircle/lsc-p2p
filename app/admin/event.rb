@@ -1,18 +1,23 @@
 ActiveAdmin.register Event do
 
+  controller do
+    def scoped_collection
+      super.includes :group
+    end
+  end
 
-  # See permitted parameters documentation:
-  # https://github.com/gregbell/active_admin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-  #
-  # permit_params :list, :of, :attributes, :on, :model
-  #
-  # or
-  #
-  # permit_params do
-  #  permitted = [:permitted, :attributes]
-  #  permitted << :other if resource.something?
-  #  permitted
-  # end
+  index do
+    selectable_column
+
+    column "Group", sortable: 'groups.name' do |event|
+      link_to_unless(event.group.blank?, event.group.try(:name), admin_group_path(event.group))
+    end
+    column :start_datetime
+    column :link do |event|
+      link_to event.event_url
+    end
+    actions
+  end
 
 
 end
