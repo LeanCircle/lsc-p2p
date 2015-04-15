@@ -5,9 +5,9 @@ class GroupsController < ApplicationController
 
   def index
     @groups = Group.nearest(@location).approved.active
-    @gmaps_hash = Gmaps4rails.build_markers(@groups) do |group, marker|
-      marker.lat group.latitude
-      marker.lng group.longitude
+    @gmaps_hash = []
+    @groups.each do |group|
+      @gmaps_hash << { lat: group.latitude, lng: group.longitude }
     end
   end
 

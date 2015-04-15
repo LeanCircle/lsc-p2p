@@ -31,7 +31,7 @@ class Group < ActiveRecord::Base
   scope :lsc, -> { where(:lsc => true) }
   scope :meetups, -> { where.not(meetup_link: ["", nil]) }
   scope :non_meetups, -> { where(meetup_link: ["", nil]) }
-  scope :active, -> { includes(:events).where('meetup_link = NULL OR meetup_link = "" OR events.start_datetime >= ?', DateTime.now - 6.months).references(:events) }
+  scope :active, -> { includes(:events).where("meetup_link is NULL OR meetup_link = '' OR events.start_datetime >= ?", DateTime.now - 6.months).references(:events) }
   scope :nearest, ->(location) { near(location.coordinates, 5000) }
 
   def link
