@@ -1,0 +1,22 @@
+- provide(:title, @group.name)
+
+#index_groups
+  .row
+    .span12
+      %h1{ :style => "display: inline"}
+        = @group.name
+        %small= @group.address
+      - if !@group.events.upcoming.blank?
+        %h2
+          Next event:
+          = link_to @group.events.upcoming.first.start_datetime.strftime("%a %b %d, %Y"), @group.events.upcoming.first.event_url, target: "_blank"
+          = link_to  @group.events.upcoming.first.event_url, target: "_blank" do
+            .btn.btn-primary
+              Join us!
+      %h2
+        Find us on
+        = link_to_if(!@group.meetup_link.blank?, "#{image_tag 'links/link_meetup.png', :width => '50px'}".html_safe, @group.meetup_link, target: "_blank"){}
+        = link_to_if(!@group.facebook_link.blank?, "#{image_tag 'links/link_facebook.png'}".html_safe, @group.facebook_link, target: "_blank"){}
+        = link_to_if(!@group.linkedin_link.blank?, "#{image_tag 'links/link_linkedin.png'}".html_safe, @group.linkedin_link, target: "_blank"){}
+        = link_to_if(!@group.twitter_link.blank?, "#{image_tag 'links/link_twitter.png'}".html_safe, @group.twitter_link, target: "_blank"){}
+        = link_to_if(!@group.googleplus_link.blank?, "#{image_tag 'links/link_googleplus.png'}".html_safe, @group.googleplus_link, target: "_blank"){}
