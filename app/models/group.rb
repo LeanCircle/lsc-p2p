@@ -29,10 +29,9 @@ class Group < ActiveRecord::Base
   scope :approved, -> { where(approval: true) }
   scope :by_country, -> { select(:country).uniq.order("country asc") }
   scope :lsc, -> { where(:lsc => true) }
-  scope :active_meetups, -> { joins(:events).merge(Event.recent).uniq }
   scope :meetups, -> { where.not(meetup_link: ["", nil]) }
   scope :non_meetups, -> { where(meetup_link: ["", nil]) }
-  scope :active, -> { active_meetups + non_meetups }
+  scope :active, -> { includes(:events).where('meetup_link = NULL OR meetup_link = "" OR events.start_datetime >= ?', DateTime.now - 6.months).references(:events) }
   scope :nearest, ->(location) { near(location.coordinates, 5000) }
 
   def link
