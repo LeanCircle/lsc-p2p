@@ -16,6 +16,9 @@ ActiveAdmin.register Group do
     column "Organizer" do |group|
       link_to_unless(group.user.blank?, group.user.try(:name), try(:admin_user_path, group.user))
     end
+    column "Active" do |group|
+      group.active?
+    end
     column :address, sortable: :country
     column do |group|
       link_to_unless(group.meetup_link.blank?, "#{image_tag 'links/link_meetup.png', width: '25px'}".html_safe, group.meetup_link, target: "_blank"){}

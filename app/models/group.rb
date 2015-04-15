@@ -32,7 +32,7 @@ class Group < ActiveRecord::Base
   scope :meetups, -> { where.not(meetup_link: ["", nil]) }
   scope :non_meetups, -> { where(meetup_link: ["", nil]) }
   scope :active, -> { includes(:events).where("meetup_link is NULL OR meetup_link = '' OR events.start_datetime >= ?", DateTime.now - 6.months).references(:events) }
-  scope :nearest, ->(location) { near(location.coordinates, 5000) }
+  scope :nearest, ->(location) { near(location.coordinates, 50000) }
 
   def link
     [meetup_link,
@@ -41,6 +41,14 @@ class Group < ActiveRecord::Base
      googleplus_link,
      other_link,
      twitter_link].reject! { |c| c.blank? }.first
+  end
+
+  def active?
+    if meetup_link.blank? || !events.recent.empty?
+      return true
+    else
+      return false
+    end
   end
 
   #def self.country_count(country)
