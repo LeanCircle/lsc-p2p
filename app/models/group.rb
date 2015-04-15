@@ -29,11 +29,10 @@ class Group < ActiveRecord::Base
   scope :approved, -> { where(approval: true) }
   scope :by_country, -> { select(:country).uniq.order("country asc") }
   scope :lsc, -> { where(:lsc => true) }
-  # scope :active_meetups, -> { joins(:events).where("start_datetime >= ?", DateTime.now).group("group_id") }
   scope :active_meetups, -> { joins(:events).merge(Event.recent).uniq }
   scope :meetups, -> { where.not(meetup_link: ["", nil]) }
   scope :non_meetups, -> { where(meetup_link: ["", nil]) }
-  # scope :active, -> { where.any_of(meetup_link: ["", nil], Group.active_meetups) }
+  scope :active, -> { active_meetups + non_meetups }
 
   def self.nearest(location)
     Group.near(location.coordinates, 50).approved.to_a.delete_if(&:remove_inactive)
