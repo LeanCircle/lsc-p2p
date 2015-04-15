@@ -9,7 +9,7 @@ namespace :groups do
 
   desc "Updates all group events from meetup"
   task update_events: :environment do
-    Group.all.each do |group|
+    Group.meetups.each do |group|
       group.fetch_events_from_meetup
     end
   end
