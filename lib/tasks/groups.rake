@@ -4,6 +4,7 @@ namespace :groups do
   task update: :environment do
     Group.all.each do |group|
       group.update_and_overwrite_from_meetup
+      sleep 1.5
     end
   end
 
@@ -11,6 +12,7 @@ namespace :groups do
   task update_events: :environment do
     Group.meetups.each do |group|
       group.fetch_events_from_meetup
+      sleep 1.5
     end
   end
 
