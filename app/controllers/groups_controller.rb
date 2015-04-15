@@ -30,8 +30,9 @@ class GroupsController < ApplicationController
   private
 
   def location_setup
-    return unless @location.blank?
-    Rails.env.development? ? @location = Geocoder.search("Boston").first : @location = request.location
+    @location.blank? || @location.country == "Reserved" ? @location = Geocoder.search("Boston").first : @location = request.location
+    # Rails.env.development? ? @location = Geocoder.search("Boston").first : @location = request.location
+
   end
 
   def post_params
