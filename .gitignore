@@ -44,3 +44,6 @@ public/assets/**/*
 public/system/
 public/system/*
 public/system/**/*
+
+# pow
+.powrc

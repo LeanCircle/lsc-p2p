@@ -1,39 +1,42 @@
-%div
+%div{ style: 'width: 600px' }
   %p Hi #{@user.first_name},
 
   %p Thanks for helping to moderate! Just read the article and vote it up or down.
   %p
     If you've got an article you think should be listed,
     = link_to "submit it here", new_link_url
-  %table
-    %tr
-      %th
-      %th Link
-      %th Why is this a good read?
-    - @links.take(3).each do |link|
-      %tr
-        %td
-          - unless @user.voted_up_on? link
+
+  - @links.take(3).each do |link|
+    %div{ style: 'margin-top: 1em;' }
+      %div 
+        %strong 
+          = link_to link.title, link_url(link), target: "_blank"
+      %div{ style: 'margin-top: .2em;' }
+        = link.reason
+      %div{ style: 'width: 15em; margin-top: .2em;'}
+        %div{ style: 'float: left'} 
+          - if @user.voted_up_on? link
+            %span{ style: 'color: red;' } &#x25B2;
+            I like this
+          - else
             = link_to link_upvote_url(link) do
               &#x25B2;
+            I like this
+        %div{ style: 'float: left; padding-left: 2em;'}
+          - if @user.voted_down_on? link
+            %span{ style: 'color: red;' } &#x25BC;
+            I hate this
           - else
-            %span{ style: 'color: red;' } &#x25B2;
-          - unless @user.voted_down_on? link
             = link_to link_downvote_url(link) do
               &#x25BC;
-          - else
-            %span{ style: 'color: red;' } &#x25BC;
-        %td
-          = link_to link.title, link_url(link), target: "_blank"
-        %td
-          = link.reason
+            I hate this
+        %div{style: 'clear: both;'}
+
+  %div{ style: 'margin-top: 1em;' }
     - if @links.count > 3
-      %tr
-        %td
-          \...
-          = link_to links_url do
-            read
-            = (@links.count - 3).to_s
-            more
+      = link_to links_url do
+        Read
+        = (@links.count - 3).to_s
+        more articles...
 
   %p If you'd like to unsubscribe, please just reply to this email with "UNSUBSCRIBE"
