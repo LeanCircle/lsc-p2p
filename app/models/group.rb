@@ -105,12 +105,14 @@ class Group < ActiveRecord::Base
   end
 
   def fetch_events_from_meetup
-    Rails.logger.info Group.init_rmeetup
-    Rails.logger.info responses = RMeetup::Client.fetch(:events,{:group_id => meetup_id, :status => 'past'})
-    Rails.logger.info responses += RMeetup::Client.fetch(:events,{:group_id => meetup_id, :status => 'upcoming', :desc => true}).last(5)
-    unless responses.blank?
-      responses.each do |response|
-         Event.create_or_update_event_from_meetup_api_response(response, id) unless response.blank?
+    unless meetup_link.blank?
+      Rails.logger.info Group.init_rmeetup
+      Rails.logger.info responses = RMeetup::Client.fetch(:events,{:group_id => meetup_id, :status => 'past'})
+      Rails.logger.info responses += RMeetup::Client.fetch(:events,{:group_id => meetup_id, :status => 'upcoming', :desc => true}).last(5)
+      unless responses.blank?
+        responses.each do |response|
+           Event.create_or_update_event_from_meetup_api_response(response, id) unless response.blank?
+        end
       end
     end
   end
